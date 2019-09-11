@@ -1,0 +1,40 @@
+.Row {
+	display:flex;
+
+}
+
+.Row > div {
+	flex: 1;
+	position:relative;
+	flex-basis: 200px;
+	margin: 3px;
+}
+
+.Row > div:first-child {
+	margin-left: 0;
+}
+
+.Row > div:last-child {
+	margin-right: 0;
+}
+
+
+.row1 .leaflet-container, .row2 .leaflet-container, div[data-react-beautiful-dnd-placeholder='0']  {
+	height:100%;
+}
+
+div[data-react-beautiful-dnd-placeholder='0'] {
+	flex-grow: 1 !important; /*hmmm */
+	flex-shrink: 1 !important;
+}
+
+.row1 {
+	height:100%;
+}
+.row1.two-rows, .row2.two-rows {
+	height:50%;
+}
+.row1, .row2 {
+	width:100%;
+}
+

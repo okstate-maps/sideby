@@ -1,0 +1,95 @@
+@-webkit-keyframes modal-dropin {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 0; }
+  1% {
+    -webkit-transform: translateY(-800px);
+    transform: translateY(-800px);
+    opacity: 0; }
+  2% {
+    -webkit-transform: translateY(-800px);
+    transform: translateY(-800px);
+    opacity: 1; }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1; } }
+
+@keyframes modal-dropin {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 0; }
+  1% {
+    -webkit-transform: translateY(-800px);
+    transform: translateY(-800px);
+    opacity: 0; }
+  2% {
+    -webkit-transform: translateY(-800px);
+    transform: translateY(-800px);
+    opacity: 1; }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1; } }
+
+@-webkit-keyframes modal-dropout {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); }
+  100% {
+    -webkit-transform: translateY(-800px);
+    transform: translateY(-800px); } }
+
+@keyframes modal-dropout {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); }
+  100% {
+    -webkit-transform: translateY(-800px);
+    transform: translateY(-800px); } }
+
+
+div.ReactModalPortal div.Modal-Content.ReactModal__Content--before-close {
+  -webkit-animation: modal-dropout .5s;
+  animation: modal-dropout .5s; 
+}
+
+div.ReactModalPortal div.Modal-Content {
+  -webkit-animation: modal-dropin .5s;
+  animation: modal-dropin .5s; 
+}
+   
+div.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+}
+
+div.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+
+div.ReactModal__Overlay--before-close{
+    opacity: 0;
+}
+
+
+.ReactModalPortal div {
+    z-index: 10000;
+}
+
+.Modal-Content {
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    width:500px;
+    max-width: 90%;
+    bottom: 5%;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+  }

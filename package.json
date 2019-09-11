@@ -1,0 +1,53 @@
+{
+  "name": "stillwater-aerials-react",
+  "version": "0.2.0",
+  "private": true,
+  "homepage": "https://okstate-maps.github.io/aerial-compare",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.21",
+    "@fortawesome/free-solid-svg-icons": "^5.10.1",
+    "@fortawesome/pro-duotone-svg-icons": "^5.10.1",
+    "@fortawesome/pro-light-svg-icons": "^5.10.1",
+    "@fortawesome/pro-regular-svg-icons": "^5.10.1",
+    "@fortawesome/pro-solid-svg-icons": "^5.10.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "css-vars-ponyfill": "^2.1.1",
+    "esri-leaflet": "^2.1.2",
+    "gh-pages": "^1.1.0",
+    "leaflet": "^1.5.1",
+    "leaflet-control-geocoder": "^1.6.0",
+    "leaflet.sync": "^0.2.4",
+    "lodash": "^4.17.13",
+    "prop-types": "^15.6.0",
+    "react": "^16.8.0",
+    "react-app-polyfill": "^1.0.2",
+    "react-beautiful-dnd": "^11.0.4",
+    "react-dom": "^16.8.0",
+    "react-fullscreen-crossbrowser": "^1.0.9",
+    "react-leaflet": "^2.4.0",
+    "react-leaflet-control": "^2.0.0",
+    "react-modal": "^3.9.1",
+    "react-scripts": "^3.1.1",
+    "react-spinners": "^0.6.0",
+    "vex-js": "^4.1.0",
+    "webfontloader": "^1.6.28",
+    "why-did-you-update": "^1.0.6"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-pro": "^5.10.1"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

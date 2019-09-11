@@ -1,0 +1,19 @@
+.ViewBar-container {
+	position: relative;
+}
+
+.ViewBar-container .flip-move {
+	overflow-x: auto;
+	display: flex;
+	flex-wrap:nowrap;
+	flex-direction: row;
+	justify-content: normal;
+	-webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    margin-left: 40px;
+    margin-right:40px;
+}
+
+.bottom {
+	bottom:0;
+}

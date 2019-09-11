@@ -1,0 +1,61 @@
+#Geocoder {
+
+	-ms-flex: 0 1 350px;
+	flex: 0 1 350px;
+	max-width: 350px;
+	min-width: 100px;
+}
+
+#hidden-geocoder-map {
+	display: none;
+	width: none;
+	height: none;
+}
+.Geocoder .leaflet-control-geocoder {
+	border-radius: 5px 5px 0 0;
+	max-width: 350px;
+	min-width: 80px;
+	width: 100%;
+}
+
+.Geocoder input {
+	margin: 5px;
+    position: relative;
+}
+
+.Geocoder .leaflet-control-geocoder-alternatives, 
+	.Geocoder .leaflet-control-geocoder-form-no-error,
+	.Geocoder .leaflet-control-geocoder-error {
+	position: absolute;
+	/*top: -135px;*/
+	background-color: white;
+}
+.Geocoder .leaflet-control-geocoder-error {
+	margin-top: 0;
+	margin-left: 0;
+	padding: 8px;
+}
+.Geocoder .leaflet-control-geocoder-form {
+	flex: 2 1 1;
+	width: calc(100% - 30px);
+}
+
+.Geocoder .leaflet-control-geocoder-alternatives, 
+.Geocoder .leaflet-control-geocoder-form-no-error,
+.Geocoder .leaflet-control-geocoder-form input {
+	font-size: 85%;
+}
+
+.Geocoder .leaflet-control-geocoder-form input {
+	border: 0;
+	background-color: transparent;
+	width:100%;
+}
+
+.Geocoder .leaflet-control-geocoder-icon {
+	vertical-align: middle;
+}
+
+.leaflet-control-geocoder-alternatives {
+	width: 100%;
+}

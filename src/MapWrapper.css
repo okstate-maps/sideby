@@ -1,0 +1,141 @@
+.no-maps {
+	width:60%;
+	max-width: 60%;
+	left:20%;
+	height:100%;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: stretch;
+}
+
+@media (max-width:650px){
+	.no-maps{
+		width:90%;
+		left:5%;
+	}
+}
+.no-maps p {
+	font-family: 'Montserrat', 'Open Sans', sans-serif;
+	flex: none;
+	padding:20px;
+	text-align: justify;
+	-webkit-user-select: none;  
+  	-moz-user-select: none;     
+  	-ms-user-select: none;      
+  	user-select: none;  
+
+}
+#maps {
+	background-color: var(--background-color);
+}
+
+.map0 {  
+  width: 100vw;
+}
+
+
+.Row {
+	height:100%;
+	width:100%;
+}
+
+
+div[data-react-beautiful-dnd-placeholder='0'] {
+	display: flex;
+
+}
+
+@media screen and (orientation: portrait) {
+
+	@media (max-height: 600px) {
+		.no-maps p {
+			font-size: 1em;
+			line-height: 1.1em;
+		}
+	}
+
+	@media (min-height: 601px) and (max-height: 800px) {
+		.no-maps p {
+			font-size: 1.2em;
+			line-height: 1.2em;
+		}
+	}
+
+	@media (min-height: 801px) and (max-height: 900px) {
+		.no-maps p {
+			font-size: 1.7em;
+			line-height: 1.3em;
+		}
+		.map-title {
+			font-size:2em;
+		}
+		.map-title.long-title {
+			font-size:1em;
+		}
+	}
+
+	@media (min-height: 901px) and (max-height: 1000px) {
+		.map-title .no-maps p {
+			font-size:2.5em;
+		}
+
+		.no-maps p {
+			line-height: 1.6em;
+		}
+		.map-title.long-title {
+			font-size:1.5em;
+		}
+	}
+
+	@media (min-height: 1001px) {
+		.map-title,.no-maps p {
+			font-size:3em;
+		}
+		.no-maps p {
+			line-height: 2.5em;
+		}
+		.map-title.long-title {
+			font-size:2em;
+		}
+	}
+}
+
+@media screen and (orientation: landscape) {
+
+	@media (min-width: 501px) and (max-width: 600px) {
+		.no-maps p {
+			font-size: 1em;
+			line-height: 1.1em;
+		}
+	}
+
+	@media (min-width: 601px) and (max-width: 800px) {
+		.no-maps p {
+			font-size: 1.2em;
+			line-height: 1.2em;
+		}
+	}
+
+	@media (min-width: 801px) and (max-width: 1100px) {
+		.no-maps p {
+			font-size: 1.4em;
+			line-height: 1.3em;
+		}
+	}
+
+
+	/*@media (min-width: 1101px) and (max-width: 1600px) {*/
+	@media (min-width: 1101px) {
+		.no-maps p {
+			font-size: 1.7em;
+			line-height: 1.4em;
+		}
+		.map-title {
+			font-size:2em;
+		}
+		.map-title.long-title {
+			font-size:1em;
+		}
+	}
+}
