@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import L from 'leaflet';
-import Config from './Config';
+import {mapboxToken, geocoderSearchPlaceholderText} from './Config';
 import 'leaflet-control-geocoder';
 import './Geocoder/images/geocoder.png';
 import './Geocoder/images/throbber.gif';
@@ -12,7 +12,7 @@ class Geocoder extends Component {
 
   constructor(props) {
     super(props);
-    this.mapboxToken = Config.mapboxToken;
+    this.mapboxToken = mapboxToken;
   }
  
   componentDidMount(){
@@ -23,15 +23,17 @@ class Geocoder extends Component {
       {
         "geocoder": new L.Control.Geocoder.Mapbox(
           this.mapboxToken,
-          {
-            "geocodingQueryParams": {
-              "country": "US",
-              "bbox":"-97.35122680664064,35.9357645138553, -96.75178527832033,36.324530335021876"
-            }
-          }
+          //By uncommenting geocodingQueryParams below, you can restrict geocoding results
+          //to a specific region using country and bbox. By default it is a world-wide geocoder.
+          // {
+          //   "geocodingQueryParams": {
+          //     "country": "US",
+          //     "bbox":"-97.35122680664064,35.9357645138553, -96.75178527832033,36.324530335021876"
+          //   }
+          // }
         ),
         "collapsed": false,
-        "placeholder": "Search for a Stillwater address",
+        "placeholder": geocoderSearchPlaceholderText,
         "suggestMinLength": 3,
         "queryMinLength": 1,
         "defaultMarkGeocode": false

@@ -112,7 +112,13 @@ class MapsContainer extends Component {
     let bbox = this.props.geocodeResult.geocode.bbox;
     let center = this.props.geocodeResult.geocode.center;
 
-    randomMap.leafletElement.fitBounds(bbox);
+    if (bbox._northEast.lat !== bbox._southWest.lat){
+      randomMap.leafletElement.fitBounds(bbox);
+    }
+
+    else {
+      randomMap.leafletElement.setView(center, 15);
+    }
     this.setState({"geocodeResult": center});
     setTimeout(this.clearGeocode, 2000);
 

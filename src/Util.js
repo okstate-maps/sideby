@@ -30,3 +30,4 @@ export function compareArrays(array1, array2) {
 	}
 	return arraysAreEqual;
 }
+

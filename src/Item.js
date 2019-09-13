@@ -94,7 +94,7 @@ class Item extends Component {
           style={{backgroundImage: "url('" + this.thumbnail_path + "')"}}
           id={this.props.id}>
         <div className={dispName.length >= 10 ? "label long-title" : "label"}>
-          {dispName.length >= 10 ? dispName.slice(0,dispName.slice(0,21).lastIndexOf(" "))+"..." : dispName}
+          {dispName.length >= 20 ? dispName.slice(0,21)+"..." : dispName}
         </div>
 
         <div className="button">

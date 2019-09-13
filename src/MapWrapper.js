@@ -21,7 +21,7 @@ class Handle extends React.Component {
   render() {
     const { provided, display_name } = this.props;
     return (
-      <div className={display_name.length >= 40 ? "Handle map-title long-title" : "Handle map-title"}>
+      <div className={display_name.length >= 10 ? "Handle map-title long-title" : "Handle map-title"}>
          <span className="Handle-span" {...provided.dragHandleProps}>
           <FontAwesomeIcon className="Handle-drag-icon" icon="grip-vertical" size="1x"/>
         </span>
@@ -53,8 +53,18 @@ class MapWrapper extends Component {
     this.passUpRef = this.passUpRef.bind(this);
     this.onResize = this.onResize.bind(this);
     this.onGeocodeClick = this.onGeocodeClick.bind(this);
+    this.bboxStringToLatLngBoundsArray = this.bboxStringToLatLngBoundsArray.bind(this);
+    this.checkLayerBounds = this.checkLayerBounds.bind(this);
   }
 
+  componentWillUnmount(){
+    this.passUpRef(this.props.layer.id, this.props.mapRef, true);
+  }
+
+  componentDidMount(prevProps, prevState){
+    this.passUpRef(this.props.layer.id, this.props.mapRef);
+  }
+  
   onResize(e) {
   }
 
@@ -66,18 +76,6 @@ class MapWrapper extends Component {
     this.props.invalidateMapSizes();
   }
   
-  componentWillMount() {
-    //console.log("MapView WillMount");
-  }  
-
-  componentWillUnmount(){
-    this.passUpRef(this.props.layer.id, this.props.mapRef, true);
-
-  }
-
-  componentWillReceiveProps(nextProps) {
-
-  }
 
   unsyncMaps(ref_id) {
      this.props.unsyncMaps(ref_id);
@@ -91,8 +89,19 @@ class MapWrapper extends Component {
     this.props.passUpRef(id, ref, deleteRef);
   }
 
-  componentDidMount(prevProps, prevState){
-    this.passUpRef(this.props.layer.id, this.props.mapRef);
+  bboxStringToLatLngBoundsArray(){
+      var a = this.props.layer.startBounds.split(",");
+      return [[a[1],a[0]], [a[3],a[2]]];
+  }; 
+
+  checkLayerBounds(){
+    let layer = this.props.layer;
+    
+    if (layer.startBounds) {
+      return this.bboxStringToLatLngBoundsArray()
+    }
+
+    return null;
   }
 
   clearGeocode() {
@@ -150,29 +159,36 @@ class MapWrapper extends Component {
               <Handle provided={provided} display_name={layer.display_name} />
               <Map ref={this.props.mapRef}
                  minZoom={mapMinZoom}
+                 bounds={this.checkLayerBounds()}
                  onResize={this.onResize}
                  maxZoom={layer.maxZoom}
                  onViewportChanged={that.onViewportChanged}
-                 className ={'map'+ this.props.numberLayers + ' p' + this.props.layerIndex + " " + (this.props.isDragging ? "dragging": "nope")}  
+                 className ={'map'+ this.props.numberLayers + (this.props.isDragging ? "dragging": "nope")}  
                  id={layer.id}
                  key={layer.id} 
                  viewport={that.viewport}
+                 zoomControl={layer.visibleIndex === 0 ? true : false}
                 >
+
                 {this.props.geocodeResult &&
                   <Marker position={this.props.geocodeResult}
                           onClick={this.onGeocodeClick}/>
                 }
+
+                {this.props.labelLayerOn &&
                   <TileLayer 
                     key={"labels-" + layer.id}
                     url={this.labelLayerUrl}
-                    opacity={this.props.labelLayerOn ? 100 : 0}
                     pane="shadowPane"
                     zIndex={1000000} />
-                  {this.props.overlays.length > 0 && <Overlays />}
-                  <Layer 
-                    key={layer.id} 
-                    {...layer}
-                    />
+                }
+                  
+                {this.props.overlays.length > 0 && <Overlays />}
+
+                <Layer 
+                  key={layer.id} 
+                  {...layer}
+                />
 
             </Map>
           </div>

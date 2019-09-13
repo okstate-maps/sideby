@@ -6,6 +6,7 @@ module.exports = {
   "siteTitle": "Sideby: for comparing stuff",
   "welcomeText": "Sideby is an application for comparing spatial data layers side by side (by side by side by side, etc.). Try clicking/tapping the layers below, or try adding your own by clicking the + at the end of the list.",
   "mapMinZoom": 3,
-  "mapDefaultZoom": 5,
-  "mapDefaultCenter": [39.136303, -100.977082]
+  "mapDefaultZoom": 3,
+  "mapDefaultCenter": [0,0],
+  "geocoderSearchPlaceholderText": "Search for a place..."
 };

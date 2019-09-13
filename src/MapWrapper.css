@@ -9,6 +9,8 @@
 	align-items: stretch;
 }
 
+
+
 @media (max-width:650px){
 	.no-maps{
 		width:90%;

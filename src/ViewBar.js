@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { cloneDeep } from 'lodash';
+import shortid from 'shortid';
 import Item from './Item';
 import AddLayerItem from './AddLayerItem';
 import ScrollButton from './ScrollButton';
@@ -65,7 +66,7 @@ class ViewBar extends Component {
 
   componentWillMount(prevProps, prevState){
     //for the initial app load, set state using LayersInfo
-    let layers = LayersInfo.map(item => ({...item, isToggledOn: false}));
+    let layers = LayersInfo.map(item => ({...item, isToggledOn: false, id: shortid.generate()}));
     layers = layers.sort( (a, b) => {
       return b.sortVal - a.sortVal 
     })

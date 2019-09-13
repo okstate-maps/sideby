@@ -1,5 +1,5 @@
 .Handle-drag-icon {
-	font-size: 0.6em;
+	font-size: 20px;
 	vertical-align: baseline;
 	filter: drop-shadow(0px 0px 1px black);
 }
@@ -17,8 +17,8 @@
 	box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
 }
 
-.map-title {
-	color: var(--text-primary-color);
+.Handle.map-title {
+	color: var(--label-color);
 	font-family: 'Montserrat', 'Open Sans', sans-serif;
 	text-shadow: black 0 0 0.1em, black 0 0 0.1em, black 0 0 0.1em;
 	max-width: 150px;

@@ -1,8 +1,8 @@
 {
-  "name": "stillwater-aerials-react",
-  "version": "0.2.0",
+  "name": "sideby",
+  "version": "0.1.0",
   "private": true,
-  "homepage": "https://okstate-maps.github.io/aerial-compare",
+  "homepage": "https://okstate-maps.github.io/sideby",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.21",
     "@fortawesome/free-solid-svg-icons": "^5.10.1",
@@ -16,7 +16,7 @@
     "gh-pages": "^1.1.0",
     "leaflet": "^1.5.1",
     "leaflet-control-geocoder": "^1.6.0",
-    "leaflet.sync": "^0.2.4",
+    "leaflet.sync": "https://github.com/okstate-maps/Leaflet.Sync.git",
     "lodash": "^4.17.13",
     "prop-types": "^15.6.0",
     "react": "^16.8.0",
@@ -29,6 +29,7 @@
     "react-modal": "^3.9.1",
     "react-scripts": "^3.1.1",
     "react-spinners": "^0.6.0",
+    "shortid": "^2.2.15",
     "vex-js": "^4.1.0",
     "webfontloader": "^1.6.28",
     "why-did-you-update": "^1.0.6"
