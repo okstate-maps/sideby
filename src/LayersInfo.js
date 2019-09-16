@@ -15,12 +15,15 @@ See the documentation for each layer for other options.
 https://leafletjs.com/reference-1.5.0.html
 http://esri.github.io/esri-leaflet/api-reference/
 
+Note: Layers need to be capable of serving in Web Mercator (EPSG: 3857). For Esri services, if a tiled service is not served in 3857, you can oftentimes use the same service as a dynamic layer, which will reproject the layer into 3857 on the fly.
+
 */
 module.exports = [
       {
         "type": "TileLayer",
         "display_name": "USA",
         "url": "https://mapwarper.net/maps/tile/34156/{z}/{x}/{y}.png",
+        //If you store a thumbnail file in public/assets/images, you can reference it here just using the file name.
         "thumbnail_file": "mapwarper_34156.JPG",
         "startBounds": "-127.5,23.3,-64.1,51.4"
       },  
@@ -34,6 +37,7 @@ module.exports = [
 
       {
         "type": "EsriTiledMapLayer",
+        //Some Esri layers will have thumbnails you can point to.
         "thumbnail_file": "https://osu-geog.maps.arcgis.com/sharing/rest/content/items/24e82d4524a6475d8787e3b9783b494c/info/thumbnail/thumbnail1553624734746.png",
         "display_name": "oksm SS 4959 p807c",
         "url": "https://tiles.arcgis.com/tiles/jWQlP64OuwDh6GGX/arcgis/rest/services/oksm_SS_4959_p807c/MapServer"
@@ -41,8 +45,11 @@ module.exports = [
       {
         "type": "TileLayer",
         "display_name": "Orange",
+        //For Mapbox maps, you can use their static API to dynamically generate a thumbnail. Note you'll need to just include the access token inline (for now!).
         "thumbnail_file": "https://api.mapbox.com/styles/v1/krdyke/cj9slcunc24xi2sqpg7xnsigk/static/-97,38,2,0,0/300x200@2x?access_token=pk.eyJ1Ijoia3JkeWtlIiwiYSI6Ik15RGcwZGMifQ.IR_NpAqXL1ro8mFeTIdifg",
-        "url": "https://api.mapbox.com/styles/v1/krdyke/cj9slcunc24xi2sqpg7xnsigk/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia3JkeWtlIiwiYSI6Ik15RGcwZGMifQ.IR_NpAqXL1ro8mFeTIdifg"
+        //Also for Mapbox, you'll need to provide a spot for the access token. It can be nice to include ?access_token={access_token} at the end of the url, then supply an access_token parameter separately, as demonstrated below.
+        "url": "https://api.mapbox.com/styles/v1/krdyke/cj9slcunc24xi2sqpg7xnsigk/tiles/256/{z}/{x}/{y}?access_token={access_token}",
+        "access_token": "pk.eyJ1Ijoia3JkeWtlIiwiYSI6Ik15RGcwZGMifQ.IR_NpAqXL1ro8mFeTIdifg"
       },
       {
         "type": "EsriTiledMapLayer",
@@ -66,11 +73,16 @@ module.exports = [
         "thumbnail_file": "os.jpg",
         "startBounds": "-12.41,48.01,4.51,60.84"
       },
+      
+      /*This is an example of TMS. Note how similar it is to generic XYZ TileLayer.
+        When using TMS, be sure to add the line "tms": true as an option.
+      */
       {
         "type": "TileLayer",
         "display_name": "NYC 2018",
-        "url": "https://maps.nyc.gov/xyz/1.0.0/photo/2018/{z}/{x}/{y}.png8",
-        "startBounds": "-74.447928,40.442617,-73.512717,40.988043"
+        "url": "https://maps.nyc.gov/tms/1.0.0/photo/2018/{z}/{x}/{y}.png8",
+        "startBounds": "-74.447928,40.442617,-73.512717,40.988043",
+        "tms": true
       },
       {
         "type": "TileLayer",
