@@ -21,19 +21,32 @@ class AddLayerItem extends Item {
   onClick(e) {
     let that = this;
 
-    let modalContent = <div><label htmlFor="url">Url:</label>
-      <textarea name="url" value=""/><br/>
-      <label htmlFor="type">Type</label><br/>
-      <input name="type" id="input-TileLayer" type="radio" value="TileLayer" />
-      <label htmlFor="input-TileLayer">TileLayer</label><br/>
-      <input name="type" id="input-WMSTileLayer" type="radio" value="WMSTileLayer" />
-      <label htmlFor="input-WMSTileLayer">WMSTileLayer</label><br/>
-      <input name="type" id="input-EsriTiledMapLayer" type="radio" value="EsriTiledMapLayer" />
-      <label htmlFor="input-EsriTiledMapLayer">EsriTiledMapLayer</label><br/>
-      <input name="type" id="input-EsriDynamicMapLayer" type="radio" value="EsriDynamicMapLayer" />
-      <label htmlFor="input-EsriDynamicMapLayer">EsriDynamicMapLayer</label></div>;
+    let modalContent = 
+      <div id="modal-content">
+        <label htmlFor="url">Url:</label>
+        <textarea name="url" placeholder="Enter the URL to your map/data."></textarea>
+          <br/>
+        <label htmlFor="layerType">Type</label>
+          <br/>
+        <input name="layerType" id="input-TileLayer" type="radio" value="TileLayer" />
+        <label htmlFor="input-TileLayer">TileLayer</label>
+          <br/>
+        <input name="layerType" id="input-WMSTileLayer" type="radio" value="WMSTileLayer" />
+        <label htmlFor="input-WMSTileLayer">WMSTileLayer</label>
+          <br/>
+        <input name="layerType" id="input-EsriTiledMapLayer" type="radio" value="EsriTiledMapLayer" />
+        <label htmlFor="input-EsriTiledMapLayer">EsriTiledMapLayer</label>
+          <br/>
+        <input name="layerType" id="input-EsriDynamicMapLayer" type="radio" value="EsriDynamicMapLayer" />
+        <label htmlFor="input-EsriDynamicMapLayer">EsriDynamicMapLayer</label>
+          <br/>;
+        <input name="layerType" id="input-EsriFeatureLayer" type="radio" value="EsriFeatureLayer" />
+        <label htmlFor="input-EsriFeatureLayer">EsriFeatureLayer</label><br/>
+        <input name="displayName" id="input-displayName" type="text"/>
+        <label htmlFor="input-displayName">Display Name</label>
+      </div>;
 
-      this.props.openModal("poop", modalContent);
+      this.props.openModal("AddLayerItem", modalContent);
 
      //window.vex.dialog.open({
     //   message: 'Add a new layer!',

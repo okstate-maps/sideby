@@ -19,6 +19,18 @@ Note: Layers need to be capable of serving in Web Mercator (EPSG: 3857). For Esr
 
 */
 module.exports = [
+      // {
+      //   "type": "EsriTiledMapLayer",
+      //   "display_name": "Earth at Night",
+      //   "url": "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Earth_at_Night_WM/MapServer",
+      //   "thumbnail_file": "https://osu-geog.maps.arcgis.com/sharing/rest/content/items/6e30256ec1da4f8a9d13a110db4508ec/info/thumbnail/earth_night_world.jpg?token=NkoCMkMaujqgoLn7PJ97xM9ufcIISRLYKkaLIqupeC2ZTsO-xbhEs0ZV_ZAxPd-Yz7e296ZEVjdKM4_l5uF5B7KcSkZLRekrjXmwxhr8lPNtI-eudtmvDSpe8NRy5xjJ75KjYR01_DpUthNE-f-lUGo-mAUHiuFRuK5-ro2-l8QTLigBeRtvOLwkWzM_Zu3Jn2TgEF4O_pDPmmmavc1VV2uUmUKtJDmZTJlz17JjMJ0."
+      // },      
+      // {
+      //   "type": "TileLayer",
+      //   "display_name": "SF to Reno",
+      //   "url": "https://maps.georeferencer.com/georeferences/585344642040/2017-08-19T19:12:17.959307Z/map/{z}/{x}/{y}.png?key=mpw3woex27IU5NcGR55J",
+      //   "thumbnail_file": "reno.png"
+      // },
       {
         "type": "TileLayer",
         "display_name": "USA",
@@ -75,8 +87,8 @@ module.exports = [
       },
       
       /*This is an example of TMS. Note how similar it is to generic XYZ TileLayer.
-        When using TMS, be sure to add the line "tms": true as an option.
-      */
+        When using TMS, be sure to add the line "tms": true as an option.*/
+      
       {
         "type": "TileLayer",
         "display_name": "NYC 2018",
@@ -84,30 +96,30 @@ module.exports = [
         "startBounds": "-74.447928,40.442617,-73.512717,40.988043",
         "tms": true
       },
-      {
-        "type": "TileLayer",
-        "display_name": "NYC 2016",
-        "url": "https://maps.nyc.gov/xyz/1.0.0/photo/2016/{z}/{x}/{y}.png8",
-        "startBounds": "-74.447928,40.442617,-73.512717,40.988043"
-      },
-      {
-        "type": "TileLayer",
-        "display_name": "NYC 2014",
-        "url": "https://maps.nyc.gov/xyz/1.0.0/photo/2014/{z}/{x}/{y}.png8",
-        "startBounds": "-74.447928,40.442617,-73.512717,40.988043"
-      },
-      {
-        "type": "TileLayer",
-        "display_name": "NYC 2012",
-        "url": "https://maps.nyc.gov/xyz/1.0.0/photo/2012/{z}/{x}/{y}.png8",
-        "startBounds": "-74.447928,40.442617,-73.512717,40.988043"
-      },
-      {
-        "type": "TileLayer",
-        "display_name": "NYC 1951",
-        "url": "https://maps.nyc.gov/xyz/1.0.0/photo/1951/{z}/{x}/{y}.png8",
-        "startBounds": "-74.447928,40.442617,-73.512717,40.988043"
-      },
+      // {
+      //   "type": "TileLayer",
+      //   "display_name": "NYC 2016",
+      //   "url": "https://maps.nyc.gov/xyz/1.0.0/photo/2016/{z}/{x}/{y}.png8",
+      //   "startBounds": "-74.447928,40.442617,-73.512717,40.988043"
+      // },
+      // {
+      //   "type": "TileLayer",
+      //   "display_name": "NYC 2014",
+      //   "url": "https://maps.nyc.gov/xyz/1.0.0/photo/2014/{z}/{x}/{y}.png8",
+      //   "startBounds": "-74.447928,40.442617,-73.512717,40.988043"
+      // },
+      // {
+      //   "type": "TileLayer",
+      //   "display_name": "NYC 2012",
+      //   "url": "https://maps.nyc.gov/xyz/1.0.0/photo/2012/{z}/{x}/{y}.png8",
+      //   "startBounds": "-74.447928,40.442617,-73.512717,40.988043"
+      // },
+      // {
+      //   "type": "TileLayer",
+      //   "display_name": "NYC 1951",
+      //   "url": "https://maps.nyc.gov/xyz/1.0.0/photo/1951/{z}/{x}/{y}.png8",
+      //   "startBounds": "-74.447928,40.442617,-73.512717,40.988043"
+      // },
       {
         "type": "TileLayer",
         "display_name": "NYC 1924",
@@ -120,42 +132,44 @@ module.exports = [
         "display_name": "Hennepin 2015",
         "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_2015/MapServer",
         "startBounds": "-93.770195,44.78738,-93.176871,45.246598"
-      },{
-        "type": "EsriDynamicMapLayer",
-        "display_name": "Hennepin 2005",
-        "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_2005/MapServer",
-        "startBounds": "-93.770195,44.78738,-93.176871,45.246598"
-      },{
-        "type": "EsriDynamicMapLayer",
-        "display_name": "Hennepin 2000",
-        "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_2000/MapServer",
-        "startBounds": "-93.770195,44.78738,-93.176871,45.246598"
-      },{
-        "type": "EsriDynamicMapLayer",
-        "display_name": "Hennepin 1988",
-        "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_1988/MapServer",
-        "startBounds": "-93.770195,44.78738,-93.176871,45.246598"
-      },{
-        "type": "EsriDynamicMapLayer",
-        "display_name": "Hennepin 1969",
-        "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_1969/MapServer",
-        "startBounds": "-93.770195,44.78738,-93.176871,45.246598"
-      },{
-        "type": "EsriDynamicMapLayer",
-        "display_name": "Hennepin 1957",
-        "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_1957/MapServer",
-        "startBounds": "-93.770195,44.78738,-93.176871,45.246598"
-      },{
-        "type": "EsriDynamicMapLayer",
-        "display_name": "Hennepin 1953",
-        "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_1953/MapServer",
-        "startBounds": "-93.770195,44.78738,-93.176871,45.246598"
-      },{
+      },
+      // ,{
+      //   "type": "EsriDynamicMapLayer",
+      //   "display_name": "Hennepin 2005",
+      //   "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_2005/MapServer",
+      //   "startBounds": "-93.770195,44.78738,-93.176871,45.246598"
+      // },{
+      //   "type": "EsriDynamicMapLayer",
+      //   "display_name": "Hennepin 2000",
+      //   "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_2000/MapServer",
+      //   "startBounds": "-93.770195,44.78738,-93.176871,45.246598"
+      // },{
+      //   "type": "EsriDynamicMapLayer",
+      //   "display_name": "Hennepin 1988",
+      //   "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_1988/MapServer",
+      //   "startBounds": "-93.770195,44.78738,-93.176871,45.246598"
+      // },{
+      //   "type": "EsriDynamicMapLayer",
+      //   "display_name": "Hennepin 1969",
+      //   "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_1969/MapServer",
+      //   "startBounds": "-93.770195,44.78738,-93.176871,45.246598"
+      // },{
+      //   "type": "EsriDynamicMapLayer",
+      //   "display_name": "Hennepin 1957",
+      //   "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_1957/MapServer",
+      //   "startBounds": "-93.770195,44.78738,-93.176871,45.246598"
+      // },{
+      //   "type": "EsriDynamicMapLayer",
+      //   "display_name": "Hennepin 1953",
+      //   "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_1953/MapServer",
+      //   "startBounds": "-93.770195,44.78738,-93.176871,45.246598"
+      // },
+      {
         "type": "EsriDynamicMapLayer",
         "display_name": "Hennepin 1940",
         "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_1940/MapServer",
         "startBounds": "-93.770195,44.78738,-93.176871,45.246598"
-      },
+      }
 
 
 

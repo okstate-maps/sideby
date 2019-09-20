@@ -25,10 +25,12 @@ class App extends Component {
     this.toggleSpinner = this.toggleSpinner.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.modalSubmit = this.modalSubmit.bind(this);
     this.calculateDisplayIndexes = this.calculateDisplayIndexes.bind(this);
     this.calculateRowLayers = this.calculateRowLayers.bind(this);
     this.updateLayerDisplayIndexesAndRows = this.updateLayerDisplayIndexesAndRows.bind(this);
     this.addOverlay = this.addOverlay.bind(this);
+    this.addLayer = this.addLayer.bind(this);
     this.state = {"layers":[],
                   "overlays":[],
                   "numberOfLayersOn": 0, 
@@ -66,6 +68,20 @@ class App extends Component {
     this.setState({"modalIsOpen": bool});
   }
 
+  modalSubmit(modalType, data){
+    console.log(modalType);
+    console.log(data);
+    switch (modalType){
+      case "AddLayerItem":
+        this.addLayer(data);
+        break;
+      case "AddOverlay":
+        this.addOverlay(data);
+        break;
+    }
+
+  }
+
   openModal(modalType, modalContent){
     
     this.setState({
@@ -90,6 +106,17 @@ class App extends Component {
     this.setState({"overlays":overlays});
   }
 
+  addLayer(data) {
+    let new_layer = data,
+      id = new_layer.display_name + "_new", //lazy id baby
+      maxZoom = 20;
+
+    new_layer.id = id;
+    new_layer.maxZoom = maxZoom;
+    
+    
+    this.setState({"newLayer": new_layer});
+  }
 
   handleItemClick(data) {
     let found = false;
@@ -201,6 +228,7 @@ calculateRowLayers(layers) {
               toggleSpinner={this.toggleSpinner} 
               openModal={this.openModal}
               closeModal={this.closeModal}
+              modalSubmit={this.modalSubmit}
               modalContent={this.state.modalContent}
               modalType={this.state.modalType}
               />
@@ -243,7 +271,8 @@ calculateRowLayers(layers) {
                    numberOfLayersOn={this.state.numberOfLayersOn}
                    toggleModal={this.toggleModal}
                    openModal={this.openModal}
-                   closeModal={this.closeModal} />
+                   closeModal={this.closeModal}
+                   newLayer={this.state.newLayer} />
 
         </div>
       </Fullscreen>

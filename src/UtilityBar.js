@@ -39,7 +39,8 @@ class UtilityBar extends Component {
         <Geocoder transmitGeocode={this.transmitGeocode} />
         <AddOverlay numberOfLayersOn={this.props.numberOfLayersOn} 
                     addOverlay={this.props.addOverlay}
-                    overlays={this.props.overlays} />
+                    overlays={this.props.overlays}
+                    openModal={this.props.openModal} />
         <div>
           <button onClick={() => this.props.toggleFullscreen()}>
             <FontAwesomeIcon icon={this.props.isFullscreenEnabled ? "compress" : "expand"} size="2x"/>

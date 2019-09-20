@@ -13,7 +13,7 @@ class ViewBar extends Component {
     super(props);
     this.handleItemClick = this.handleItemClick.bind(this);
     this.handleScrollButtonClick = this.handleScrollButtonClick.bind(this);
-    this.addLayer = this.addLayer.bind(this);
+    //this.addLayer = this.addLayer.bind(this);
     this.scrollTo = this.scrollTo.bind(this);
     this.onWheel = this.onWheel.bind(this);
     this.easeInOutQuad = this.easeInOutQuad.bind(this);
@@ -37,31 +37,26 @@ class ViewBar extends Component {
     this.scrollTo(scrollDirection, 350);
   }
 
-  addLayer(data) {
-    let state = this.state,
-      new_layer = data,
-      id = new_layer.display_name + "_new", //lazy id baby
-      sortVal = this.state.layers.slice(-1)[0].sortVal - 1,
-      thumbnail_file = "dummy.png", //use serviceItemId from AGOL server URL json to get to item thumbnail
-            //https://www.arcgis.com/sharing/rest/content/items/{serviceItemId}/info/thumbnail/thumbnail1553624905506.png
-      maxZoom = 20;
 
-    new_layer.id = id;
-    new_layer.sortVal = sortVal;
-    new_layer.thumbnail_file = thumbnail_file;
-    new_layer.maxZoom = maxZoom;
-    
-    state.layers.push(new_layer);
-    delete(state.new_layer_data);
-    this.setState(state);
-  }
 
   componentWillUpdate(){
 
   }
 
   componentDidUpdate(prevProps, prevState){
+    if (this.props.newLayer){
+
+      if (prevProps.newLayer && (prevProps.newLayer.id === this.props.newLayer.id)) {
+        return
+      }
+
+      let newLayer = this.props.newLayer;
+      let layers = this.state.layers;
     
+      layers.push(newLayer);
+
+      this.setState({"layers": layers});
+    }
   }
 
   componentWillMount(prevProps, prevState){
@@ -83,7 +78,7 @@ class ViewBar extends Component {
         //if the deltamode is anything but pixels (0), use scroll unit to calculate scroll amount
         scrollSize = deltaMode === (1 || 2) ? e.deltaY * scrollUnit: e.deltaY;
 
-    e.preventDefault();
+    //e.preventDefault();
     
     elem.scrollLeft = elem.scrollLeft + scrollSize;
     //this.setState({"scrollLeft": elem.scrollLeft});
