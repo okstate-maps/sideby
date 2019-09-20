@@ -1,5 +1,5 @@
 # Development
-1. [Clone](https://github.com/okstate-maps/sideby.git) or fork the repo.
+1. Clone (`https://github.com/okstate-maps/sideby.git`) or fork the repo.
 2. Enter the directory.
 3. Run the install script using `yarn` or `npm`.
 
