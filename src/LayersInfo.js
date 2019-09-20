@@ -74,7 +74,7 @@ module.exports = [
         "display_name": "NLS",
         "url": "https://nls-{s}.tileserver.com/nls/{z}/{x}/{y}.jpg",
         "subdomains": "123",
-        "thumbnail_file": "nls.jpg",
+        "thumbnail_file": "nls.JPG",
         "startBounds": "-12.41,48.01,4.51,60.84"
 
       },
@@ -82,7 +82,7 @@ module.exports = [
         "type": "TileLayer",
         "display_name": "OS",
         "url": "https://geo.nls.uk/maps/os/1inch_2nd_ed/{z}/{x}/{y}.png",
-        "thumbnail_file": "os.jpg",
+        "thumbnail_file": "os.JPG",
         "startBounds": "-12.41,48.01,4.51,60.84"
       },
       
