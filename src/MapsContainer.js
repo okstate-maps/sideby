@@ -81,7 +81,7 @@ class MapsContainer extends Component {
 
   unsyncMaps(ref_id) {
     let mapRefs = this.state.mapRefs;
-    for (let i in mapRefs){
+    for (var i in mapRefs){
       if (i !== ref_id && mapRefs[ref_id]){
           mapRefs[ref_id].leafletElement.unsync(mapRefs[i].leafletElement);
           mapRefs[i].leafletElement.unsync(mapRefs[ref_id].leafletElement);
@@ -91,8 +91,8 @@ class MapsContainer extends Component {
 
   syncMaps() {
     let mapRefs = this.state.mapRefs;
-    for (let i in mapRefs){
-      for (let j in mapRefs){
+    for (var i in mapRefs){
+      for (var j in mapRefs){
         if (i !== j && !mapRefs[i].leafletElement.isSynced(mapRefs[j].leafletElement)){
           mapRefs[i].leafletElement.sync(
             mapRefs[j].leafletElement, {syncCursor: true}

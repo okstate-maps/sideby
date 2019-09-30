@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
-import CircleLoader from 'react-spinners/CircleLoader';
 import './Modal.css';
 
 ReactModal.setAppElement('#root');

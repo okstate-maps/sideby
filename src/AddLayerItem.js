@@ -17,10 +17,7 @@ class AddLayerItem extends Item {
                   opacity: 1.0};
   }
  
-
   onClick(e) {
-    let that = this;
-
     let modalContent = 
       <div id="modal-content">
         <label htmlFor="url">Url:</label>

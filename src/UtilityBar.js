@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 import Geocoder from './Geocoder';
 import AddOverlay from './AddOverlay';
+import Settings from './Settings';
+import FullscreenToggle from './FullscreenToggle';
 import './UtilityBar.css';
 
-library.add(faExpand);
-library.add(faCompress);
 
 class UtilityBar extends Component {
 
@@ -26,26 +25,18 @@ class UtilityBar extends Component {
   render() {
     return (
       <div id='UtilityBar' className={'UtilityBar'}>
-        <div>
-          <input defaultChecked={this.props.labelLayerOn} 
-                 name="labelsCheckbox" 
-                 id="labelsCheckbox" 
-                 type="checkbox" 
-                 onChange={this.props.toggleLabels}>
-            
-          </input>
-          <label htmlFor="labelsCheckbox">Map&nbsp;Labels</label>
-        </div>
         <Geocoder transmitGeocode={this.transmitGeocode} />
         <AddOverlay numberOfLayersOn={this.props.numberOfLayersOn} 
                     addOverlay={this.props.addOverlay}
                     overlays={this.props.overlays}
                     openModal={this.props.openModal} />
-        <div>
-          <button onClick={() => this.props.toggleFullscreen()}>
-            <FontAwesomeIcon icon={this.props.isFullscreenEnabled ? "compress" : "expand"} size="2x"/>
-          </button>
-        </div>
+        <FullscreenToggle toggleFullscreen={this.props.toggleFullscreen} 
+                          isFullscreenEnabled={this.props.isFullscreenEnabled} />
+        <Settings 
+          openModal={this.props.openModal}
+          labelLayerOn={this.props.labelLayerOn}
+          toggleLabels={this.props.toggleLabels}
+                                        />
         
       </div>
     );

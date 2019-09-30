@@ -16,7 +16,6 @@ class AddOverlay extends Component {
  
 
   onClick(e) {
-    let that = this;
     let modalContent = 
       <div id="modal-content">
         <label htmlFor="overlayUrl">Url:</label>

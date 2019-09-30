@@ -9,7 +9,7 @@ import UtilityBar from './UtilityBar';
 import ViewBar from './ViewBar';
 import Modal from './Modal';
 import MapsContainer from './MapsContainer';
-import { maxLayers, welcomeText, siteTitle } from './Config';
+import { welcomeText, siteTitle } from './Config';
 import './App.css';
 
 
@@ -56,6 +56,7 @@ class App extends Component {
   }
 
   toggleLabels() {
+    console.log("toggleLabels");
     let curr = this.state.labelLayerOn;
     this.setState({"labelLayerOn": !curr});
   }

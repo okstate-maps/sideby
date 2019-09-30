@@ -7,7 +7,7 @@ Each layer has the following values:
 	display_name {string}: Required. What you want to be displayed over the layer's selection tile. Keep it short!
 	url {string}: Required. The url to the service.
   thumbnail_file {string}: Optional. Strongly encouraged. You can either reference the name of a file stored locally in public/assets/images or provide the full url to a thumbnail stored elsewhere. For example, IIIF links work very nicely if available.
-  startBounds {string}: Optional. In addition to setting the default map bounds in Config.js, you can also provide them on a layer basis. !Note! the startBounds is only used when the layer is the first one turned on.
+  startBounds {string}: Optional. In addition to setting the default map bounds in Config.js, you can also provide them on a layer basis. The format is sw longitude, sw latitude, ne longitude, ne latitude. Klokan's Bounding Box tool's CSV provides this format. !Note! the startBounds is only used when the layer is the first one turned on.
 
 You can also supply options that are specific to the type of layer. For some layers there are additional required fields. For example, for a WMS layer, you must provide a "layers" parameter specifying which layers to use in a comma separated list like 'layer1,layer2'.
 
