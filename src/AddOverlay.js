@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLayerPlus } from '@fortawesome/pro-solid-svg-icons';
-import { faLayerGroup } from '@fortawesome/pro-duotone-svg-icons';
+import { faLayerGroup, faMap, faPlus } from '@fortawesome/free-solid-svg-icons';
+// import { faLayerPlus } from '@fortawesome/pro-solid-svg-icons';
+// import { faLayerGroup } from '@fortawesome/pro-duotone-svg-icons';
 
 
 class AddOverlay extends Component {
 
   constructor(props) {
     super(props);
-    library.add(faLayerPlus);
+    // library.add(faLayerPlus);
+    // library.add(faLayerGroup);
     library.add(faLayerGroup);
+    library.add(faPlus);
     this.onClick = this.onClick.bind(this);
   }
  
@@ -104,17 +107,16 @@ class AddOverlay extends Component {
 
   render() {
     return (
-      <div>
-        <button className='add-overlay' 
+        <button className='add-overlay'
             onClick={this.onClick} 
+            name="Add Overlay"
+            title="Add Overlay"
             id='add-overlay'>
-          <div className="icon-label">
-            {this.props.overlays.length === 0 && <FontAwesomeIcon icon='layer-plus' size="2x"/>}
-            {this.props.overlays.length > 0 && <FontAwesomeIcon icon={['fad','layer-group']} size="2x"/>}
-          </div>
-
+            <span className='fa-layers fa-fw fa-2x'>
+                <FontAwesomeIcon icon='layer-group' />
+                <FontAwesomeIcon icon='plus' transform="shrink-9  up-4" color="red"/>
+            </span>
         </button>
-      </div>
     );
   }
 }

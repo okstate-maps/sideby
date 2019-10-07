@@ -30,6 +30,11 @@
 	/*top: -135px;*/
 	background-color: white;
 }
+
+.leaflet-control-geocoder-alternatives li {
+	white-space: normal;
+}
+
 .Geocoder .leaflet-control-geocoder-error {
 	margin-top: 0;
 	margin-left: 0;
@@ -42,7 +47,7 @@
 
 .Geocoder .leaflet-control-geocoder-alternatives, 
 .Geocoder .leaflet-control-geocoder-form-no-error,
-.Geocoder .leaflet-control-geocoder-form input {
+{
 	font-size: 85%;
 }
 

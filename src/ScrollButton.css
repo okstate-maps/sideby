@@ -40,7 +40,7 @@
 }
 
 .ScrollButton button:hover {
-  background-color: var(--text-secondary-color);
+  background-color: var(--label-color);
   box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
   transition: background-color 0.1s linear;
   transition: box-shadow 0.1s linear; 
