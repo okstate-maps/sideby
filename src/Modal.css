@@ -93,3 +93,20 @@ div.ReactModal__Overlay--before-close{
     outline: none;
     padding: 20px;
   }
+
+.modalContent .inputGroup {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  margin: 5px;
+}
+
+.modalContent .inputGroup, 
+.modalContent .inputGroup label, 
+.modalContent .inputGroup input,
+.modalContent .inputGroup textarea {
+  padding: 2px 5px;
+  margin: 2px 5px;
+}
+
+

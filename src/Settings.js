@@ -3,7 +3,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import MapLabelsToggle from './MapLabelsToggle';
-import "./Checkbox.css";
+
 
 class Settings extends Component {
 
@@ -14,10 +14,11 @@ class Settings extends Component {
   }
  
   onClick(e) {
-    let modalContent =  <React.Fragment>
+    let modalContent =  
+    <>
         <MapLabelsToggle labelLayerOn={this.props.labelLayerOn}
                          toggleLabels={this.props.toggleLabels} />
-    </React.Fragment>
+    </>
 
     this.props.openModal("Settings", modalContent);
   }

@@ -1,8 +1,7 @@
 import React from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { faMap, faPlus, faLayerPlus } from '@fortawesome/pro-solid-svg-icons';
+import { faMap, faPlus} from '@fortawesome/free-solid-svg-icons';
 import Item from './Item';
 
 class AddLayerItem extends Item {
@@ -11,7 +10,6 @@ class AddLayerItem extends Item {
     super(props);
     library.add(faMap);
     library.add(faPlus);
-    library.add(faLayerPlus);
     this.onClick = this.onClick.bind(this);
     this.state = {isToggledOn: false,
                   opacity: 1.0};
@@ -19,29 +17,47 @@ class AddLayerItem extends Item {
  
   onClick(e) {
     let modalContent = 
-      <div id="modal-content">
-        <label htmlFor="url">Url:</label>
-        <textarea name="url" placeholder="Enter the URL to your map/data."></textarea>
-          <br/>
-        <label htmlFor="layerType">Type</label>
-          <br/>
-        <input name="layerType" id="input-TileLayer" type="radio" value="TileLayer" />
-        <label htmlFor="input-TileLayer">TileLayer</label>
-          <br/>
-        <input name="layerType" id="input-WMSTileLayer" type="radio" value="WMSTileLayer" />
-        <label htmlFor="input-WMSTileLayer">WMSTileLayer</label>
-          <br/>
-        <input name="layerType" id="input-EsriTiledMapLayer" type="radio" value="EsriTiledMapLayer" />
-        <label htmlFor="input-EsriTiledMapLayer">EsriTiledMapLayer</label>
-          <br/>
-        <input name="layerType" id="input-EsriDynamicMapLayer" type="radio" value="EsriDynamicMapLayer" />
-        <label htmlFor="input-EsriDynamicMapLayer">EsriDynamicMapLayer</label>
-          <br/>;
-        <input name="layerType" id="input-EsriFeatureLayer" type="radio" value="EsriFeatureLayer" />
-        <label htmlFor="input-EsriFeatureLayer">EsriFeatureLayer</label><br/>
-        <input name="displayName" id="input-displayName" type="text"/>
-        <label htmlFor="input-displayName">Display Name</label>
-      </div>;
+      <>
+        <div className="inputGroup">
+          <label htmlFor="url">Url:</label>
+          <textarea name="url" placeholder="Enter the URL to your map data."></textarea>
+        </div>
+        <div className="inputGroup">
+          <label htmlFor="layerType">Type</label>
+        </div>
+        
+        <div className="inputGroup">
+          <input name="layerType" id="input-TileLayer" type="radio" value="TileLayer" />
+          <label htmlFor="input-TileLayer">TileLayer</label>
+        </div>  
+        
+
+        <div className="inputGroup">
+          <input name="layerType" id="input-WMSTileLayer" type="radio" value="WMSTileLayer" />
+          <label htmlFor="input-WMSTileLayer">WMSTileLayer</label>
+        </div>
+        
+        <div className="inputGroup">
+        
+          <input name="layerType" id="input-EsriTiledMapLayer" type="radio" value="EsriTiledMapLayer" />
+          <label htmlFor="input-EsriTiledMapLayer">EsriTiledMapLayer</label>
+        </div>
+
+        <div className="inputGroup">
+          <input name="layerType" id="input-EsriDynamicMapLayer" type="radio" value="EsriDynamicMapLayer" />
+          <label htmlFor="input-EsriDynamicMapLayer">EsriDynamicMapLayer</label>
+        </div>
+
+        <div className="inputGroup">
+          <input name="layerType" id="input-EsriFeatureLayer" type="radio" value="EsriFeatureLayer" />
+          <label htmlFor="input-EsriFeatureLayer">EsriFeatureLayer</label>
+        </div>
+
+        <div className="inputGroup">
+          <label htmlFor="input-displayName">Display Name: </label>
+          <input name="displayName" id="input-displayName" type="text" />
+        </div>
+      </>;
 
       this.props.openModal("AddLayerItem", modalContent);
 
@@ -108,13 +124,14 @@ class AddLayerItem extends Item {
   render() {
     return (
       <button className='add-layer item background-black' 
-          onClick={this.onClick} 
+          onClick={this.onClick}
+          title="Add Layer"
+          name="Add Layer"
           id='add-layer'>
         <div className="icon-label">
-          <span className="fa-layers fa-fw">
-            <FontAwesomeIcon icon="layer-plus" size="5x" transform="left-6.9"/>
-            {/*<FontAwesomeIcon icon="map" className="orange" size="5x" transform="left-6.9"/>
-            <FontAwesomeIcon icon="plus"  transform="grow-9.5" />*/}
+          <span className="fa-layers fa-fw fa-5x">
+            <FontAwesomeIcon icon="map"/>
+            <FontAwesomeIcon icon="plus" transform="shrink-5" color="white" />
           </span>
         </div>
       </button>

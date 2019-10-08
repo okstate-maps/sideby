@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./Checkbox.css";
 
 class MapLabelsToggle extends Component {
 
@@ -8,12 +9,11 @@ class MapLabelsToggle extends Component {
   }
 
   onChange() {
-    console.log("fuck");
     this.props.toggleLabels();
   }
   render() {
     return (
-      <div>
+      <div className="inputGroup">
           <input defaultChecked={this.props.labelLayerOn} 
                  name="labelsCheckbox" 
                  id="labelsCheckbox" 

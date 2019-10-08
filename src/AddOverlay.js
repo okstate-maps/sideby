@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLayerGroup, faMap, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faLayerGroup, faPlus } from '@fortawesome/free-solid-svg-icons';
 // import { faLayerPlus } from '@fortawesome/pro-solid-svg-icons';
 // import { faLayerGroup } from '@fortawesome/pro-duotone-svg-icons';
 
@@ -20,30 +20,44 @@ class AddOverlay extends Component {
 
   onClick(e) {
     let modalContent = 
-      <div id="modal-content">
-        <label htmlFor="overlayUrl">Url:</label>
-        <textarea name="overlayUrl" placeholder="Enter the URL to your map/data."></textarea>
-          <br/>
-        <label htmlFor="overlayType">Type</label>
-          <br/>
-        <input name="overlayType" id="overlay-input-TileLayer" type="radio" value="TileLayer" />
-        <label htmlFor="overlay-input-TileLayer">TileLayer</label>
-          <br/>
-        <input name="overlayType" id="overlay-input-WMSTileLayer" type="radio" value="WMSTileLayer" />
-        <label htmlFor="overlay-input-WMSTileLayer">WMSTileLayer</label>
-          <br/>
-        <input name="overlayType" id="overlay-input-EsriTiledMapLayer" type="radio" value="EsriTiledMapLayer" />
-        <label htmlFor="overlay-input-EsriTiledMapLayer">EsriTiledMapLayer</label>
-          <br/>
-        <input name="overlayType" id="overlay-input-EsriDynamicMapLayer" type="radio" value="EsriDynamicMapLayer" />
-        <label htmlFor="overlay-input-EsriDynamicMapLayer">EsriDynamicMapLayer</label>
-          <br/>;
-        <input name="overlayType" id="overlay-input-EsriFeatureLayer" type="radio" value="EsriFeatureLayer" />
-        <label htmlFor="overlay-input-EsriFeatureLayer">EsriFeatureLayer</label><br/>
-        <input name="overlayDisplayName" id="overlay-input-displayName" type="text"/>
-        <label htmlFor="overlay-input-displayName">Display Name</label>
-      </div>;
-
+    <>
+        <div className="inputGroup">
+            <label htmlFor="overlayUrl">Url:</label>
+            <textarea name="overlayUrl" placeholder="Enter the URL to your map/data."></textarea>
+        </div>
+        <div className="inputGroup">
+            <label htmlFor="overlayType">Type</label>
+        </div>
+        <div className="inputGroup">
+            <input name="overlayType" id="overlay-input-TileLayer" type="radio" value="TileLayer" />
+            <label htmlFor="overlay-input-TileLayer">TileLayer</label>
+        </div>
+        
+        <div className="inputGroup">
+            <input name="overlayType" id="overlay-input-WMSTileLayer" type="radio" value="WMSTileLayer" />
+            <label htmlFor="overlay-input-WMSTileLayer">WMSTileLayer</label>
+        </div>
+        
+        <div className="inputGroup">
+            <input name="overlayType" id="overlay-input-EsriTiledMapLayer" type="radio" value="EsriTiledMapLayer" />
+            <label htmlFor="overlay-input-EsriTiledMapLayer">EsriTiledMapLayer</label>
+        </div>
+        
+        <div className="inputGroup">
+            <input name="overlayType" id="overlay-input-EsriDynamicMapLayer" type="radio" value="EsriDynamicMapLayer" />
+            <label htmlFor="overlay-input-EsriDynamicMapLayer">EsriDynamicMapLayer</label>
+        </div>
+        
+        <div className="inputGroup">
+            <input name="overlayType" id="overlay-input-EsriFeatureLayer" type="radio" value="EsriFeatureLayer" />
+            <label htmlFor="overlay-input-EsriFeatureLayer">EsriFeatureLayer</label><br/>
+        </div>
+        
+        <div className="inputGroup">
+            <label htmlFor="overlay-input-displayName">Display Name: </label>
+            <input name="overlayDisplayName" id="overlay-input-displayName" type="text"/>
+        </div>
+        </>
       this.props.openModal("AddOverlay", modalContent);
     //     window.vex.dialog.open({
     //       message: 'Add a new overlay!',
