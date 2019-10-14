@@ -25,6 +25,7 @@ formatContent(modalType, modalContent) {
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
+    this.props.rebuildTooltip(true);
 
   }
 

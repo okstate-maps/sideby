@@ -165,8 +165,8 @@ class MapsContainer extends Component {
                   provided={provided}
                   snapshot={snapshot}
                   passUpRef={this.passUpRef}
-				  geocodeResult={this.state.geocodeResult}
-				  clearGeocode={this.clearGeocode}
+				          geocodeResult={this.state.geocodeResult}
+				          clearGeocode={this.clearGeocode}
                   mapRef={this.setMapRef} 
                   innerRef={provided.innerRef}
                   syncMaps={this.syncMaps}

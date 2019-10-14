@@ -19,42 +19,43 @@ class AddLayerItem extends Item {
     let modalContent = 
       <>
         <div className="inputGroup">
-          <label htmlFor="url">Url:</label>
+          <label className="textInputLabel" htmlFor="url">Url:</label>
           <textarea name="url" placeholder="Enter the URL to your map data."></textarea>
         </div>
-        <div className="inputGroup">
-          <label htmlFor="layerType">Type</label>
+
+        <div className="radioGroup">
+          <label className="radioGroupLabel" htmlFor="layerType">Layer Type</label>
+
+          <div className="inputGroup">
+            <input name="layerType" id="input-TileLayer" type="radio" value="TileLayer" />
+            <label htmlFor="input-TileLayer">TileLayer</label>
+          </div>  
+          
+          <div className="inputGroup">
+            <input name="layerType" id="input-WMSTileLayer" type="radio" value="WMSTileLayer" />
+            <label htmlFor="input-WMSTileLayer">WMSTileLayer</label>
+          </div>
+          
+          <div className="inputGroup">         
+            <input name="layerType" id="input-EsriTiledMapLayer" type="radio" value="EsriTiledMapLayer" />
+            <label htmlFor="input-EsriTiledMapLayer">EsriTiledMapLayer</label>
+          </div>
+          
+          <div className="inputGroup">
+            <input name="layerType" id="input-EsriDynamicMapLayer" type="radio" value="EsriDynamicMapLayer" />
+            <label htmlFor="input-EsriDynamicMapLayer">EsriDynamicMapLayer</label>
+          </div>
+
+          <div className="inputGroup">
+            <input name="layerType" id="input-EsriFeatureLayer" type="radio" value="EsriFeatureLayer" />
+            <label htmlFor="input-EsriFeatureLayer">EsriFeatureLayer</label>
+          </div>
+
         </div>
         
-        <div className="inputGroup">
-          <input name="layerType" id="input-TileLayer" type="radio" value="TileLayer" />
-          <label htmlFor="input-TileLayer">TileLayer</label>
-        </div>  
-        
-
-        <div className="inputGroup">
-          <input name="layerType" id="input-WMSTileLayer" type="radio" value="WMSTileLayer" />
-          <label htmlFor="input-WMSTileLayer">WMSTileLayer</label>
-        </div>
         
         <div className="inputGroup">
-        
-          <input name="layerType" id="input-EsriTiledMapLayer" type="radio" value="EsriTiledMapLayer" />
-          <label htmlFor="input-EsriTiledMapLayer">EsriTiledMapLayer</label>
-        </div>
-
-        <div className="inputGroup">
-          <input name="layerType" id="input-EsriDynamicMapLayer" type="radio" value="EsriDynamicMapLayer" />
-          <label htmlFor="input-EsriDynamicMapLayer">EsriDynamicMapLayer</label>
-        </div>
-
-        <div className="inputGroup">
-          <input name="layerType" id="input-EsriFeatureLayer" type="radio" value="EsriFeatureLayer" />
-          <label htmlFor="input-EsriFeatureLayer">EsriFeatureLayer</label>
-        </div>
-
-        <div className="inputGroup">
-          <label htmlFor="input-displayName">Display Name: </label>
+          <label className="textInputLabel" htmlFor="input-displayName">Display Name: </label>
           <input name="displayName" id="input-displayName" type="text" />
         </div>
       </>;

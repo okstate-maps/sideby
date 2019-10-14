@@ -3,13 +3,14 @@ import Vex from 'vex-js';
 import plugin from 'vex-dialog';
 import Fullscreen from 'react-fullscreen-crossbrowser';
 import { cloneDeep } from 'lodash';
-
+import shortid from 'shortid';
 import { findWithAttr, moveWithinArray } from './Util';
 import UtilityBar from './UtilityBar';
 import ViewBar from './ViewBar';
 import Modal from './Modal';
+import Tooltip from './Tooltip';
 import MapsContainer from './MapsContainer';
-import { welcomeText, siteTitle } from './Config';
+import Config, { welcomeText, siteTitle } from './Config';
 import './App.css';
 
 
@@ -23,6 +24,7 @@ class App extends Component {
     this.toggleLabels = this.toggleLabels.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.toggleSpinner = this.toggleSpinner.bind(this);
+    this.rebuildTooltip = this.rebuildTooltip.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.modalSubmit = this.modalSubmit.bind(this);
@@ -32,11 +34,12 @@ class App extends Component {
     this.addOverlay = this.addOverlay.bind(this);
     this.addLayer = this.addLayer.bind(this);
     this.state = {"layers":[],
-                  "overlays":[],
+                  "overlays": Config.defaultOverlays || [],
                   "numberOfLayersOn": 0, 
                   "geocodeResult": {},
                   "labelLayerOn": true,
                   "showSpinner": false,
+                  "rebuildTooltip": false,
                   "modalIsOpen": false,
                   "modalContent": ""};
 
@@ -90,10 +93,16 @@ class App extends Component {
       modalContent: modalContent
     });
     this.toggleModal(true);
+
   }
   
   closeModal() {
     this.toggleModal(false);
+  }
+
+  rebuildTooltip(bool) {
+    console.log("rebuildTooltip", bool);
+    this.setState({"rebuildTooltip": bool});
   }
 
   addOverlay(data) {
@@ -102,7 +111,7 @@ class App extends Component {
       
     var new_layer = data;
     new_layer.isOverlay = true;
-    new_layer.id = new_layer.display_name.replace(" ", "_") + "_new"; //lazy id baby
+    new_layer.id = shortid.generate();
     overlays.push(new_layer);
     this.setState({"overlays":overlays});
   }
@@ -232,7 +241,11 @@ calculateRowLayers(layers) {
               modalSubmit={this.modalSubmit}
               modalContent={this.state.modalContent}
               modalType={this.state.modalType}
+              rebuildTooltip={this.rebuildTooltip}
               />
+
+          <Tooltip rebuildTooltip={this.state.rebuildTooltip}
+                   resetRebuildTooltip={this.rebuildTooltip} />
          
           {this.state.numberOfLayersOn === 0 && 
             <div className='no-maps'>

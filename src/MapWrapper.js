@@ -109,7 +109,6 @@ class MapWrapper extends Component {
   }
 
   onGeocodeClick() {
-    console.log("click");
     this.clearGeocode();
   }
 
@@ -131,7 +130,7 @@ class MapWrapper extends Component {
 
     const overlays = this.props.overlays;
     const Overlays = () => {return (
-      <React.Fragment>
+      <>
         {overlays.map(layer => {
           let Overlay = layer_components[layer.type];
           return  (
@@ -144,7 +143,7 @@ class MapWrapper extends Component {
                 />
           )
         })}
-      </React.Fragment>)
+      </>)
     };
     const layer = this.props.layer;
     let that = this;
