@@ -33,7 +33,8 @@ class Tooltip extends Component {
               effect="solid" 
               id="modal" 
               place="right"
-              multiline="true"/>
+              multiline="true"
+              globalEventOff='click'/>
           <ReactTooltip effect="solid" id="home" />
       </div>
     );

@@ -18,8 +18,8 @@ module.exports = {
   "geocoderSearchPlaceholderText": "Search for a place...",
   "tooltips": {
       "AddOverlayUrl": "Enter the URL to the layer you want to add here.",
-      "AddOverlayTileLayer": "An XYZ style layer. For example https://maps.nyc.gov/xyz/1.0.0/carto/label/{z}/{x}/{y}.png8",
-      "AddOverlayEsriFeatureLayer": "A vector layer coming from ArcGIS Online or ArcGIS Server.<br/> For example, https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0"
+      "AddOverlayTileLayer": "An XYZ style layer.<br/>For example https://maps.nyc.gov/xyz/1.0.0/carto/label/{z}/{x}/{y}.png8",
+      "AddOverlayEsriFeatureLayer": "A vector layer coming from ArcGIS Online or ArcGIS Server.<br/>For example, https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0"
     
   }
 };
