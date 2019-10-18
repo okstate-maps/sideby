@@ -32,19 +32,27 @@ formatContent(modalType, modalContent) {
   gatherValues(modalType){
     var data = {};
     switch (modalType) {
+
       case "AddLayerItem":
         data.type = document.querySelectorAll("input:checked[name='layerType']")[0].value;
-        data.url =  document.querySelectorAll("textarea[name='url']")[0].value;
+        data.url =  document.getElementById("addLayerItemUrl");
+        if (data.url === null){
+          return null
+        } 
         data.display_name = document.querySelectorAll("input[name='displayName']")[0].value;
         return data;
+
       case "AddOverlay":
         data.type = document.querySelectorAll("input:checked[name='overlayType']");
         data.type = data.type.length > 0 ? data.type[0].value : null;
-        data.url =  document.querySelectorAll("textarea[name='overlayUrl']");
-        data.url = data.url.length > 0 ? data.url[0].value : null;
+        data.url =  document.getElementById("addOverlayUrl");
+        if (data.url === null){
+          return null
+        } 
         data.display_name = document.querySelectorAll("input[name='overlayDisplayName']");
-        data.display_name = data.display_name.length > 0 ? data.displayname[0].value: null;
+        data.display_name = data.display_name.length > 0 ? data.display_name[0].value: null;
         return data;
+        
       default:
         return
     }
@@ -59,6 +67,17 @@ formatContent(modalType, modalContent) {
   handleSubmit() {
     let modalType = this.props.modalType;
     let data = this.gatherValues(modalType);
+    
+    if (data.type === null) {
+      alert("Type is required.");
+      return;
+    }
+    
+    if (data.url === null) {
+      alert("Url is required");
+      return;
+    }
+
     this.props.modalSubmit(modalType, data);
     this.props.closeModal();
 

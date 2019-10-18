@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Geocoder from './Geocoder';
 import AddOverlay from './AddOverlay';
 import Settings from './Settings';

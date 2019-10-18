@@ -5,9 +5,6 @@ import 'leaflet-control-geocoder';
 import './Geocoder/images/geocoder.png';
 import './Geocoder/images/throbber.gif';
 import './Geocoder/Control.Geocoder.css';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './Geocoder.css';
 
 
@@ -15,7 +12,6 @@ class Geocoder extends Component {
 
   constructor(props) {
     super(props);
-    library.add(faSearch);
     this.mapboxToken = mapboxToken;
   }
  

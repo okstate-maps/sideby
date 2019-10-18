@@ -1,33 +1,40 @@
 import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLayerGroup, faPlus, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faLayerGroup, faPlus } from '@fortawesome/free-solid-svg-icons';
+import TooltipIcon from './TooltipIcon';
 import Config from './Config';
-// import { faLayerPlus } from '@fortawesome/pro-solid-svg-icons';
-// import { faLayerGroup } from '@fortawesome/pro-duotone-svg-icons';
-
 
 class AddOverlay extends Component {
 
   constructor(props) {
     super(props);
-    // library.add(faLayerPlus);
-    // library.add(faLayerGroup);
     library.add(faLayerGroup);
     library.add(faPlus);
-    library.add(faInfoCircle);
     this.onClick = this.onClick.bind(this);
     this.onBlur = this.onBlur.bind(this);
     this.modalType = 'AddOverlay';
   }
  
   onBlur(e) {
-    debugger;
-    }
+    let submittedUrl = e.target.value;
+    
+  }
 
   onClick(e) {
     let modalContent = 
     <>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>URL</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
         <div className='inputGroup'>
             <label className='textInputLabel' htmlFor='addOverlayUrl'>Url: </label>
             <textarea
@@ -35,11 +42,7 @@ class AddOverlay extends Component {
                 name='addOverlayUrl' 
                 placeholder='Enter the URL to your map/data.'
                 onBlur={this.onBlur}></textarea>
-            <FontAwesomeIcon 
-                data-tip={Config.tooltips.AddOverlayUrl} 
-                data-for='modal' 
-                data-event='click'
-                icon='info-circle' />
+            <TooltipIcon tooltipName={Config.tooltips.AddOverlayUrl} />
         </div>
         <div className="radioGroup">
             <label className="radioGroupLabel" htmlFor="overlayType">Type</label>
@@ -50,11 +53,7 @@ class AddOverlay extends Component {
                         type="radio" 
                         value="TileLayer" />
                     <label htmlFor="overlay-input-TileLayer">TileLayer</label>
-                    <FontAwesomeIcon 
-                        data-tip={Config.tooltips.AddOverlayTileLayer} 
-                        data-for="modal" 
-                        data-event='click'
-                        icon='info-circle' />
+                    <TooltipIcon tooltipName={Config.tooltips.AddOverlayTileLayer}/>
                 </div>
                 
                 <div className="inputGroup">
@@ -91,12 +90,7 @@ class AddOverlay extends Component {
                         type="radio" 
                         value="EsriFeatureLayer" />
                     <label htmlFor="overlay-input-EsriFeatureLayer">EsriFeatureLayer</label><br/>
-                    <FontAwesomeIcon 
-                        data-tip={Config.tooltips.AddOverlayEsriFeatureLayer}  
-                        data-for="modal" 
-                        data-place="right"
-                        data-event='click'
-                        icon='info-circle' />
+                    <TooltipIcon tooltipName={Config.tooltips.AddOverlayEsriFeatureLayer} />
                 </div>
         </div>
         
