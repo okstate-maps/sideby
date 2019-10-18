@@ -7,19 +7,17 @@ class Tooltip extends Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
-
   }
 
   resetRebuildTooltip() {
-      this.props.resetRebuildTooltip(false);
+    this.props.resetRebuildTooltip(false);
   }
 
   componentDidUpdate(prevProps, prevState){
-      if (this.props.rebuildTooltip === true) {
-        console.log("rebuild tooltip baby!!!11!!1");
-        ReactTooltip.rebuild();
-        this.resetRebuildTooltip();
-      }
+    if (this.props.rebuildTooltip === true) {
+      ReactTooltip.rebuild();
+      this.resetRebuildTooltip();
+    }
   }
 
   onChange() {
@@ -27,16 +25,16 @@ class Tooltip extends Component {
 
   render() {
     return (
-      <div>
+      <>
           <ReactTooltip 
               className="superHighZIndex" 
               effect="solid" 
               id="modal" 
               place="right"
-              multiline="true"
+              multiline={true}
               globalEventOff='click'/>
           <ReactTooltip effect="solid" id="home" />
-      </div>
+      </>
     );
   }
 }

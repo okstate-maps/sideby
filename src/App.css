@@ -81,11 +81,13 @@ table {
   .App-header {
     line-height: 1;
     letter-spacing: 1px;
+    padding: 5px;
+    font-size: 1.5em;
   }
 }
-@media (max-width: 584px) {
+@media (min-width: 462px) and (max-width: 584px) {
   .App-header {
-    font-size:2em;
+    font-size: 1.7em;
     letter-spacing: 2px;
   }
 }
@@ -138,13 +140,6 @@ header, #maps, footer {
 
 }
 
-@media (max-width:650px){
-  .no-maps{
-    width:90%;
-    left:5%;
-  }
-}
-
 .no-maps p {
   font-family: 'Montserrat', 'Open Sans', sans-serif;
   flex: none;
@@ -154,5 +149,17 @@ header, #maps, footer {
     -moz-user-select: none;     
     -ms-user-select: none;      
     user-select: none;  
+}
 
+@media (max-width:650px){
+  .no-maps {
+    max-width: 90%;
+    width:90%;
+    left:5%;
+    
+  }
+  
+  .no-maps p {
+    line-height: 1.5em;
+  }
 }

@@ -38,9 +38,12 @@ formatContent(modalType, modalContent) {
         data.display_name = document.querySelectorAll("input[name='displayName']")[0].value;
         return data;
       case "AddOverlay":
-        data.type = document.querySelectorAll("input:checked[name='overlayType']")[0].value;
-        data.url =  document.querySelectorAll("textarea[name='overlayUrl']")[0].value;
-        data.display_name = document.querySelectorAll("input[name='overlayDisplayName']")[0].value;
+        data.type = document.querySelectorAll("input:checked[name='overlayType']");
+        data.type = data.type.length > 0 ? data.type[0].value : null;
+        data.url =  document.querySelectorAll("textarea[name='overlayUrl']");
+        data.url = data.url.length > 0 ? data.url[0].value : null;
+        data.display_name = document.querySelectorAll("input[name='overlayDisplayName']");
+        data.display_name = data.display_name.length > 0 ? data.displayname[0].value: null;
         return data;
       default:
         return

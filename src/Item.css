@@ -1,5 +1,5 @@
 button.item {
-    min-height: 60px;
+    min-height: 70px;
     max-height: 200px;
     height:12vh;
     flex: 1 0 auto;
@@ -19,6 +19,8 @@ button.item {
     border: none;
 }
 
+
+
 button.item .button {
   position: absolute;
   top: 0;
@@ -34,7 +36,9 @@ button.item div.label {
   font-family: 'Montserrat', 'Open Sans', sans-serif;
   font-weight: 400;
   white-space: normal;
-  text-shadow: black 0 0 0.1em, black 0 0 0.1em, black 0 0 0.1em, black 0 0 0.1em, black 0 0 0.2em;
+  text-shadow: black 0 0 0.1em, black 0 0 0.1em, 
+               black 0 0 0.1em, black 0 0 0.1em, 
+               black 0 0 0.2em;
   -webkit-user-select: none;  
     -moz-user-select: none;     
     -ms-user-select: none;      
@@ -43,6 +47,13 @@ button.item div.label {
 
 button.item div.label.long-title {
   font-size: 1.7em;
+  text-shadow: black 0 0 0.1em, black 0 0 0.1em, 
+               black 0 0 0.1em, black 0 0 0.1em,
+               black 0 0 0.1em, black 0 0 0.1em, 
+               black 0 0 0.1em, black 0 0 0.1em,        
+               black 0 0 0.1em, black 0 0 0.1em, 
+               black 0 0 0.1em, black 0 0 0.1em;
+  
 }
 
 button.item.on {
@@ -57,4 +68,35 @@ button.item.off {
 	transition-property: box-shadow;
 	transition-duration: 0.25s;
 	transition-timing-function: linear;
+}
+
+@media (max-width: 661px) {
+
+  button.item {
+    max-width: 175px;
+
+  }
+
+  button.item div.label {
+    font-size: 2em;
+    text-shadow: black 0 0 0.2em, black 0 0 0.2em, 
+                black 0 0 0.2em, black 0 0 0.2em,
+                black 0 0 0.1em, black 0 0 0.1em, 
+                black 0 0 0.1em, black 0 0 0.1em, 
+                black 0 0 0.1em, black 0 0 0.1em;
+
+  }
+
+  button.item div.label.long-title {
+    font-size: 1.3em;
+    line-height: 1.3em;
+    text-shadow: black 0 0 0.2em, black 0 0 0.2em, 
+                black 0 0 0.2em, black 0 0 0.2em,
+                black 0 0 0.1em, black 0 0 0.1em, 
+                black 0 0 0.1em, black 0 0 0.1em, 
+                black 0 0 0.1em, black 0 0 0.1em;
+    
+  }
+
+  
 }

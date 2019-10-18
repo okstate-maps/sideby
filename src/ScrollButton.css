@@ -23,7 +23,7 @@
   border: none;
   font-size: 25px;
   border-radius: 50%;
-	outline:black 5px;
+  border: solid black 1px;
   background-color: var(--text-tertiary-color);
   color: black;
   box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
