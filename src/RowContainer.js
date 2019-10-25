@@ -49,4 +49,3 @@ class RowContainer extends React.Component {
 }
 
 export default React.forwardRef((props, ref) => <RowContainer mapRef={ref} {...props} />);;
-//export default RowContainer;

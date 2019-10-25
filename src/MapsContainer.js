@@ -29,6 +29,7 @@ class MapsContainer extends Component {
       this.setState(mapRefs);
     }
     else {
+      this.manageZoomControls();
       this.syncMaps();
     }
     this.invalidateMapSizes();
@@ -42,6 +43,7 @@ class MapsContainer extends Component {
       this.setState(mapRefs);
     }
   }
+
 
  onDragEnd(draggedLayer) {
 
@@ -81,27 +83,24 @@ class MapsContainer extends Component {
   manageZoomControls() { 
     let mapRefs = this.state.mapRefs;
     let layers = this.props.layers;
-    var map, lyr, zoomControlPresent;
+    var map, lyr, zoomControlNeeded;
 
     for (let i in mapRefs){ 
     
       map = mapRefs[i].leafletElement;
       lyr = layers[findWithAttr(layers, "id", i)];
-      zoomControlPresent = lyr.visibleIndex === 0 ? true : false;
+      zoomControlNeeded = lyr.visibleIndex === 0 ? true : false;
       
-      if (zoomControlPresent && !map.zoomControlAdded){
-          console.log(lyr.display_name +" needs a zoom control ADDED");
-          map.addControl(new L.control.zoom());
-          map.zoomControlAdded = true;
+      if (zoomControlNeeded){
+          
+          map.removeControl(map.zoomControl);
+          map.addControl(map.zoomControl);
+          
       }
 
       else {
-        
-        if (map.zoomControlAdded) {
-          map.removeControl(map.zoomControl);
-        }
-
-        map.zoomControlAdded = false;
+        map.removeControl(map.zoomControl);
+        //map.zoomControlAdded = false;
       }
     }
 
@@ -173,11 +172,8 @@ class MapsContainer extends Component {
     {
       setTimeout(this.invalidateMapSizes, 400);
     }
-    console.log(prevLyrs.map(lyr => lyr.display_name+lyr.visibleIndex.toString()));
-    console.log(lyrs.map(lyr => lyr.display_name+lyr.visibleIndex.toString()));
     if (prevLyrs.length === lyrs.length && !isEqual(prevLyrs.map(lyr => lyr.display_name+lyr.visibleIndex.toString()),
           lyrs.map(lyr => lyr.display_name+lyr.visibleIndex.toString()))){
-            console.log("manage zooooom");
             this.manageZoomControls();
           }
 
