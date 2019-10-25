@@ -15,10 +15,10 @@ class Settings extends Component {
  
   onClick(e) {
     let modalContent =  
-    <>
+      <>
         <MapLabelsToggle labelLayerOn={this.props.labelLayerOn}
                          toggleLabels={this.props.toggleLabels} />
-    </>
+      </>
 
     this.props.openModal("Settings", modalContent);
   }

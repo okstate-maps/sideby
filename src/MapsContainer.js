@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import * as L from 'leaflet';
+import { isEqual } from 'lodash';
 import RowContainer from './RowContainer';
-import { moveWithinArray, compareArrays } from './Util';
+import { findWithAttr, moveWithinArray, compareArrays } from './Util';
 
 class MapsContainer extends Component {
 
@@ -68,8 +70,41 @@ class MapsContainer extends Component {
     }
 
     let allTurnedOnLayers = allLayers.filter(i => i.isToggledOn);
+    
     moveWithinArray(allTurnedOnLayers, currentLayerIndex, destinationIndex);
- 	this.props.updateLayerDisplayIndexesAndRows(allTurnedOnLayers);
+ 	  
+    this.props.updateLayerDisplayIndexesAndRows(allTurnedOnLayers);
+  
+  }
+
+
+  manageZoomControls() { 
+    let mapRefs = this.state.mapRefs;
+    let layers = this.props.layers;
+    var map, lyr, zoomControlPresent;
+
+    for (let i in mapRefs){ 
+    
+      map = mapRefs[i].leafletElement;
+      lyr = layers[findWithAttr(layers, "id", i)];
+      zoomControlPresent = lyr.visibleIndex === 0 ? true : false;
+      
+      if (zoomControlPresent && !map.zoomControlAdded){
+          console.log(lyr.display_name +" needs a zoom control ADDED");
+          map.addControl(new L.control.zoom());
+          map.zoomControlAdded = true;
+      }
+
+      else {
+        
+        if (map.zoomControlAdded) {
+          map.removeControl(map.zoomControl);
+        }
+
+        map.zoomControlAdded = false;
+      }
+    }
+
   }
 
   invalidateMapSizes() {
@@ -125,21 +160,31 @@ class MapsContainer extends Component {
   }
 
   componentDidUpdate(prevProps, prevState){
+    let prevLyrs = prevProps.layers;
+    let lyrs = this.props.layers;
 
-    if (prevProps.layers.filter(i => i.isToggledOn).length !== 
-         this.props.layers.filter(i => i.isToggledOn).length) 
+    if (prevLyrs.filter(i => i.isToggledOn).length !== 
+         lyrs.filter(i => i.isToggledOn).length) 
     {
       this.invalidateMapSizes();
     }
 
-    else if (!compareArrays(prevProps.layers, this.props.layers))
+    else if (!compareArrays(prevLyrs, lyrs))
     {
       setTimeout(this.invalidateMapSizes, 400);
     }
+    console.log(prevLyrs.map(lyr => lyr.display_name+lyr.visibleIndex.toString()));
+    console.log(lyrs.map(lyr => lyr.display_name+lyr.visibleIndex.toString()));
+    if (prevLyrs.length === lyrs.length && !isEqual(prevLyrs.map(lyr => lyr.display_name+lyr.visibleIndex.toString()),
+          lyrs.map(lyr => lyr.display_name+lyr.visibleIndex.toString()))){
+            console.log("manage zooooom");
+            this.manageZoomControls();
+          }
 
     if (prevProps.geocodeResult !== this.props.geocodeResult) {
       this.handleGeocode(this.props.geocodeResult);
     }
+
   }
 
   render() {

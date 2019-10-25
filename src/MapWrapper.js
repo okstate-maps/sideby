@@ -65,6 +65,14 @@ class MapWrapper extends Component {
     this.passUpRef(this.props.layer.id, this.props.mapRef);
   }
   
+  componentDidUpdate(prevProps, prevState) {
+    console.log("mapwrapper updated");
+    if (prevProps.layer.visibleIndex !== 
+          this.props.layer.visibleIndex) {
+
+    }
+  }
+
   onResize(e) {
   }
 
@@ -103,6 +111,7 @@ class MapWrapper extends Component {
 
     return null;
   }
+
 
   clearGeocode() {
     this.props.clearGeocode();
@@ -149,7 +158,7 @@ class MapWrapper extends Component {
     let that = this;
     let Layer = layer_components[layer.type];
     const { provided } = this.props;
-  
+    console.log(layer.display_name, layer.visibleIndex);
 
     // Use ids from layers array to create list of urls
     return (<div 
@@ -167,6 +176,8 @@ class MapWrapper extends Component {
                  key={layer.id} 
                  viewport={that.viewport}
                  zoomControl={layer.visibleIndex === 0 ? true : false}
+              
+                 zoomControlAdded={layer.visibleIndex === 0 ? true : false}
                 >
 
                 {this.props.geocodeResult &&
