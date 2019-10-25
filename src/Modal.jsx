@@ -13,6 +13,7 @@ class Modal extends Component {
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.ref = React.createRef(null);
+    this.getParent = this.getParent.bind(this);
     this.state={};
   }
 
@@ -27,6 +28,10 @@ formatContent(modalType, modalContent) {
     // references are now sync'd and can be accessed.
     this.props.rebuildTooltip(true);
 
+  }
+
+  getParent() {
+      return document.querySelector("#modalRoot");
   }
 
   gatherValues(modalType){
@@ -93,7 +98,8 @@ formatContent(modalType, modalContent) {
           isOpen={this.props.isOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.handleCloseModal}
-          contentLabel="Example Modal">
+          parentSelector={this.getParent}
+          contentLabel="Modal">
     	{content}
       <br/>
       <button onClick={this.handleCloseModal}>Cancel</button>  

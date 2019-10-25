@@ -163,6 +163,7 @@ class App extends Component {
     this.setState(newState);
   }
 
+
  updateLayerDisplayIndexesAndRows(layers) {
   let newLayers = cloneDeep(this.state.layers);
   layers.forEach((lyr, index) => {
@@ -228,12 +229,9 @@ calculateRowLayers(layers) {
           enabled={this.state.isFullscreenEnabled}
           onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}>
 
-        <div className="App">
-        
-          <header className="App-header">
-            {siteTitle}
-          </header>
+        <div id="modalRoot"></div>
 
+        <div className="App">
           <Modal isOpen={this.state.modalIsOpen} 
               toggleSpinner={this.toggleSpinner} 
               openModal={this.openModal}
@@ -242,7 +240,13 @@ calculateRowLayers(layers) {
               modalContent={this.state.modalContent}
               modalType={this.state.modalType}
               rebuildTooltip={this.rebuildTooltip}
+             
               />
+          <header className="App-header">
+            {siteTitle}
+          </header>
+
+         
 
           <Tooltip rebuildTooltip={this.state.rebuildTooltip}
                    resetRebuildTooltip={this.rebuildTooltip} />
