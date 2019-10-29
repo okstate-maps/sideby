@@ -6,10 +6,6 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.21",
     "@fortawesome/free-solid-svg-icons": "^5.10.1",
-    "@fortawesome/pro-duotone-svg-icons": "^5.10.1",
-    "@fortawesome/pro-light-svg-icons": "^5.10.1",
-    "@fortawesome/pro-regular-svg-icons": "^5.10.1",
-    "@fortawesome/pro-solid-svg-icons": "^5.10.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "css-vars-ponyfill": "^2.1.1",
     "esri-leaflet": "^2.1.2",
@@ -31,9 +27,7 @@
     "react-spinners": "^0.6.0",
     "react-tooltip": "^3.11.1",
     "shortid": "^2.2.15",
-    "vex-js": "^4.1.0",
-    "webfontloader": "^1.6.28",
-    "why-did-you-update": "^1.0.6"
+    "webfontloader": "^1.6.28"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -42,9 +36,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "@fortawesome/fontawesome-pro": "^5.10.1"
   },
   "browserslist": [
     ">0.2%",
