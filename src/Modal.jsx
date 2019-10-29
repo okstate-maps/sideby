@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import './Modal.css';
+import './Table.css';
 
 ReactModal.setAppElement('#root');
 
@@ -53,7 +54,8 @@ formatContent(modalType, modalContent) {
         data.url =  document.getElementById("addOverlayUrl");
         if (data.url === null){
           return null
-        } 
+        }
+        data.url = data.url.value; 
         data.display_name = document.querySelectorAll("input[name='overlayDisplayName']");
         data.display_name = data.display_name.length > 0 ? data.display_name[0].value: null;
         return data;
@@ -90,6 +92,7 @@ formatContent(modalType, modalContent) {
 
   render() {
   	let content = this.formatContent(this.props.modalType, this.props.modalContent);
+    let options = this.props.modalOptions || {};
   	return <ReactModal
           ref={this.ref}
           closeTimeoutMS={500}
@@ -102,8 +105,18 @@ formatContent(modalType, modalContent) {
           contentLabel="Modal">
     	{content}
       <br/>
-      <button onClick={this.handleCloseModal}>Cancel</button>  
-      <button onClick={this.handleSubmit}>OK</button>  
+
+      {!options.noSubmit &&
+        <> 
+          <button onClick={this.handleCloseModal}>Cancel</button>
+          <button onClick={this.handleSubmit}>OK</button>  
+        </>
+      }
+
+      {options.noSubmit && 
+        <button onClick={this.handleCloseModal}>OK</button>
+      }
+
     </ReactModal>
     
   }

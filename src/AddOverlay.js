@@ -5,6 +5,7 @@ import { faLayerGroup, faPlus } from '@fortawesome/free-solid-svg-icons';
 import TooltipIcon from './TooltipIcon';
 import Config from './Config';
 
+
 class AddOverlay extends Component {
 
   constructor(props) {
@@ -22,18 +23,30 @@ class AddOverlay extends Component {
   }
 
   onClick(e) {
+    let currentOverlays = this.props.overlays;
+
     let modalContent = 
     <>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>URL</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        {currentOverlays.length > 0 && 
+            <table className='table'>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>URL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {currentOverlays.map((o, i) => 
+
+                    <tr>
+                        <td>{o.display_name}</td>
+                        <td>o.url</td>
+                    </tr>
+
+                        )}
+                </tbody>
+            </table>
+        }
 
         <div className='inputGroup'>
             <label className='textInputLabel' htmlFor='addOverlayUrl'>Url: </label>

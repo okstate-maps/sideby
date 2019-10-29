@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Vex from 'vex-js';
-import plugin from 'vex-dialog';
 import Fullscreen from 'react-fullscreen-crossbrowser';
 import { cloneDeep } from 'lodash';
 import shortid from 'shortid';
@@ -42,11 +40,6 @@ class App extends Component {
                   "rebuildTooltip": false,
                   "modalIsOpen": false,
                   "modalContent": ""};
-
-    //alert alert hack ahead
-    window.vex = Vex;
-    window.vex.registerPlugin(plugin);
-    window.vex.defaultOptions.className = 'vex-theme-os';
   }
 
   transmitGeocode(geocode) {
@@ -86,11 +79,12 @@ class App extends Component {
 
   }
 
-  openModal(modalType, modalContent){
+  openModal(modalType, modalContent, modalOptions){
     
     this.setState({
       modalType: modalType,
-      modalContent: modalContent
+      modalContent: modalContent,
+      modalOptions: modalOptions
     });
     this.toggleModal(true);
 
@@ -239,6 +233,7 @@ calculateRowLayers(layers) {
               modalSubmit={this.modalSubmit}
               modalContent={this.state.modalContent}
               modalType={this.state.modalType}
+              modalOptions={this.state.modalOptions}
               rebuildTooltip={this.rebuildTooltip}
              
               />

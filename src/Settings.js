@@ -20,7 +20,7 @@ class Settings extends Component {
                          toggleLabels={this.props.toggleLabels} />
       </>
 
-    this.props.openModal("Settings", modalContent);
+    this.props.openModal("Settings", modalContent, {noSubmit: true});
   }
 
   render() {
