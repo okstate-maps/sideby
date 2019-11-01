@@ -3,7 +3,7 @@ module.exports = {
     "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0",
     "type": "EsriFeatureLayer",
     "style": function(){return {"fill": false, "color": "#fafafa", "weight": 1}},
-    "key": "stateoutlinesoverlay",
+    "id": "stateoutlinesoverlay",
     "display_name": "USA State Outlines",
     "interactive": false
   }],

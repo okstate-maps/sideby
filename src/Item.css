@@ -17,6 +17,7 @@ button.item {
   	align-items: center;
     position: relative;
     border: none;
+    outline:0;
 }
 
 
@@ -27,8 +28,18 @@ button.item .button {
   right: 0;
 }
 
+button.item:focus-within, button.item::-moz-focus-inner, button.item::-moz-focus-outer{  
+  outline: none;
+  border: 0;
+}
+
+button.item:active, button.item:focus {
+  outline: #333333 dotted 2px ;
+
+}
 
 button.item div.label {
+  outline:0;
   font-size: 3.4em;
   color: var(--label-color);
   width:100%;
@@ -59,14 +70,14 @@ button.item div.label.long-title {
 button.item.on {
 	box-shadow: 0px 0px 0px 6px #333333;
 	transition-property: box-shadow;
-	transition-duration: 0.25s;
+	transition-duration: 0.15s;
 	transition-timing-function: linear;
 }
 
 button.item.off {
 	box-shadow: 0px 0px 0px 0px #333333;
 	transition-property: box-shadow;
-	transition-duration: 0.25s;
+	transition-duration: 0.15s;
 	transition-timing-function: linear;
 }
 

@@ -18,7 +18,7 @@ class Modal extends Component {
     this.state={};
   }
 
-formatContent(modalType, modalContent) {
+ formatContent(modalType, modalContent) {
     let content = <div className="modalContent">
                     {modalContent}
                   </div>;
@@ -28,11 +28,10 @@ formatContent(modalType, modalContent) {
   afterOpenModal() {
     // references are now sync'd and can be accessed.
     this.props.rebuildTooltip(true);
-
   }
 
   getParent() {
-      return document.querySelector("#modalRoot");
+    return document.querySelector("#modalRoot");
   }
 
   gatherValues(modalType){

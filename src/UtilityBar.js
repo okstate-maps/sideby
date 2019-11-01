@@ -26,6 +26,7 @@ class UtilityBar extends Component {
         <Geocoder transmitGeocode={this.transmitGeocode} />
         <AddOverlay numberOfLayersOn={this.props.numberOfLayersOn} 
                     addOverlay={this.props.addOverlay}
+                    deleteOverlay={this.props.deleteOverlay}
                     overlays={this.props.overlays}
                     openModal={this.props.openModal} />
         <FullscreenToggle toggleFullscreen={this.props.toggleFullscreen} 

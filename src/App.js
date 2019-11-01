@@ -30,6 +30,7 @@ class App extends Component {
     this.calculateRowLayers = this.calculateRowLayers.bind(this);
     this.updateLayerDisplayIndexesAndRows = this.updateLayerDisplayIndexesAndRows.bind(this);
     this.addOverlay = this.addOverlay.bind(this);
+    this.deleteOverlay = this.deleteOverlay.bind(this);
     this.addLayer = this.addLayer.bind(this);
     this.state = {"layers":[],
                   "overlays": Config.defaultOverlays || [],
@@ -79,6 +80,9 @@ class App extends Component {
 
   }
 
+  renderModal(){
+
+  }
   openModal(modalType, modalContent, modalOptions){
     
     this.setState({
@@ -108,6 +112,16 @@ class App extends Component {
     new_layer.id = shortid.generate();
     overlays.push(new_layer);
     this.setState({"overlays":overlays});
+  }
+
+  deleteOverlay(obj) {
+    let id = obj.currentTarget.dataset.overlayId;
+    document.getElementById(id).style.display = "none";
+    let overlays = cloneDeep(this.state.overlays);
+    let matchIndex = findWithAttr(overlays, "id", id);
+    overlays.splice(matchIndex, 1);
+    this.setState({"overlays":overlays});
+
   }
 
   addLayer(data) {
@@ -275,6 +289,7 @@ calculateRowLayers(layers) {
                         isFullscreenEnabled={this.state.isFullscreenEnabled}
                         overlays={this.state.overlays}
                         addOverlay={this.addOverlay}
+                        deleteOverlay={this.deleteOverlay}
                         openModal={this.openModal}
                         closeModal={this.closeModal}
                          />

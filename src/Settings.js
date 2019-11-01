@@ -26,7 +26,9 @@ class Settings extends Component {
   render() {
     return (
         <button className='settings-button' 
-            onClick={this.onClick} 
+            onClick={this.onClick}
+            name='Settings'
+            title='Settings' 
             id='settings-button'>
           <div className="icon-label">
              <FontAwesomeIcon icon='cog' size="2x"/>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLayerGroup, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faLayerGroup, faPlus, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import TooltipIcon from './TooltipIcon';
 import Config from './Config';
 
@@ -12,8 +12,10 @@ class AddOverlay extends Component {
     super(props);
     library.add(faLayerGroup);
     library.add(faPlus);
+    library.add(faTimesCircle);
     this.onClick = this.onClick.bind(this);
     this.onBlur = this.onBlur.bind(this);
+
     this.modalType = 'AddOverlay';
   }
  
@@ -29,18 +31,24 @@ class AddOverlay extends Component {
     <>
         {currentOverlays.length > 0 && 
             <table className='table'>
+            <caption> Current Overlays</caption>
                 <thead>
+                    
                     <tr>
                         <th>Name</th>
-                        <th>URL</th>
+                        <th>Remove</th>
                     </tr>
                 </thead>
                 <tbody>
                     {currentOverlays.map((o, i) => 
 
-                    <tr>
+                    <tr id={o.id} key={o.id}>
                         <td>{o.display_name}</td>
-                        <td>o.url</td>
+                        <td>
+                            <button data-overlay-id={o.id} onClick={this.props.deleteOverlay}>
+                                <FontAwesomeIcon icon='times-circle' />
+                            </button>
+                        </td>
                     </tr>
 
                         )}
