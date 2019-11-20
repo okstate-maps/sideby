@@ -28,7 +28,7 @@ class AddLayerItem extends Item {
                 name='addLayerItemUrl' 
                 placeholder='Enter the URL to your map/data.'
                 onBlur={this.onBlur}></textarea>
-            <TooltipIcon tooltipName={Config.tooltips.AddOverlayUrl} />
+            <TooltipIcon tooltipName={Config.tooltips.Url} />
       
         </div>
 
@@ -38,7 +38,7 @@ class AddLayerItem extends Item {
           <div className="inputGroup">
             <input name="layerType" id="input-TileLayer" type="radio" value="TileLayer" />
             <label htmlFor="input-TileLayer">TileLayer</label>
-            <TooltipIcon tooltipName={Config.tooltips.AddOverlayTileLayer}/>
+            <TooltipIcon tooltipName={Config.tooltips.TileLayer}/>
                 
           </div>  
           
@@ -64,7 +64,7 @@ class AddLayerItem extends Item {
           <div className="inputGroup">
             <input name="layerType" id="input-EsriFeatureLayer" type="radio" value="EsriFeatureLayer" />
             <label htmlFor="input-EsriFeatureLayer">EsriFeatureLayer</label>
-            <TooltipIcon tooltipName={Config.tooltips.AddOverlayEsriFeatureLayer} />
+            <TooltipIcon tooltipName={Config.tooltips.EsriFeatureLayer} />
           </div>
 
         </div>
@@ -72,6 +72,13 @@ class AddLayerItem extends Item {
         <div className="inputGroup">
           <label className="textInputLabel" htmlFor="input-displayName">Display Name: </label>
           <input name="displayName" id="input-displayName" type="text" />
+          <TooltipIcon tooltipName={Config.tooltips.DisplayName} />
+        </div> 
+
+        <div className="inputGroup">
+          <label className="textInputLabel" htmlFor="input-thumbnailPath">Thumbnail Path: </label>
+          <input name="thumbnailPath" id="input-thumbnailPath" type="text" />
+          <TooltipIcon tooltipName={Config.tooltips.ThumbnailPath} />
         </div>
       </>;
 

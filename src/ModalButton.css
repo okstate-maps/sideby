@@ -1,0 +1,17 @@
+#modalContainer button {
+	padding: 5px 15px;
+	border-radius: 4px;
+	background-color: white;
+	border: 1px solid #808080;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+#modalContainer button:hover  {
+	background-color: #e5e5e5;
+}
+
+#modalContainer button:active  {
+	background-color: #bfbfbf;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import './Modal.css';
+import './ModalButton.css';
 import './Table.css';
 
 ReactModal.setAppElement('#root');
@@ -19,7 +20,7 @@ class Modal extends Component {
   }
 
  formatContent(modalType, modalContent) {
-    let content = <div className="modalContent">
+    let content = <div id="modalContent">
                     {modalContent}
                   </div>;
     return content;
@@ -44,6 +45,7 @@ class Modal extends Component {
         if (data.url === null){
           return null
         } 
+        data.url = data.url.value;
         data.display_name = document.querySelectorAll("input[name='displayName']")[0].value;
         return data;
 
@@ -93,6 +95,7 @@ class Modal extends Component {
   	let content = this.formatContent(this.props.modalType, this.props.modalContent);
     let options = this.props.modalOptions || {};
   	return <ReactModal
+          id="modalContainer"
           ref={this.ref}
           closeTimeoutMS={500}
           className="Modal-Content"
@@ -103,8 +106,7 @@ class Modal extends Component {
           parentSelector={this.getParent}
           contentLabel="Modal">
     	{content}
-      <br/>
-
+ 
       {!options.noSubmit &&
         <> 
           <button onClick={this.handleCloseModal}>Cancel</button>

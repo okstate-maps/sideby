@@ -4,6 +4,7 @@ import AddOverlay from './AddOverlay';
 import Settings from './Settings';
 import FullscreenToggle from './FullscreenToggle';
 import './UtilityBar.css';
+import './UtilityBarButton.css';
 
 
 class UtilityBar extends Component {
@@ -35,6 +36,7 @@ class UtilityBar extends Component {
           openModal={this.props.openModal}
           labelLayerOn={this.props.labelLayerOn}
           toggleLabels={this.props.toggleLabels}
+          viewbarLayers={this.props.viewbarLayers}
                                         />
         
       </div>

@@ -3,6 +3,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import MapLabelsToggle from './MapLabelsToggle';
+import ExportLayersToJSONButton from './ExportLayersToJSONButton';
 
 
 class Settings extends Component {
@@ -18,6 +19,8 @@ class Settings extends Component {
       <>
         <MapLabelsToggle labelLayerOn={this.props.labelLayerOn}
                          toggleLabels={this.props.toggleLabels} />
+        <ExportLayersToJSONButton layers={this.props.viewbarLayers} />
+
       </>
 
     this.props.openModal("Settings", modalContent, {noSubmit: true});

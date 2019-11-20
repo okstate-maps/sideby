@@ -9,6 +9,7 @@ import Modal from './Modal';
 import Tooltip from './Tooltip';
 import MapsContainer from './MapsContainer';
 import Config, { welcomeText, siteTitle } from './Config';
+//import LayersInfo from './LayersInfo';
 import './App.css';
 
 
@@ -32,6 +33,8 @@ class App extends Component {
     this.addOverlay = this.addOverlay.bind(this);
     this.deleteOverlay = this.deleteOverlay.bind(this);
     this.addLayer = this.addLayer.bind(this);
+
+
     this.state = {"layers":[],
                   "overlays": Config.defaultOverlays || [],
                   "numberOfLayersOn": 0, 
@@ -41,6 +44,12 @@ class App extends Component {
                   "rebuildTooltip": false,
                   "modalIsOpen": false,
                   "modalContent": ""};
+
+    //for the initial app load, set state using LayersInfo
+    let viewbarLayers = window.LayersInfo.map(item => ({...item, isToggledOn: false, id: shortid.generate()}));
+    this.state.viewbarLayers =  viewbarLayers.sort( (a, b) => {
+      return b.sortVal - a.sortVal
+    });
   }
 
   transmitGeocode(geocode) {
@@ -126,14 +135,15 @@ class App extends Component {
 
   addLayer(data) {
     let new_layer = data,
-      id = new_layer.display_name + "_new", //lazy id baby
+      id = shortid.generate(), 
       maxZoom = 20;
 
     new_layer.id = id;
     new_layer.maxZoom = maxZoom;
     
-    
-    this.setState({"newLayer": new_layer});
+    let state = {"viewbarLayers": this.state.viewbarLayers};
+    state.viewbarLayers.push(new_layer);
+    this.setState(state);
   }
 
   handleItemClick(data) {
@@ -288,6 +298,7 @@ calculateRowLayers(layers) {
                         labelLayerOn={this.state.labelLayerOn}
                         isFullscreenEnabled={this.state.isFullscreenEnabled}
                         overlays={this.state.overlays}
+                        viewbarLayers={this.state.viewbarLayers}
                         addOverlay={this.addOverlay}
                         deleteOverlay={this.deleteOverlay}
                         openModal={this.openModal}
@@ -300,6 +311,7 @@ calculateRowLayers(layers) {
                    toggleModal={this.toggleModal}
                    openModal={this.openModal}
                    closeModal={this.closeModal}
+                   viewbarLayers={this.state.viewbarLayers}
                    newLayer={this.state.newLayer} />
 
         </div>

@@ -1,8 +1,7 @@
-
-
 table.table {
 	border-collapse: collapse;
-	width:100%;
+	width:75%;
+	margin-bottom: 15px;
 }
 
 table.table, .table th, .table td {
@@ -12,4 +11,9 @@ table.table, .table th, .table td {
 .table th, .table td {
   padding: 10px;
   text-align: left;
+}
+
+table.table caption {
+	font-weight: bold;
+	padding:5px;
 }

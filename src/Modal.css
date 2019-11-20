@@ -1,3 +1,7 @@
+/*
+Modal animations
+*/
+
 @-webkit-keyframes modal-dropin {
   0% {
     -webkit-transform: translateY(0);
@@ -50,7 +54,6 @@
     -webkit-transform: translateY(-800px);
     transform: translateY(-800px); } }
 
-
 div.ReactModalPortal div.Modal-Content.ReactModal__Content--before-close {
   -webkit-animation: modal-dropout .4s;
   animation: modal-dropout .4s; 
@@ -74,6 +77,10 @@ div.ReactModal__Overlay--before-close{
     opacity: 0;
 }
 
+/*
+End animations section
+*/
+
 
 .ReactModalPortal div {
     z-index: 10000;
@@ -95,42 +102,43 @@ div.ReactModal__Overlay--before-close{
   }
 
 
-.modalContent .textInputLabel {
+#modalContent .textInputLabel {
     font-weight: bold;
 }
 
-.modalContent .inputGroup {
+#modalContent .inputGroup {
   display: flex;
   align-items: center;
   padding: 5px;
   margin: 5px;
 }
 
-
-.modalContent .inputGroup, 
-.modalContent .inputGroup label, 
-.modalContent .inputGroup input,
-.modalContent .inputGroup textarea {
+#modalContent .inputGroup, 
+#modalContent .inputGroup label, 
+#modalContent .inputGroup input,
+#modalContent .inputGroup textarea,
+#modalContent .inputGroup svg
+ {
   padding: 2px 5px 2px 0;
   margin: 2px 5px 2px 0;
 }
 
-.modalContent .inputGroup textarea, .modalContent .inputGroup input[type="text"] {
+#modalContent .inputGroup textarea, #modalContent .inputGroup input[type="text"] {
   padding: 10px;
   width: 60%;
 }
 
-.modalContent div.radioGroup {
+#modalContent div.radioGroup {
     display: flex;
     flex-direction: column;
 }
 
-.modalContent .radioGroup label.radioGroupLabel{
+
+#modalContent .radioGroup label.radioGroupLabel{
     padding: 8px 8px 8px 0;
     font-weight: bold;
 }
-
-.modalContent .radioGroup .inputGroup{
+#modalContent .radioGroup .inputGroup{
     margin-left: 15px;
 }
 

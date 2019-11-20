@@ -19,9 +19,11 @@ module.exports = {
   "mapDefaultCenter": [0,0],
   "geocoderSearchPlaceholderText": "Search for a place...",
   "tooltips": {
-      "AddOverlayUrl": "Enter the URL to the layer you want to add here.",
-      "AddOverlayTileLayer": "An XYZ style layer.<br/>For example https://maps.nyc.gov/xyz/1.0.0/carto/label/{z}/{x}/{y}.png8",
-      "AddOverlayEsriFeatureLayer": "A vector layer coming from ArcGIS Online or ArcGIS Server.<br/>For example, https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0"
+      "Url": "Enter the URL to the layer you want to add here.",
+      "TileLayer": "An XYZ style layer.<br/>For example https://maps.nyc.gov/xyz/1.0.0/carto/label/{z}/{x}/{y}.png8",
+      "EsriFeatureLayer": "A vector layer coming from ArcGIS Online or ArcGIS Server.<br/>For example, https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0",
+      "ThumbnailPath": "Enter a path to a thumbnail picture to use for the layer. It can be a full URL or the filename of an image stored in /public/assets/images.",
+      "DisplayName": "The name to use for this layer.",
     
   }
 };

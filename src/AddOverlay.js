@@ -63,7 +63,7 @@ class AddOverlay extends Component {
                 name='addOverlayUrl' 
                 placeholder='Enter the URL to your map/data.'
                 onBlur={this.onBlur}></textarea>
-            <TooltipIcon tooltipName={Config.tooltips.AddOverlayUrl} />
+            <TooltipIcon tooltipName={Config.tooltips.Url} />
         </div>
         <div className="radioGroup">
             <label className="radioGroupLabel" htmlFor="overlayType">Type</label>
@@ -74,7 +74,7 @@ class AddOverlay extends Component {
                         type="radio" 
                         value="TileLayer" />
                     <label htmlFor="overlay-input-TileLayer">TileLayer</label>
-                    <TooltipIcon tooltipName={Config.tooltips.AddOverlayTileLayer}/>
+                    <TooltipIcon tooltipName={Config.tooltips.TileLayer}/>
                 </div>
                 
                 <div className="inputGroup">
@@ -111,7 +111,7 @@ class AddOverlay extends Component {
                         type="radio" 
                         value="EsriFeatureLayer" />
                     <label htmlFor="overlay-input-EsriFeatureLayer">EsriFeatureLayer</label><br/>
-                    <TooltipIcon tooltipName={Config.tooltips.AddOverlayEsriFeatureLayer} />
+                    <TooltipIcon tooltipName={Config.tooltips.EsriFeatureLayer} />
                 </div>
         </div>
         

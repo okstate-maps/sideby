@@ -4,7 +4,7 @@ import shortid from 'shortid';
 import Item from './Item';
 import AddLayerItem from './AddLayerItem';
 import ScrollButton from './ScrollButton';
-import LayersInfo from './LayersInfo';
+//import LayersInfo from './LayersInfo';
 import './ViewBar.css';
 
 class ViewBar extends Component {
@@ -57,15 +57,17 @@ class ViewBar extends Component {
 
       this.setState({"layers": layers});
     }
+
+
+    if (this.props.viewbarLayers && this.props.viewbarLayers.length !== this.state.layers.length){
+      this.setState({"layers": this.props.viewbarLayers});
+    }
+
   }
 
   componentWillMount(prevProps, prevState){
     //for the initial app load, set state using LayersInfo
-    let layers = LayersInfo.map(item => ({...item, isToggledOn: false, id: shortid.generate()}));
-    layers = layers.sort( (a, b) => {
-      return b.sortVal - a.sortVal 
-    })
-    this.setState({"layers": layers});
+    this.setState({"layers": this.props.viewbarLayers});
   }
 
   onWheel(e){
@@ -117,13 +119,14 @@ class ViewBar extends Component {
   }
 
   render() {
-    const items = this.state.layers;
+    const items = this.state.layers || [];
     
     return (
       <footer className='ViewBar-container bottom'>
         <ScrollButton direction="left" onClick={this.handleScrollButtonClick}/>
 
          <div onWheel={this.onWheel} onScroll={this.onScroll} scrollleft={this.state.scrollLeft} className='flip-move' id="viewbarItems">
+           
            {items.map(item => <Item 
                 numberOfLayersOn={this.props.numberOfLayersOn}
                 key={item.id} 
