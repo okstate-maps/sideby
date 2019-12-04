@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import {Map, TileLayer, WMSTileLayer, Marker} from 'react-leaflet';
+import { Map, TileLayer, WMSTileLayer, Marker } from 'react-leaflet';
+import WMTSTileLayer from 'react-leaflet-wmts';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGripVertical } from '@fortawesome/free-solid-svg-icons';
 import EsriTiledMapLayer from './EsriTiledMapLayer';
 import EsriDynamicMapLayer from './EsriDynamicMapLayer';
 import EsriFeatureLayer from './EsriFeatureLayer';
+import EsriImageLayer from './EsriImageLayer';
+import LeafletLoadingControl from './LeafletLoadingControl';
 import {mapboxToken, 
         labelLayerUrl, 
         mapMinZoom, 
@@ -131,9 +134,11 @@ class MapWrapper extends Component {
     const layer_components = {
       "EsriFeatureLayer": EsriFeatureLayer,
       "EsriTiledMapLayer": EsriTiledMapLayer,
+      "EsriImageLayer": EsriImageLayer,
       "EsriDynamicMapLayer": EsriDynamicMapLayer,
       "WMSTileLayer": WMSTileLayer,
-      "TileLayer": TileLayer
+      "TileLayer": TileLayer,
+      "WMTSTileLayer": WMTSTileLayer
     }
 
     const overlays = this.props.overlays;
@@ -174,7 +179,25 @@ class MapWrapper extends Component {
                  key={layer.id} 
                  viewport={that.viewport}
                  zoomControlAdded={true}
+                 loadingControl={true}
                 >
+                <LeafletLoadingControl opts={{
+                    position: 'bottomleft',
+                    spinjs: true,
+                    separate: true,
+                    delayIndicator: 400,
+                    spin:{
+                      lines: 15,
+                      length: 10,
+                      width: 3,
+                      radius: 15,
+                      color: '#ffffff',
+                      left:'100%',
+                      top:'-25%', 
+                      fadeColor: 'black',
+                      shadow: '0 0 5px black'
+                    }
+                  }}/>
 
                 {this.props.geocodeResult &&
                   <Marker position={this.props.geocodeResult}

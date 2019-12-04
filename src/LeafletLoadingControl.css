@@ -1,0 +1,11 @@
+/*
+	Just fyi this rule could have unintended side effects.
+*/
+div.leaflet-control-zoom.leaflet-control-layer-container.leaflet-bar.leaflet-control {
+	background-color: transparent;
+	border: none;
+}
+
+a.leaflet-control-loading {
+	background-color: transparent;
+}

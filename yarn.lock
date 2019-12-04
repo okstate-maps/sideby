@@ -6151,6 +6151,11 @@ leaflet-control-geocoder@^1.6.0:
   optionalDependencies:
     open-location-code "^1.0.0"
 
+leaflet-loading@^0.1.24:
+  version "0.1.24"
+  resolved "https://registry.yarnpkg.com/leaflet-loading/-/leaflet-loading-0.1.24.tgz#eafdfc188718eb13d3cf7b9226c4c06b16e92919"
+  integrity sha1-6v38GIcY6xPTz3uSJsTAaxbpKRk=
+
 leaflet-virtual-grid@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/leaflet-virtual-grid/-/leaflet-virtual-grid-1.0.7.tgz#0dbb0dacd506b6e6d291314da5022d348729f8ad"
@@ -8426,6 +8431,12 @@ react-leaflet-control@^2.0.0:
   resolved "https://registry.yarnpkg.com/react-leaflet-control/-/react-leaflet-control-2.1.1.tgz#ed90006c9d285872a2788fe15c11fc30ad14cdb0"
   integrity sha512-3fx4uSRFtDaFNa1yq62DCxdc9kR3Lk4V7R0lHqbKfPTEIOvPR7VFvk3xzcSnSB/0LAYO8R96Pwcs1c6knyL/Hw==
 
+react-leaflet-wmts@okstate-maps/react-leaflet-wmts:
+  version "0.1.0"
+  resolved "https://codeload.github.com/okstate-maps/react-leaflet-wmts/tar.gz/a9a4bb5a0bc50a2d1b0910dca41773d92d99e0ec"
+  dependencies:
+    lodash "^4.17.11"
+
 react-leaflet@^2.4.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/react-leaflet/-/react-leaflet-2.5.0.tgz#834cc9fdf9385e2b30e90e6d71533e2f961d93f7"
@@ -9388,6 +9399,11 @@ spdy@^4.0.0:
     http-deceiver "^1.2.7"
     select-hose "^2.0.0"
     spdy-transport "^3.0.0"
+
+spin.js@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/spin.js/-/spin.js-4.1.0.tgz#afcf12738fafd5f6aa0a385a5b4cec45c86a3555"
+  integrity sha512-WI8O1OdJlKjialIhB9Z5RfFFM4pI7Hohik76bB3N4Ep3N/vTDPZiRU8QeefyLbmpI5n2bFQXgticl2g+/KiKYA==
 
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"

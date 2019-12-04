@@ -40,13 +40,17 @@ class Modal extends Component {
     switch (modalType) {
 
       case "AddLayerItem":
-        data.type = document.querySelectorAll("input:checked[name='layerType']")[0].value;
+        data.type = document.querySelectorAll("input:checked[name='layerType']");
+        data.type = data.type.length > 0 ? data.type[0].value : null;
         data.url =  document.getElementById("addLayerItemUrl");
         if (data.url === null){
           return null
         } 
-        data.url = data.url.value;
-        data.display_name = document.querySelectorAll("input[name='displayName']")[0].value;
+        data.url = data.url.value === "" ? null : data.url.value; 
+        data.display_name = document.querySelectorAll("input[name='displayName']");
+        data.display_name = data.display_name.length > 0 ? data.display_name[0].value: null;
+        data.thumbnail_file = document.querySelectorAll("input[name='thumbnailPath']");
+        data.thumbnail_file = data.thumbnail_file.length > 0 ? data.thumbnail_file[0].value : null;
         return data;
 
       case "AddOverlay":
@@ -56,7 +60,7 @@ class Modal extends Component {
         if (data.url === null){
           return null
         }
-        data.url = data.url.value; 
+        data.url = data.url.value === "" ? null : data.url.value; 
         data.display_name = document.querySelectorAll("input[name='overlayDisplayName']");
         data.display_name = data.display_name.length > 0 ? data.display_name[0].value: null;
         return data;
@@ -75,16 +79,15 @@ class Modal extends Component {
   handleSubmit() {
     let modalType = this.props.modalType;
     let data = this.gatherValues(modalType);
-    
+    if (data.url === null) {
+      alert("Url is required");
+      return;
+    }
     if (data.type === null) {
       alert("Type is required.");
       return;
     }
     
-    if (data.url === null) {
-      alert("Url is required");
-      return;
-    }
 
     this.props.modalSubmit(modalType, data);
     this.props.closeModal();

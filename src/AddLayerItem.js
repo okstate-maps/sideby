@@ -66,6 +66,11 @@ class AddLayerItem extends Item {
             <label htmlFor="input-EsriFeatureLayer">EsriFeatureLayer</label>
             <TooltipIcon tooltipName={Config.tooltips.EsriFeatureLayer} />
           </div>
+          <div className="inputGroup">
+            <input name="layerType" id="input-EsriImageLayer" type="radio" value="EsriImageLayer" />
+            <label htmlFor="input-EsriImageLayer">EsriImageLayer</label>
+
+          </div>
 
         </div>
         

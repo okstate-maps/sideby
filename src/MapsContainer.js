@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import * as L from 'leaflet';
+// import * as L from 'leaflet';
 import { isEqual } from 'lodash';
 import RowContainer from './RowContainer';
 import { findWithAttr, moveWithinArray, compareArrays } from './Util';

@@ -36,8 +36,8 @@ class ExportLayersToJSONButton extends Component {
           <br/>
           {this.state.showLayers && 
             <>
-            <textarea className="clipboardText" id='foo' rows="10" cols="50" readOnly value={JSON.stringify(this.props.layers, null, 2)}></textarea>
-            <button className="copyButton" data-clipboard-target="#foo">
+            <textarea className="clipboardText" id='clipboardText' rows="10" cols="50" readOnly value={JSON.stringify(this.props.layers, null, 2)}></textarea>
+            <button className="copyButton" data-clipboard-target="#clipboardText">
               <FontAwesomeIcon icon='copy'/>
             </button>
             </>

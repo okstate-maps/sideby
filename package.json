@@ -13,6 +13,7 @@
     "gh-pages": "^1.1.0",
     "leaflet": "^1.5.1",
     "leaflet-control-geocoder": "^1.6.0",
+    "leaflet-loading": "^0.1.24",
     "leaflet.sync": "https://github.com/okstate-maps/Leaflet.Sync.git",
     "lodash": "^4.17.13",
     "prop-types": "^15.6.0",
@@ -23,11 +24,13 @@
     "react-fullscreen-crossbrowser": "^1.0.9",
     "react-leaflet": "^2.4.0",
     "react-leaflet-control": "^2.0.0",
+    "react-leaflet-wmts": "okstate-maps/react-leaflet-wmts",
     "react-modal": "^3.9.1",
     "react-scripts": "^3.1.1",
     "react-spinners": "^0.6.0",
     "react-tooltip": "^3.11.1",
     "shortid": "^2.2.15",
+    "spin.js": "^4.1.0",
     "webfontloader": "^1.6.28"
   },
   "scripts": {

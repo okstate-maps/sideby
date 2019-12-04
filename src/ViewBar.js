@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { cloneDeep } from 'lodash';
-import shortid from 'shortid';
 import Item from './Item';
 import AddLayerItem from './AddLayerItem';
 import ScrollButton from './ScrollButton';
@@ -17,6 +16,7 @@ class ViewBar extends Component {
     this.scrollTo = this.scrollTo.bind(this);
     this.onWheel = this.onWheel.bind(this);
     this.easeInOutQuad = this.easeInOutQuad.bind(this);
+    this.state = {};
   }
 
   handleItemClick(data) {
@@ -35,12 +35,6 @@ class ViewBar extends Component {
 
   handleScrollButtonClick(scrollDirection) {
     this.scrollTo(scrollDirection, 350);
-  }
-
-
-
-  componentWillUpdate(){
-
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -65,7 +59,7 @@ class ViewBar extends Component {
 
   }
 
-  componentWillMount(prevProps, prevState){
+  componentDidMount(prevProps, prevState){
     //for the initial app load, set state using LayersInfo
     this.setState({"layers": this.props.viewbarLayers});
   }

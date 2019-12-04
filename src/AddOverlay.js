@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLayerGroup, faPlus, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare  } from '@fortawesome/free-solid-svg-icons';
 import TooltipIcon from './TooltipIcon';
 import Config from './Config';
 
@@ -10,51 +10,47 @@ class AddOverlay extends Component {
 
   constructor(props) {
     super(props);
-    library.add(faLayerGroup);
-    library.add(faPlus);
-    library.add(faTimesCircle);
+    library.add(faPlusSquare);
     this.onClick = this.onClick.bind(this);
     this.onBlur = this.onBlur.bind(this);
-
+    this.handleLayerTypeChange = this.handleLayerTypeChange.bind(this);
     this.modalType = 'AddOverlay';
+    this.state = {layerTypeGuess: null};
   }
- 
+  
+  handleLayerTypeChange(event) {
+    console.log(event.target.value);
+    this.setState({
+      layerTypeGuess: event.target.value
+    });
+  }
+
   onBlur(e) {
+    let typeREs = {
+        TileLayer: /.*\{z\}.*\{x\}.*\{y\}.*/,
+        WMSTileLayer: /.*wmts.*/i,
+        EsriImageLayer: /.*arcgis.*ImageServer.*/,
+        EsriFeatureLayer: /.*arcgis.*FeatureServer.*/,
+        EsriTiledMapLayer: /.*arcgis.*MapServer.*/,
+    };
     let submittedUrl = e.target.value;
+    let newType = null;
     
+    Object.entries(typeREs).forEach((lyrTypeRE) => {
+            if (lyrTypeRE[1].test(submittedUrl)) {
+                newType = lyrTypeRE[0];
+            }
+        }
+    )
+    
+    this.setState({layerTypeGuess: newType})
+
   }
 
   onClick(e) {
-    let currentOverlays = this.props.overlays;
-
+    console.log(this.state);
     let modalContent = 
     <>
-        {currentOverlays.length > 0 && 
-            <table className='table'>
-            <caption> Current Overlays</caption>
-                <thead>
-                    
-                    <tr>
-                        <th>Name</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentOverlays.map((o, i) => 
-
-                    <tr id={o.id} key={o.id}>
-                        <td>{o.display_name}</td>
-                        <td>
-                            <button data-overlay-id={o.id} onClick={this.props.deleteOverlay}>
-                                <FontAwesomeIcon icon='times-circle' />
-                            </button>
-                        </td>
-                    </tr>
-
-                        )}
-                </tbody>
-            </table>
-        }
 
         <div className='inputGroup'>
             <label className='textInputLabel' htmlFor='addOverlayUrl'>Url: </label>
@@ -71,7 +67,9 @@ class AddOverlay extends Component {
                     <input 
                         name="overlayType" 
                         id="overlay-input-TileLayer" 
-                        type="radio" 
+                        type="radio"
+                        checked={this.state.layerTypeGuess === "TileLayer"}
+                        onChange={this.handleLayerTypeChange}
                         value="TileLayer" />
                     <label htmlFor="overlay-input-TileLayer">TileLayer</label>
                     <TooltipIcon tooltipName={Config.tooltips.TileLayer}/>
@@ -82,6 +80,8 @@ class AddOverlay extends Component {
                         name="overlayType" 
                         id="overlay-input-WMSTileLayer" 
                         type="radio" 
+                        checked={this.state.layerTypeGuess === "WMSTileLayer"} 
+                        onChange={this.handleLayerTypeChange}
                         value="WMSTileLayer" />
                     <label htmlFor="overlay-input-WMSTileLayer">WMSTileLayer</label>
                 </div>
@@ -91,6 +91,8 @@ class AddOverlay extends Component {
                         name="overlayType" 
                         id="overlay-input-EsriTiledMapLayer" 
                         type="radio" 
+                        checked={this.state.layerTypeGuess === "EsriTiledMapLayer"} 
+                        onChange={this.handleLayerTypeChange}
                         value="EsriTiledMapLayer" />
                     <label htmlFor="overlay-input-EsriTiledMapLayer">EsriTiledMapLayer</label>
                 </div>
@@ -100,6 +102,8 @@ class AddOverlay extends Component {
                         name="overlayType" 
                         id="overlay-input-EsriDynamicMapLayer" 
                         type="radio" 
+                        checked={this.state.layerTypeGuess === "EsriDynamicMapLayer"} 
+                        onChange={this.handleLayerTypeChange}
                         value="EsriDynamicMapLayer" />
                     <label htmlFor="overlay-input-EsriDynamicMapLayer">EsriDynamicMapLayer</label>
                 </div>
@@ -109,6 +113,8 @@ class AddOverlay extends Component {
                         name="overlayType" 
                         id="overlay-input-EsriFeatureLayer" 
                         type="radio" 
+                        checked={this.state.layerTypeGuess === "EsriFeatureLayer"} 
+                        onChange={this.handleLayerTypeChange}
                         value="EsriFeatureLayer" />
                     <label htmlFor="overlay-input-EsriFeatureLayer">EsriFeatureLayer</label><br/>
                     <TooltipIcon tooltipName={Config.tooltips.EsriFeatureLayer} />
@@ -137,10 +143,7 @@ class AddOverlay extends Component {
             name="Add Overlay"
             title="Add Overlay"
             id='add-overlay'>
-            <span className='fa-layers fa-fw fa-2x'>
-                <FontAwesomeIcon icon='layer-group' />
-                <FontAwesomeIcon icon='plus' transform="shrink-9  up-4" color="red"/>
-            </span>
+            <FontAwesomeIcon icon='plus-square' size="2x"/>
         </button>
     );
   }

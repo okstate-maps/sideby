@@ -12,7 +12,6 @@ import Config, { welcomeText, siteTitle } from './Config';
 //import LayersInfo from './LayersInfo';
 import './App.css';
 
-
 class App extends Component {
 
   constructor(props) {
@@ -44,12 +43,13 @@ class App extends Component {
                   "rebuildTooltip": false,
                   "modalIsOpen": false,
                   "modalContent": ""};
-
+    
     //for the initial app load, set state using LayersInfo
     let viewbarLayers = window.LayersInfo.map(item => ({...item, isToggledOn: false, id: shortid.generate()}));
     this.state.viewbarLayers =  viewbarLayers.sort( (a, b) => {
       return b.sortVal - a.sortVal
     });
+
   }
 
   transmitGeocode(geocode) {
@@ -85,6 +85,8 @@ class App extends Component {
       case "AddOverlay":
         this.addOverlay(data);
         break;
+      default:
+        console.log("mooooo");
     }
 
   }
@@ -113,7 +115,7 @@ class App extends Component {
   }
 
   addOverlay(data) {
-    console.log("------ ADD OVERLAY ------");
+    //console.log("------ ADD OVERLAY ------");
     let overlays = cloneDeep(this.state.overlays);
       
     var new_layer = data;
@@ -134,6 +136,7 @@ class App extends Component {
   }
 
   addLayer(data) {
+    console.log(data);
     let new_layer = data,
       id = shortid.generate(), 
       maxZoom = 20;
@@ -248,7 +251,7 @@ calculateRowLayers(layers) {
           onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}>
 
         <div id="modalRoot"></div>
-
+        <div id="spinna"></div>
         <div className="App">
           <Modal isOpen={this.state.modalIsOpen} 
               toggleSpinner={this.toggleSpinner} 
