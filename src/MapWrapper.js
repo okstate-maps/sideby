@@ -185,7 +185,7 @@ class MapWrapper extends Component {
                     position: 'bottomleft',
                     spinjs: true,
                     separate: true,
-                    delayIndicator: 400,
+                    //delayIndicator: 1000, //this doesn't actually seem to work...
                     spin:{
                       lines: 15,
                       length: 10,

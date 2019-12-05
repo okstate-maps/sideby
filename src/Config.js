@@ -1,13 +1,24 @@
 module.exports = {
 
-  "maxLayers": 8, //From 1 - 8, though why would you want 1?
-  "maxLayersWarning": "Only {maxLayers} layers can be selected at once. Please deselect some in order to select new ones.",//Can be changed, but leave {maxLayers in there somewhere}
+  // The maximum number of layers that can be displayed at a time. 
+  // Pick a number from From 1 - 8, though why would you want 1?
+  "maxLayers": 8, 
+
+  // Customize the warning message when a user attempts to select more than the maxLayers value above.
+  // While it can be changed, you need leave {maxLayers} in there somewhere.
+  "maxLayersWarning": "Only {maxLayers} layers can be selected at once. Please deselect some in order to select new ones.",
+  
+  // The title and main header of the site.
   "siteTitle": "Sideby: for comparing stuff",
+
+  // The text that appears in the center of the screen when no layers are turned on.
   "welcomeText": "Sideby is an application for comparing spatial data layers side by side (by side by side by side, etc.). Try clicking/tapping the layers below, or try adding your own by clicking the + at the end of the list.",
+  
+  //The text displayed in the search box before.
   "geocoderSearchPlaceholderText": "Search for a place...",
+  
   // You can define layers that will be displayed on each map 
   // by default using the defaultOverlays option.
-
   "defaultOverlays": [
     {
       "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0",

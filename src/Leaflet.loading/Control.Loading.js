@@ -113,6 +113,7 @@ import L from 'leaflet';
                     // already waiting for that delay, set up a timeout.
                     var that = this;
                     this.delayIndicatorTimeout = setTimeout(function () {
+                        console.log("delayed.");
                         that.updateIndicator();
                         that.delayIndicatorTimeout = null;
                     }, this.options.delayIndicator);

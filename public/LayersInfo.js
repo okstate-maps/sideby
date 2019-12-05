@@ -28,11 +28,26 @@ window.LayersInfo =  //leave this line and
   {
     "type": "EsriTiledMapLayer",
     "url": "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Earth_at_Night_WM/MapServer",
-    "display_name": "Night",
+    "display_name": "Esri Tiled Map Layer Example",
     "id": "IF9yOWga",
     "thumbnail_file": "night.jpg",
     "maxZoom": 20,
     "isToggledOn": false
+  },
+  {
+    "type": "WMSTileLayer",
+    "layers": "neir2009",
+    "url": "https://imageserver.gisdata.mn.gov/cgi-bin/wmsll?",
+    "display_name": "WMS",
+    "thumbnail_file": "wms.jpg",
+    "startBounds": "-92.386068,47.945484,-92.037252,48.105296"
+  },
+  {
+    "type": "EsriImageLayer",
+    "url": "https://lcgis.linncounty.org/ags/rest/services/PublicImagery/img1930/ImageServer",
+    "display_name": "Esri Image Layer",
+    "thumbnail_file": "esri_image.jpg",
+    "startBounds": "-91.820375,41.975089,-91.471559,42.152487"
   },
   {
     "type": "TileLayer",
