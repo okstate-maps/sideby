@@ -8,20 +8,19 @@ import ViewBar from './ViewBar';
 import Modal from './Modal';
 import Tooltip from './Tooltip';
 import MapsContainer from './MapsContainer';
-import Config, { welcomeText, siteTitle } from './Config';
-//import LayersInfo from './LayersInfo';
+//import Config, { welcomeText, siteTitle } from './Config';
 import './App.css';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
+    this.Config = window.Config;
     this.handleItemClick = this.handleItemClick.bind(this);
     this.transmitGeocode = this.transmitGeocode.bind(this);
     this.toggleFullscreen = this.toggleFullscreen.bind(this);
     this.toggleLabels = this.toggleLabels.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
-    this.toggleSpinner = this.toggleSpinner.bind(this);
     this.rebuildTooltip = this.rebuildTooltip.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -32,14 +31,11 @@ class App extends Component {
     this.addOverlay = this.addOverlay.bind(this);
     this.deleteOverlay = this.deleteOverlay.bind(this);
     this.addLayer = this.addLayer.bind(this);
-
-
     this.state = {"layers":[],
-                  "overlays": Config.defaultOverlays || [],
+                  "overlays": this.Config.defaultOverlays || [],
                   "numberOfLayersOn": 0, 
                   "geocodeResult": {},
                   "labelLayerOn": true,
-                  "showSpinner": false,
                   "rebuildTooltip": false,
                   "modalIsOpen": false,
                   "modalContent": ""};
@@ -62,22 +58,18 @@ class App extends Component {
   }
 
   toggleLabels() {
-    console.log("toggleLabels");
+    //console.log("toggleLabels");
     let curr = this.state.labelLayerOn;
     this.setState({"labelLayerOn": !curr});
   }
 
-  toggleSpinner(bool) {
-    this.setState({"showSpinner": bool});
-  }
-
-  toggleModal(bool) {
+    toggleModal(bool) {
     this.setState({"modalIsOpen": bool});
   }
 
   modalSubmit(modalType, data){
-    console.log(modalType);
-    console.log(data);
+    //console.log(modalType);
+    //console.log(data);
     switch (modalType){
       case "AddLayerItem":
         this.addLayer(data);
@@ -110,14 +102,13 @@ class App extends Component {
   }
 
   rebuildTooltip(bool) {
-    console.log("rebuildTooltip", bool);
+    //console.log("rebuildTooltip", bool);
     this.setState({"rebuildTooltip": bool});
   }
 
   addOverlay(data) {
     //console.log("------ ADD OVERLAY ------");
-    let overlays = cloneDeep(this.state.overlays);
-      
+    let overlays = cloneDeep(this.state.overlays);  
     var new_layer = data;
     new_layer.isOverlay = true;
     new_layer.id = shortid.generate();
@@ -136,7 +127,7 @@ class App extends Component {
   }
 
   addLayer(data) {
-    console.log(data);
+    //console.log(data);
     let new_layer = data,
       id = shortid.generate(), 
       maxZoom = 20;
@@ -251,10 +242,8 @@ calculateRowLayers(layers) {
           onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}>
 
         <div id="modalRoot"></div>
-        <div id="spinna"></div>
         <div className="App">
           <Modal isOpen={this.state.modalIsOpen} 
-              toggleSpinner={this.toggleSpinner} 
               openModal={this.openModal}
               closeModal={this.closeModal}
               modalSubmit={this.modalSubmit}
@@ -265,7 +254,7 @@ calculateRowLayers(layers) {
              
               />
           <header className="App-header">
-            {siteTitle}
+            {this.Config.siteTitle}
           </header>
 
          
@@ -276,7 +265,7 @@ calculateRowLayers(layers) {
           {this.state.numberOfLayersOn === 0 && 
             <div className='no-maps'>
               <p>
-                {welcomeText}
+                {this.Config.welcomeText}
               </p>
             </div>
           }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import L from 'leaflet';
-import {mapboxToken, geocoderSearchPlaceholderText} from './Config';
 import 'leaflet-control-geocoder';
 import './Geocoder/images/geocoder.png';
 import './Geocoder/images/throbber.gif';
@@ -12,7 +11,8 @@ class Geocoder extends Component {
 
   constructor(props) {
     super(props);
-    this.mapboxToken = mapboxToken;
+    this.Config = window.Config;
+    this.mapboxToken = this.Config.mapboxToken;
   }
  
   componentDidMount(){
@@ -33,7 +33,7 @@ class Geocoder extends Component {
           // }
         ),
         "collapsed": false,
-        "placeholder": geocoderSearchPlaceholderText,
+        "placeholder": this.Config.geocoderSearchPlaceholderText,
         "suggestMinLength": 3,
         "queryMinLength": 1,
         "defaultMarkGeocode": false

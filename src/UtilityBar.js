@@ -40,6 +40,7 @@ class UtilityBar extends Component {
                           isFullscreenEnabled={this.props.isFullscreenEnabled} />
         <Settings 
           openModal={this.props.openModal}
+          closeModal={this.props.closeModal}
           labelLayerOn={this.props.labelLayerOn}
           toggleLabels={this.props.toggleLabels}
           viewbarLayers={this.props.viewbarLayers}

@@ -100,7 +100,7 @@ class MapsContainer extends Component {
 
       else {
         map.removeControl(map.zoomControl);
-        //map.zoomControlAdded = false;
+
       }
     }
 

@@ -13,6 +13,18 @@ export function findWithAttr(array, attr, value) {
   }
 
 /*
+  Takes an object and an array of strings representing 
+  keys in the object. Deletes the keys and returns the
+  modified object.
+*/
+export function deleteArrayofKeys(object, array) {
+  for(var i = 0; i < array.length; i += 1) {
+    delete object[array[i]]
+  }
+  return object
+}
+
+/*
 *	Moves items within an array. From and to arguments
 *   Represent the index numbers. Returns nothing, as 
 *   it modifies the array in place.

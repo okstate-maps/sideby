@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import { Map, TileLayer, WMSTileLayer, Marker } from 'react-leaflet';
-import WMTSTileLayer from 'react-leaflet-wmts';
+import { cloneDeep } from 'lodash';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGripVertical } from '@fortawesome/free-solid-svg-icons';
+import { Map, TileLayer, WMSTileLayer, Marker } from 'react-leaflet';
+import WMTSTileLayer from 'react-leaflet-wmts';
 import EsriTiledMapLayer from './EsriTiledMapLayer';
 import EsriDynamicMapLayer from './EsriDynamicMapLayer';
 import EsriFeatureLayer from './EsriFeatureLayer';
 import EsriImageLayer from './EsriImageLayer';
 import LeafletLoadingControl from './LeafletLoadingControl';
-import {mapboxToken, 
-        labelLayerUrl, 
-        mapMinZoom, 
-        mapDefaultZoom, 
-        mapDefaultCenter} from './Config';
 import 'leaflet.sync';
+import { deleteArrayofKeys } from './Util';
+// import {mapboxToken, 
+//         labelLayerUrl, 
+//         mapMinZoom, 
+//         mapDefaultZoom, 
+//         mapDefaultCenter} from './Config';
 import './MapWrapper.css'
 import './Handle.css';
 
@@ -39,12 +41,13 @@ class MapWrapper extends Component {
   
   constructor(props, context) {
     super(props)
-    this.mapboxToken = mapboxToken;
-    this.labelLayerUrl = labelLayerUrl + this.mapboxToken;
+    this.Config = window.Config;
+    this.mapboxToken = this.Config.mapboxToken;
+    this.labelLayerUrl = this.Config.labelLayerUrl + this.mapboxToken;
 
     const DEFAULT_VIEWPORT = {
-      center: mapDefaultCenter,
-      zoom: mapDefaultZoom
+      center: this.Config.mapDefaultCenter,
+      zoom: this.Config.mapDefaultZoom
     }
     this.viewport = DEFAULT_VIEWPORT;
     //this.props.mapCenter(this.viewport.center);
@@ -58,6 +61,13 @@ class MapWrapper extends Component {
     this.onGeocodeClick = this.onGeocodeClick.bind(this);
     this.bboxStringToLatLngBoundsArray = this.bboxStringToLatLngBoundsArray.bind(this);
     this.checkLayerBounds = this.checkLayerBounds.bind(this);
+
+    // The following parameters are not passed on to the map layer. This
+    // was originally implemented to avoid confusing WMS servers, and
+    // there may be unintended consequences.
+    this.layerOptionBlacklist = ["minZoom", "maxZoom", "isToggledOn",
+        "visibleIndex","id","startBounds","thumbnail_file",
+        "display_name","numberOfLayersOn"];
   }
 
   componentWillUnmount(){
@@ -152,13 +162,13 @@ class MapWrapper extends Component {
                 key={layer.id} 
                 zIndex={100000}
                 pane="overlayPane"
-                {...layer}
+                {...deleteArrayofKeys(cloneDeep(layer), this.layerOptionBlacklist)}
                 />
           )
         })}
       </>)
     };
-    const layer = this.props.layer;
+    const layer = cloneDeep(this.props.layer);
     let that = this;
     let Layer = layer_components[layer.type];
     const { provided } = this.props;
@@ -169,7 +179,7 @@ class MapWrapper extends Component {
               ref={provided.innerRef}>
               <Handle provided={provided} display_name={layer.display_name} />
               <Map ref={this.props.mapRef}
-                 minZoom={mapMinZoom}
+                 minZoom={this.Config.mapMinZoom}
                  bounds={this.checkLayerBounds()}
                  onResize={this.onResize}
                  maxZoom={layer.maxZoom}
@@ -216,7 +226,7 @@ class MapWrapper extends Component {
 
                 <Layer 
                   key={layer.id} 
-                  {...layer}
+                  {...deleteArrayofKeys(layer, this.layerOptionBlacklist)}
                 />
 
             </Map>

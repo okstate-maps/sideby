@@ -3,13 +3,12 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusSquare  } from '@fortawesome/free-solid-svg-icons';
 import TooltipIcon from './TooltipIcon';
-import Config from './Config';
-
 
 class AddOverlay extends Component {
 
   constructor(props) {
     super(props);
+    this.Config = window.Config;
     library.add(faPlusSquare);
     this.onClick = this.onClick.bind(this);
     this.onBlur = this.onBlur.bind(this);
@@ -59,7 +58,7 @@ class AddOverlay extends Component {
                 name='addOverlayUrl' 
                 placeholder='Enter the URL to your map/data.'
                 onBlur={this.onBlur}></textarea>
-            <TooltipIcon tooltipName={Config.tooltips.Url} />
+            <TooltipIcon tooltipName={this.Config.tooltips.Url} />
         </div>
         <div className="radioGroup">
             <label className="radioGroupLabel" htmlFor="overlayType">Type</label>
@@ -72,7 +71,7 @@ class AddOverlay extends Component {
                         onChange={this.handleLayerTypeChange}
                         value="TileLayer" />
                     <label htmlFor="overlay-input-TileLayer">TileLayer</label>
-                    <TooltipIcon tooltipName={Config.tooltips.TileLayer}/>
+                    <TooltipIcon tooltipName={this.Config.tooltips.TileLayer}/>
                 </div>
                 
                 <div className="inputGroup">
@@ -117,7 +116,7 @@ class AddOverlay extends Component {
                         onChange={this.handleLayerTypeChange}
                         value="EsriFeatureLayer" />
                     <label htmlFor="overlay-input-EsriFeatureLayer">EsriFeatureLayer</label><br/>
-                    <TooltipIcon tooltipName={Config.tooltips.EsriFeatureLayer} />
+                    <TooltipIcon tooltipName={this.Config.tooltips.EsriFeatureLayer} />
                 </div>
         </div>
         

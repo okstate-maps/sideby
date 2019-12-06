@@ -29,6 +29,7 @@ class ExportLayersToJSONButton extends Component {
     return (
       <div className="exportLayersGroup">
           <button name="exportLayersButton" 
+                 type="button"
                  id="exportLayersButton" 
                  onClick={this.onClick}>        
                  Export Layers
@@ -36,8 +37,15 @@ class ExportLayersToJSONButton extends Component {
           <br/>
           {this.state.showLayers && 
             <>
-            <textarea className="clipboardText" id='clipboardText' rows="10" cols="50" readOnly value={JSON.stringify(this.props.layers, null, 2)}></textarea>
-            <button className="copyButton" data-clipboard-target="#clipboardText">
+            <textarea className="clipboardText" 
+              id='clipboardText' 
+              rows="10" 
+              cols="50" 
+              readOnly 
+              value={JSON.stringify(this.props.layers, null, 2)}></textarea>
+            <button className="copyButton" 
+              data-clipboard-target="#clipboardText"
+              type="button">
               <FontAwesomeIcon icon='copy'/>
             </button>
             </>

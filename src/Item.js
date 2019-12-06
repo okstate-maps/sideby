@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import Config from './Config';
+//import Config from './Config';
 import './Item.css';
 
 class Item extends Component {
 
   constructor(props) {
     super(props);
+    this.Config = window.Config;
     this.onClick = this.onClick.bind(this);
     this.state = {isToggledOn: false,
                   opacity: 1.0};
@@ -50,9 +51,9 @@ class Item extends Component {
     let numLyrs = this.props.numberOfLayersOn;
 
   
-    if (numLyrs === Config.maxLayers) {
+    if (numLyrs === this.Config.maxLayers) {
       if (!this.state.isToggledOn){
-        window.vex.dialog.alert(Config.maxLayersWarning.replace("{maxLayers}", Config.maxLayers));
+        window.vex.dialog.alert(this.Config.maxLayersWarning.replace("{maxLayers}", this.Config.maxLayers));
         return
       }
     }

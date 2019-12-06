@@ -71,8 +71,6 @@ class Modal extends Component {
   }
 
   handleCloseModal() {
-    let modal = this.ref.current.node.children[0].children[0];
-    console.log(modal);
     this.props.closeModal();
   } 
 

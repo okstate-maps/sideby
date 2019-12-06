@@ -3,13 +3,13 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap, faPlus} from '@fortawesome/free-solid-svg-icons';
 import TooltipIcon from './TooltipIcon';
-import Config from './Config';
 import Item from './Item';
 
 class AddLayerItem extends Item {
 
   constructor(props) {
     super(props);
+    this.Config = window.Config;
     library.add(faMap);
     library.add(faPlus);
     this.onClick = this.onClick.bind(this);
@@ -28,7 +28,7 @@ class AddLayerItem extends Item {
                 name='addLayerItemUrl' 
                 placeholder='Enter the URL to your map/data.'
                 onBlur={this.onBlur}></textarea>
-            <TooltipIcon tooltipName={Config.tooltips.Url} />
+            <TooltipIcon tooltipName={this.Config.tooltips.Url} />
       
         </div>
 
@@ -38,7 +38,7 @@ class AddLayerItem extends Item {
           <div className="inputGroup">
             <input name="layerType" id="input-TileLayer" type="radio" value="TileLayer" />
             <label htmlFor="input-TileLayer">TileLayer</label>
-            <TooltipIcon tooltipName={Config.tooltips.TileLayer}/>
+            <TooltipIcon tooltipName={this.Config.tooltips.TileLayer}/>
                 
           </div>  
           
@@ -64,7 +64,7 @@ class AddLayerItem extends Item {
           <div className="inputGroup">
             <input name="layerType" id="input-EsriFeatureLayer" type="radio" value="EsriFeatureLayer" />
             <label htmlFor="input-EsriFeatureLayer">EsriFeatureLayer</label>
-            <TooltipIcon tooltipName={Config.tooltips.EsriFeatureLayer} />
+            <TooltipIcon tooltipName={this.Config.tooltips.EsriFeatureLayer} />
           </div>
           <div className="inputGroup">
             <input name="layerType" id="input-EsriImageLayer" type="radio" value="EsriImageLayer" />
@@ -77,13 +77,13 @@ class AddLayerItem extends Item {
         <div className="inputGroup">
           <label className="textInputLabel" htmlFor="input-displayName">Display Name: </label>
           <input name="displayName" id="input-displayName" type="text" />
-          <TooltipIcon tooltipName={Config.tooltips.DisplayName} />
+          <TooltipIcon tooltipName={this.Config.tooltips.DisplayName} />
         </div> 
 
         <div className="inputGroup">
           <label className="textInputLabel" htmlFor="input-thumbnailPath">Thumbnail Path: </label>
           <input name="thumbnailPath" id="input-thumbnailPath" type="text" />
-          <TooltipIcon tooltipName={Config.tooltips.ThumbnailPath} />
+          <TooltipIcon tooltipName={this.Config.tooltips.ThumbnailPath} />
         </div>
       </>;
 
