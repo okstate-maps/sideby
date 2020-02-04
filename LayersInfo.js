@@ -53,7 +53,7 @@ window.LayersInfo =  //leave this line and
     "type": "TileLayer",
     "url": "https://mapwarper.net/maps/tile/25235/{z}/{x}/{y}.png",
     "display_name": "1848",
-    "thumbnail_file": "ca1848.PNG",
+    "thumbnail_file": "ca1848.png",
     "id": "4supxIrT",
     "maxZoom": 20,
     "startBounds": "-124.48,32.53,-114.13,42.01"
@@ -87,7 +87,7 @@ window.LayersInfo =  //leave this line and
     "type": "TileLayer",
     "url": "https://mapwarper.net/maps/tile/34086/{z}/{x}/{y}.png",
     "display_name": "1920",
-    "thumbnail_file": "ca1920.PNG",
+    "thumbnail_file": "ca1920.png",
     "id": "4supxIrT",
     "maxZoom": 20
   },
