@@ -25,58 +25,111 @@ Note: Layers need to be capable of serving in Web Mercator (EPSG: 3857). For Esr
 
 window.LayersInfo =  //leave this line and 
 [
-  {
-    "type": "EsriTiledMapLayer",
-    "url": "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Earth_at_Night_WM/MapServer",
-    "display_name": "Esri Tiled Map Layer Example",
-    "id": "IF9yOWga",
-    "thumbnail_file": "night.jpg",
-    "maxZoom": 20,
-    "isToggledOn": false
-  },
-  {
-    "type": "WMSTileLayer",
-    "layers": "neir2009",
-    "url": "https://imageserver.gisdata.mn.gov/cgi-bin/wmsll?",
-    "display_name": "WMS",
-    "thumbnail_file": "wms.jpg",
-    "startBounds": "-92.386068,47.945484,-92.037252,48.105296"
-  },
-  {
-    "type": "EsriImageLayer",
-    "url": "https://lcgis.linncounty.org/ags/rest/services/PublicImagery/img1930/ImageServer",
-    "display_name": "Esri Image Layer",
-    "thumbnail_file": "esri_image.jpg",
-    "startBounds": "-91.820375,41.975089,-91.471559,42.152487"
-  },
+  // {
+  //   "type": "EsriTiledMapLayer",
+  //   "url": "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Earth_at_Night_WM/MapServer",
+  //   "display_name": "Esri Tiled Map Layer Example",
+  //   "id": "IF9yOWga",
+  //   "thumbnail_file": "night.jpg",
+  //   "maxZoom": 20,
+  //   "isToggledOn": false
+  // },
+  // {
+  //   "type": "WMSTileLayer",
+  //   "layers": "neir2009",
+  //   "url": "https://imageserver.gisdata.mn.gov/cgi-bin/wmsll?",
+  //   "display_name": "WMS",
+  //   "thumbnail_file": "wms.jpg",
+  //   "startBounds": "-92.386068,47.945484,-92.037252,48.105296"
+  // },
+  // {
+  //   "type": "EsriImageLayer",
+  //   "url": "https://lcgis.linncounty.org/ags/rest/services/PublicImagery/img1930/ImageServer",
+  //   "display_name": "Esri Image Layer",
+  //   "thumbnail_file": "esri_image.jpg",
+  //   "startBounds": "-91.820375,41.975089,-91.471559,42.152487"
+  // },
   {
     "type": "TileLayer",
-    "url": "https://mapwarper.net/maps/tile/34156/{z}/{x}/{y}.png",
-    "display_name": "XYZ (from MapWarper)",
-    "thumbnail_file": "mapwarper_34156.JPG",
-    "startBounds": "-127.5,23.3,-64.1,51.4",
+    "url": "https://mapwarper.net/maps/tile/25235/{z}/{x}/{y}.png",
+    "display_name": "1848",
+    "thumbnail_file": "ca1848.PNG",
+    "id": "4supxIrT",
+    "maxZoom": 20,
+    "startBounds": "-124.48,32.53,-114.13,42.01"
+  },     {
+    "type": "TileLayer",
+    "url": "https://maps.georeferencer.com/georeferences/fc2c5f79-1425-5214-b72e-fca67fc2ce60/2017-11-21T05:53:37.327214Z/map/{z}/{x}/{y}.png?key=21DX4X7GGxkEH7Fmp5Uj",
+    "display_name": "1853",
+    "thumbnail_file": "ca1853.jpg",
+    "id": "4supxIrT",
+    "maxZoom": 20,
+    "startBounds": "-124.48,32.53,-114.13,42.01"
+  },    
+  {
+    "type": "TileLayer",
+    "url": "https://maps.georeferencer.com/georeferences/1355d29a-1ae0-52f1-904a-ad7d95d810e6/2017-02-20T14:25:19.132722Z/map/{z}/{x}/{y}.png?key=21DX4X7GGxkEH7Fmp5Uj",
+    "display_name": "1885",
+    "thumbnail_file": "ca1885.jpg",
+    "id": "4supxIrT",
+    "maxZoom": 20
+  },  
+
+  {
+    "type": "TileLayer",
+    "url": "https://maps.georeferencer.com/georeferences/8c8f9ae8-24e9-5fa8-82df-e96e6bbb2f5c/2020-01-08T13:32:16.959259Z/map/{z}/{x}/{y}.png?key=21DX4X7GGxkEH7Fmp5Uj",
+    "display_name": "1917",
+    "thumbnail_file": "ca1917.jpg",
+    "id": "4supxIrT",
+    "maxZoom": 20
+  },  
+  {
+    "type": "TileLayer",
+    "url": "https://mapwarper.net/maps/tile/34086/{z}/{x}/{y}.png",
+    "display_name": "1920",
+    "thumbnail_file": "ca1920.PNG",
     "id": "4supxIrT",
     "maxZoom": 20
   },
+
   {
-    "type": "WMTSTileLayer",
-    "url": "https://maps.nyc.gov/wmts/1.0.0/",
-    "layer": "basemap",
-    "thumbnail_file": "nyc.jpg",
-    "display_name": "WMTS Example (NYC)",
-    "tilematrixSet": "EPSG:900913",
-    "startBounds": "-74.447928,40.442617,-73.512717,40.988043",
-    "format": "image/jpeg"
-    },
-    {
-    "type": "WMTSTileLayer",
-    "url": "https://sampleserver6.arcgisonline.com/arcgis/rest/services/WorldTimeZones/MapServer/WMTS/",
-    "display_name": "WMTS (from ArcGIS) ",
-    "tilematrixSet": "default028mm",
-    "thumbnail_file": "wmts_arcgis.jpg",
-    "format": "image/png",
-    "style": "default"
-    }
+    "type": "TileLayer",
+    "url": "https://maps.georeferencer.com/georeferences/be192d2d-7790-52eb-9e43-72f473aab06b/2014-11-02T00:01:59.549700Z/map/{z}/{x}/{y}.png?key=21DX4X7GGxkEH7Fmp5Uj",
+    "display_name": "1962",
+    "thumbnail_file": "ca1962.jpg",
+    "id": "4supxIrT",
+    "maxZoom": 20
+  } 
+
+  
+  // {
+  //   "type": "TileLayer",
+  //   "url": "https://mapwarper.net/maps/tile/34156/{z}/{x}/{y}.png",
+  //   "display_name": "XYZ (from MapWarper)",
+  //   "thumbnail_file": "mapwarper_34156.JPG",
+  //   "startBounds": "-127.5,23.3,-64.1,51.4",
+  //   "id": "4supxIrT",
+  //   "maxZoom": 20
+  // },
+  // {
+  //   "type": "WMTSTileLayer",
+  //   "url": "https://maps.nyc.gov/wmts/1.0.0/",
+  //   "layer": "basemap",
+  //   "thumbnail_file": "nyc.jpg",
+  //   "display_name": "WMTS Example (NYC)",
+  //   "tilematrixSet": "EPSG:900913",
+  //   "startBounds": "-74.447928,40.442617,-73.512717,40.988043",
+  //   "format": "image/jpeg"
+  //   },
+  //   {
+  //   "type": "WMTSTileLayer",
+  //   "url": "https://sampleserver6.arcgisonline.com/arcgis/rest/services/WorldTimeZones/MapServer/WMTS/",
+  //   "display_name": "WMTS (from ArcGIS) ",
+  //   "tilematrixSet": "default028mm",
+  //   "thumbnail_file": "wmts_arcgis.jpg",
+  //   "format": "image/png",
+  //   "style": "default"
+  //   }
 ]
 
 
