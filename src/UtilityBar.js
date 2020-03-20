@@ -29,7 +29,9 @@ class UtilityBar extends Component {
         <AddOverlay 
             numberOfLayersOn={this.props.numberOfLayersOn} 
             addOverlay={this.props.addOverlay}
-            openModal={this.props.openModal} />
+            openModal={this.props.openModal} 
+            closeModal={this.props.closeModal} 
+            />
         {this.props.overlays.length > 0 &&
           <ManageOverlays 
               overlays={this.props.overlays}

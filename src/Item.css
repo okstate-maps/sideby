@@ -22,10 +22,16 @@ button.item {
 
 
 
-button.item .button {
+button.item span.layerInfoButton {
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
+  padding-right: 3px;
+  padding-bottom: 3px;
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  border: solid rgba(255,255,255, 0.6) 2px;
 }
 
 button.item:focus-within, button.item::-moz-focus-inner, button.item::-moz-focus-outer{  

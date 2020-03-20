@@ -1,6 +1,8 @@
 import React from 'react';
 import ExportLayersToJSONButton from './ExportLayersToJSONButton';
 import MapLabelsToggle from './MapLabelsToggle';
+import TooltipText from './TooltipText';
+import TooltipIcon from './TooltipIcon';
 import { useFormik } from 'formik';
 
 export const SettingsForm = (props) => {
@@ -19,7 +21,10 @@ export const SettingsForm = (props) => {
     <form onSubmit={formik.handleSubmit}>
       <MapLabelsToggle labelLayerOn={props.labelLayerOn}
           toggleLabels={props.toggleLabels} />
-      <ExportLayersToJSONButton layers={props.viewbarLayers} />
+      <div className='inputGroup'>
+        <ExportLayersToJSONButton layers={props.viewbarLayers} />
+        <TooltipIcon tooltipName={TooltipText.ExportLayers}/>
+      </div>
       <button type="submit">OK</button>
     </form>
   );

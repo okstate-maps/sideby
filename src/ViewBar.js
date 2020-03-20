@@ -125,6 +125,8 @@ class ViewBar extends Component {
                 numberOfLayersOn={this.props.numberOfLayersOn}
                 key={item.id} 
                 onItemClick={this.handleItemClick}
+                openModal={this.props.openModal}
+                closeModal={this.props.closeModal}
                 {...item}
               />)}
 
@@ -132,7 +134,7 @@ class ViewBar extends Component {
               numberOfLayersOn={this.props.numberOfLayersOn} 
               openModal={this.props.openModal}
               closeModal={this.props.closeModal}
-              addLayer={this.addLayer} 
+              addLayer={this.props.addLayer} 
               />
           </div>
         <ScrollButton direction="right" onClick={this.handleScrollButtonClick}/>

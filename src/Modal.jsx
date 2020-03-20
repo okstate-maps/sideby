@@ -108,6 +108,7 @@ class Modal extends Component {
           contentLabel="Modal">
     	{content}
  
+      {/*   
       {!options.noSubmit &&
         <> 
           <button onClick={this.handleCloseModal}>Cancel</button>
@@ -118,6 +119,7 @@ class Modal extends Component {
       {options.noSubmit && 
         <button onClick={this.handleCloseModal}>OK</button>
       }
+      */}
 
     </ReactModal>
     

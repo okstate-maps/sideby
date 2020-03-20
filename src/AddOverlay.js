@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusSquare  } from '@fortawesome/free-solid-svg-icons';
-import TooltipIcon from './TooltipIcon';
+import AddOverlayForm from './AddOverlayForm';
 
 class AddOverlay extends Component {
 
@@ -29,8 +29,8 @@ class AddOverlay extends Component {
         TileLayer: /.*\{z\}.*\{x\}.*\{y\}.*/,
         WMSTileLayer: /.*wmts.*/i,
         EsriImageLayer: /.*arcgis.*ImageServer.*/,
-        EsriFeatureLayer: /.*arcgis.*FeatureServer.*/,
-        EsriTiledMapLayer: /.*arcgis.*MapServer.*/,
+        EsriFeatureLayer: /.*arcgis.*FeatureServer.*/, //though an individ layer from esri dynam map service can also act as a feature layer...
+        EsriTiledMapLayer: /.*arcgis.*MapServer.*/, 
     };
     let submittedUrl = e.target.value;
     let newType = null;
@@ -47,8 +47,10 @@ class AddOverlay extends Component {
   }
 
   onClick(e) {
-    console.log(this.state);
-    let modalContent = 
+    console.log(this.props);
+    let modalContent = <AddOverlayForm {...this.props} />
+
+    /*
     <>
 
         <div className='inputGroup'>
@@ -132,6 +134,7 @@ class AddOverlay extends Component {
                 type="text"/>
         </div>
         </>
+    */
       this.props.openModal(this.modalType, modalContent);
   }
 

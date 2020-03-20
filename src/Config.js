@@ -42,7 +42,13 @@ window.Config = {
       "layers": "ogi:ok_counties",
       "display_name": "Oklahoma Counties",
       "id": "ogi:ok_counties"
-    }
+    },
+    {
+      "url": "https://sedac.ciesin.columbia.edu/geoserver/ows",
+      "type": "WFSLayer",
+      "typeNS": "superfund",
+      "typeName": 'superfund-atsdr-hazardous-waste-site-v2',
+    }  
   ],
 
   //"defaultOverlays":[],
@@ -51,11 +57,5 @@ window.Config = {
   "mapDefaultZoom": 3,
   "mapMinZoom": 3,
   "mapDefaultCenter": [0,0],
-  "tooltips": {
-      "Url": "Enter the URL to the layer you want to add here.",
-      "TileLayer": "An XYZ style layer.<br/>For example https://maps.nyc.gov/xyz/1.0.0/carto/label/{z}/{x}/{y}.png8",
-      "EsriFeatureLayer": "A vector layer coming from ArcGIS Online or ArcGIS Server.<br/>For example, https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0",
-      "ThumbnailPath": "Enter a path to a thumbnail picture to use for the layer. It can be a full URL or the filename of an image stored in /public/assets/images.",
-      "DisplayName": "The name to use for this layer."  
-  }
+  "tooltips": 
 };

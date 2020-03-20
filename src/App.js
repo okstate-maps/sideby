@@ -48,22 +48,34 @@ class App extends Component {
 
   }
 
+  /*
+    Function that is used to move the response received by 
+    the Geocoder component from the Geocoder, up to the App,
+    and then back down to the MapsContainer
+  */
   transmitGeocode(geocode) {
     this.setState({"geocode": geocode});
   }
 
+
+  /*
+    Toggle fullscreen mode. Used by FullscreenToggle component on the UtilityBar
+  */
   toggleFullscreen() {
     let current_val = this.state.isFullscreenEnabled;
     this.setState({isFullscreenEnabled: !current_val});
   }
 
+  /*
+    Toggle map labels for 
+  */
   toggleLabels() {
     //console.log("toggleLabels");
     let curr = this.state.labelLayerOn;
     this.setState({"labelLayerOn": !curr});
   }
 
-    toggleModal(bool) {
+  toggleModal(bool) {
     this.setState({"modalIsOpen": bool});
   }
 
@@ -127,7 +139,7 @@ class App extends Component {
   }
 
   addLayer(data) {
-    //console.log(data);
+    console.log(data);
     let new_layer = data,
       id = shortid.generate(), 
       maxZoom = 20;
@@ -242,6 +254,7 @@ calculateRowLayers(layers) {
           onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}>
 
         <div id="modalRoot"></div>
+     
         <div className="App">
           <Modal isOpen={this.state.modalIsOpen} 
               openModal={this.openModal}
@@ -253,11 +266,10 @@ calculateRowLayers(layers) {
               rebuildTooltip={this.rebuildTooltip}
              
               />
+
           <header className="App-header">
             {this.Config.siteTitle}
           </header>
-
-         
 
           <Tooltip rebuildTooltip={this.state.rebuildTooltip}
                    resetRebuildTooltip={this.rebuildTooltip} />
@@ -278,9 +290,7 @@ calculateRowLayers(layers) {
                            labelLayerOn={this.state.labelLayerOn}
                            numberOfLayersOn={this.state.numberOfLayersOn}
                            updateLayerDisplayIndexesAndRows={this.updateLayerDisplayIndexesAndRows}
-                           >
-        
-            </MapsContainer>
+                           />
           }
 
           {this.state.numberOfLayersOn > 0 && 
@@ -295,7 +305,7 @@ calculateRowLayers(layers) {
                         deleteOverlay={this.deleteOverlay}
                         openModal={this.openModal}
                         closeModal={this.closeModal}
-                         />
+                        />
           }
 
           <ViewBar onItemClick={this.handleItemClick}
@@ -304,7 +314,9 @@ calculateRowLayers(layers) {
                    openModal={this.openModal}
                    closeModal={this.closeModal}
                    viewbarLayers={this.state.viewbarLayers}
-                   newLayer={this.state.newLayer} />
+                   newLayer={this.state.newLayer} 
+                   addLayer={this.addLayer}
+                   />
 
         </div>
       </Fullscreen>

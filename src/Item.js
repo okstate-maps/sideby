@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 //import Config from './Config';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle, faCircle } from '@fortawesome/free-solid-svg-icons';
 import './Item.css';
+
+library.add(faInfoCircle);
+library.add(faCircle);
 
 class Item extends Component {
 
@@ -53,7 +59,11 @@ class Item extends Component {
   
     if (numLyrs === this.Config.maxLayers) {
       if (!this.state.isToggledOn){
-        window.vex.dialog.alert(this.Config.maxLayersWarning.replace("{maxLayers}", this.Config.maxLayers));
+        this.props.openModal("maxLayers", 
+          this.Config.maxLayersWarning.replace("{maxLayers}", 
+          this.Config.maxLayers), 
+          {noSubmit: true}
+        );
         return
       }
     }
@@ -98,9 +108,17 @@ class Item extends Component {
           {dispName.length >= 20 ? dispName.slice(0,21)+"..." : dispName}
         </div>
 
-        <div className="button">
+       {/* 
+        <span className='layerInfoButton fa-layers fa-fw'>
+          <FontAwesomeIcon icon='circle' color='var(--label-color)' transform='grow-6'  />
+          <FontAwesomeIcon 
+              icon='info-circle'
+              color='#2b2b2b'
+              transform='grow-6'
+              />
+          </span>
+      */}
 
-        </div>
       </button>
     );
   }
