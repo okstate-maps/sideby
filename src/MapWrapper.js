@@ -178,7 +178,7 @@ class MapWrapper extends Component {
     const { provided } = this.props;
 
     // Use ids from layers array to create list of urls
-    return (<div 
+    return (<div
               {...provided.draggableProps}
               ref={provided.innerRef}>
               <Handle provided={provided} display_name={layer.display_name} />
@@ -194,7 +194,8 @@ class MapWrapper extends Component {
                  viewport={that.viewport}
                  zoomControlAdded={true}
                  loadingControl={true}
-                >
+                 preferCanvas={true} //fixes window resizing bug, for now...
+                 >
                 <LeafletLoadingControl opts={{
                     position: 'bottomleft',
                     spinjs: true,
