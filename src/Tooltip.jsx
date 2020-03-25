@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactTooltip from 'react-tooltip';
 import './Tooltip.css';
 
+
 class Tooltip extends Component {
 
   constructor(props) {

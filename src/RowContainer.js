@@ -37,7 +37,7 @@ class RowContainer extends React.Component {
 
 
     return (
-    	//<div><h1>poop</h1></div>
+    	
       <div className={this.props.className} 
       	   ref={provided.innerRef}
       	   {...provided.droppableProps}>

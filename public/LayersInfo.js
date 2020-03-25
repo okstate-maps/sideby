@@ -27,13 +27,13 @@ window.LayersInfo =  //leave this line and
 [
   {
     "type": "EsriTiledMapLayer",
-    "url": "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Earth_at_Night_WM/MapServer",
-    "display_name": "Esri Tiled Map Layer Example",
-    "id": "IF9yOWga",
-    "thumbnail_file": "night.jpg",
-    "maxZoom": 20,
-    "isToggledOn": false
+    "url": "https://wtb.maptiles.arcgis.com/arcgis/rest/services/World_Topo_Base/MapServer",
+    "display_name": "EsriTiledMapLayer",
+    "thumbnail_file": "https://www.arcgis.com/sharing/rest/content/items/3a75a3ee1d1040838f382cbefce99125/info/thumbnail/ago_downloaded.png",
+    "id": "56jjzza1",
+    "maxZoom": 20
   },
+
   {
     "type": "WMSTileLayer",
     "layers": "neir2009",
@@ -43,12 +43,21 @@ window.LayersInfo =  //leave this line and
     "startBounds": "-92.386068,47.945484,-92.037252,48.105296"
   },
   {
+    "type": "WMSTileLayer",
+    "layers": "gpw-v3:gpw-v3-population-density_2000",
+    "url": "https://sedac.ciesin.columbia.edu/geoserver/wms",
+    "thumbnail_file": "wms2.jpg",
+    "display_name": "WMS 2"
+  },
+
+  {
     "type": "EsriImageLayer",
     "url": "https://lcgis.linncounty.org/ags/rest/services/PublicImagery/img1930/ImageServer",
     "display_name": "Esri Image Layer",
     "thumbnail_file": "esri_image.jpg",
     "startBounds": "-91.820375,41.975089,-91.471559,42.152487"
   },
+
   {
     "type": "TileLayer",
     "url": "https://mapwarper.net/maps/tile/34156/{z}/{x}/{y}.png",
@@ -58,6 +67,7 @@ window.LayersInfo =  //leave this line and
     "id": "4supxIrT",
     "maxZoom": 20
   },
+
   {
     "type": "WMTSTileLayer",
     "url": "https://maps.nyc.gov/wmts/1.0.0/",
@@ -67,8 +77,9 @@ window.LayersInfo =  //leave this line and
     "tilematrixSet": "EPSG:900913",
     "startBounds": "-74.447928,40.442617,-73.512717,40.988043",
     "format": "image/jpeg"
-    },
-    {
+  },
+
+  {
     "type": "WMTSTileLayer",
     "url": "https://sampleserver6.arcgisonline.com/arcgis/rest/services/WorldTimeZones/MapServer/WMTS/",
     "display_name": "WMTS (from ArcGIS) ",
@@ -76,7 +87,7 @@ window.LayersInfo =  //leave this line and
     "thumbnail_file": "wmts_arcgis.jpg",
     "format": "image/png",
     "style": "default"
-    }
+  }
 ]
 
 

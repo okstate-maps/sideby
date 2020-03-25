@@ -7,14 +7,15 @@ import Textarea from './Textarea';
 import './Textarea.css';
 
 
-export const AddOverlayForm = (props) => {
+export const AddLayerItemForm = (props) => {
   return (
     <Formik
       initialValues={
         {
           url: '',
           type: '',
-          display_name: ''
+          display_name: '',
+          thumbnail_path: ''
         }}
       
       validationSchema={Yup.object({
@@ -23,11 +24,12 @@ export const AddOverlayForm = (props) => {
           .required('Required'),
         type: Yup.string(),
         display_name: Yup.string()
-          .required('Required')
+          .required('Required'),
+        thumbnail_path: Yup.string()
       })}
 
       onSubmit={(values, { setSubmitting  }) => {
-        props.addOverlay(values);
+        props.addLayer(values);
         props.closeModal();
       }}
 
@@ -40,26 +42,31 @@ export const AddOverlayForm = (props) => {
 
         <div className='radioGroup'>
           <label className='radioGroupLabel'>Type of Layer</label>
+
           <div className='inputGroup'>
             <Field id='typeTileLayer' name='type' type='radio' value="TileLayer"/>
             <label className='radioGroupLabel' htmlFor='typeTileLayer'>TileLayer</label>
             <TooltipIcon tooltipName={TooltipText.TileLayer}/>
           </div>
+
           <div className='inputGroup'>
             <Field id='typeWMSTileLayer' name='type' type='radio' value="WMSTileLayer"/>
             <label className='radioGroupLabel' htmlFor='typeWMSTileLayer'>WMSTileLayer</label>
             <TooltipIcon tooltipName={TooltipText.WMSTileLayer}/>
           </div>
+
           <div className='inputGroup'>
             <Field id='typeEsriTiledMapLayer' name='type' type='radio' value="EsriTiledMapLayer"/>
             <label className='radioGroupLabel' htmlFor='typeEsriTiledMapLayer'>EsriTiledMapLayer</label>
             <TooltipIcon tooltipName={TooltipText.EsriTiledMapLayer}/>
           </div>
+
           <div className='inputGroup'>
             <Field id='typeEsriDynamicMapLayer' name='type' type='radio' value="EsriDynamicMapLayer"/>
             <label className='radioGroupLabel' htmlFor='typeEsriDynamicMapLayer'>EsriDynamicMapLayer</label>
             <TooltipIcon tooltipName={TooltipText.EsriDynamicMapLayer}/>
           </div>
+
           <div className='inputGroup'>
             <Field id='typeEsriFeatureLayer' name='type' type='radio' value="EsriFeatureLayer"/>
             <label className='radioGroupLabel' htmlFor='typeEsriFeatureLayer'>EsriFeatureLayer</label>
@@ -75,6 +82,13 @@ export const AddOverlayForm = (props) => {
             <ErrorMessage className='error' component='div' name='display_name' />
         </div>
 
+        <div className='inputGroup'>
+            <label className='textInputLabel' htmlFor='thumbnail_path'>Thumbnail location (optional)</label>
+            <Field name='thumbnail_path' type='text' />
+            <ErrorMessage className='error' component='div' name='thumbnail_path' />
+        </div>
+
+
         <br/>
         <button type="submit">OK</button>
         <button type="button" onClick={props.closeModal}>Cancel</button>
@@ -86,4 +100,4 @@ export const AddOverlayForm = (props) => {
 };
 
 
-export default AddOverlayForm;
+export default AddLayerItemForm;

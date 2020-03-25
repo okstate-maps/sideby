@@ -123,22 +123,43 @@ End animations section
   margin: 2px 5px 2px 0;
 }
 
-#modalContent .inputGroup textarea, #modalContent .inputGroup input[type="text"] {
+#modalContent .inputGroup label {
+  flex-shrink: 0;
+}
+
+#modalContent .inputGroup textarea , #modalContent .inputGroup input[type="text"] {
   padding: 10px;
+}
+
+#modalContent .inputGroup textarea {
   width: 60%;
 }
+
+#modalContent .inputGroup input[type="text"] {
+  width: 50%;
+}
+
 
 #modalContent div.radioGroup {
     display: flex;
     flex-direction: column;
 }
 
-
-#modalContent .radioGroup label.radioGroupLabel{
+/*
+  For the parent label of a radio group
+*/
+#modalContent .radioGroup > label.radioGroupLabel {
     padding: 8px 8px 8px 0;
     font-weight: bold;
 }
+
+/*
+  Indent individual radio button options
+*/
 #modalContent .radioGroup .inputGroup{
     margin-left: 15px;
 }
 
+#modalContent .error {
+  color: red;
+}

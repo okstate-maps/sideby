@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGripVertical } from '@fortawesome/free-solid-svg-icons';
 import { Map, TileLayer, WMSTileLayer, Marker } from 'react-leaflet';
 import WMTSTileLayer from 'react-leaflet-wmts';
+import WFSLayer from './WFSLayer';
 import EsriTiledMapLayer from './EsriTiledMapLayer';
 import EsriDynamicMapLayer from './EsriDynamicMapLayer';
 import EsriFeatureLayer from './EsriFeatureLayer';
@@ -65,9 +66,10 @@ class MapWrapper extends Component {
     // The following parameters are not passed on to the map layer. This
     // was originally implemented to avoid confusing WMS servers, and
     // there may be unintended consequences.
-    this.layerOptionBlacklist = ["minZoom", "maxZoom", "isToggledOn",
-        "visibleIndex","id","startBounds","thumbnail_file",
-        "display_name","numberOfLayersOn"];
+    // this.layerOptionBlacklist = ["minZoom", "maxZoom", "isToggledOn",
+    //     "visibleIndex","id","startBounds","thumbnail_file",
+    //     "display_name","numberOfLayersOn"];
+        this.layerOptionBlacklist = [];
   }
 
   componentWillUnmount(){
@@ -86,6 +88,7 @@ class MapWrapper extends Component {
   }
 
   onResize(e) {
+
   }
 
   moveend(e) {
@@ -148,7 +151,8 @@ class MapWrapper extends Component {
       "EsriDynamicMapLayer": EsriDynamicMapLayer,
       "WMSTileLayer": WMSTileLayer,
       "TileLayer": TileLayer,
-      "WMTSTileLayer": WMTSTileLayer
+      "WMTSTileLayer": WMTSTileLayer,
+      "WFSLayer": WFSLayer
     }
 
     const overlays = this.props.overlays;
@@ -174,7 +178,7 @@ class MapWrapper extends Component {
     const { provided } = this.props;
 
     // Use ids from layers array to create list of urls
-    return (<div 
+    return (<div
               {...provided.draggableProps}
               ref={provided.innerRef}>
               <Handle provided={provided} display_name={layer.display_name} />
@@ -190,7 +194,8 @@ class MapWrapper extends Component {
                  viewport={that.viewport}
                  zoomControlAdded={true}
                  loadingControl={true}
-                >
+                 preferCanvas={true} //fixes window resizing bug, for now...
+                 >
                 <LeafletLoadingControl opts={{
                     position: 'bottomleft',
                     spinjs: true,
