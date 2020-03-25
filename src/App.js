@@ -41,7 +41,9 @@ class App extends Component {
                   "modalContent": ""};
     
     //for the initial app load, set state using LayersInfo
-    let viewbarLayers = window.LayersInfo.map(item => ({...item, isToggledOn: false, id: shortid.generate()}));
+    let viewbarLayers = window.sideby.LayersInfo.map(item => 
+        ({...item, isToggledOn: false, id: shortid.generate()})
+      );
     this.state.viewbarLayers =  viewbarLayers.sort( (a, b) => {
       return b.sortVal - a.sortVal
     });
@@ -235,10 +237,16 @@ calculateRowLayers(layers) {
       visibleLayers.slice(3).forEach(i => i.row = "row2");
       break;
     case 7:
-    case 8:
       visibleLayers.slice(0,4).forEach(i => i.row = "row1");
       visibleLayers.slice(4).forEach(i => i.row = "row2");
       break;
+    case 8:
+    case 9:
+      visibleLayers.slice(0,3).forEach(i => i.row = "row1");
+      visibleLayers.slice(3,6).forEach(i => i.row = "row2");
+      visibleLayers.slice(6).forEach(i => i.row = "row3");
+      break;
+    
     default:
       break;
   }

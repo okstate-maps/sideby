@@ -1,9 +1,8 @@
-window.sideby ={}
 window.sideby.Config = {
 
   // The maximum number of layers that can be displayed at a time. 
-  // Pick a number from From 1 - 8, though why would you want 1?
-  "maxLayers": 4, 
+  // Pick a number from From 1 - 9, though why would you want 1?
+  "maxLayers": 9, 
 
   // Customize the warning message when a user attempts to select more than the maxLayers value above.
   // While it can be changed, you need to leave {maxLayers} in there somewhere.

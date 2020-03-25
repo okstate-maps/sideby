@@ -59,13 +59,23 @@ class MapsContainer extends Component {
     if (currentRow === "row2") {
       currentLayerIndex = allLayers.filter(i => i.row === "row1").length + draggedLayer.source.index;
     }
+    else if (currentRow === "row3") {
+      currentLayerIndex = allLayers.filter(i => i.row === "row1").length + 
+                          allLayers.filter(i => i.row === "row2").length +
+                          draggedLayer.source.index;
+    }
     else {
       currentLayerIndex = draggedLayer.source.index;
     }
 
-    
     if (destRow === "row2") {
-      destinationIndex = allLayers.filter(i => i.row === "row1").length + draggedLayer.destination.index;
+      destinationIndex = allLayers.filter(i => i.row === "row1").length + 
+                          draggedLayer.destination.index;
+    }
+    else if (destRow === "row3") {
+      destinationIndex = allLayers.filter(i => i.row === "row1").length + 
+                          allLayers.filter(i => i.row === "row2").length +
+                          draggedLayer.destination.index;
     }
     else {
       destinationIndex = draggedLayer.destination.index;
@@ -196,13 +206,15 @@ class MapsContainer extends Component {
     row1Layers.sort((a, b) => a.visibleIndex - b.visibleIndex);
     let row2Layers = layers.filter(i => i.row === "row2");
     row2Layers.sort((a, b) => a.visibleIndex - b.visibleIndex);
+    let row3Layers = layers.filter(i => i.row === "row3");
+    row2Layers.sort((a, b) => a.visibleIndex - b.visibleIndex);
     
 
     let rows = numberRows.map( (val, index) => { 
       return (
         <Droppable droppableId={val} key={val} direction="horizontal">
           {(provided, snapshot) => (
-            <RowContainer className={"Row " + val + (numberRows.length === 2 ? " two-rows" : "" )} 
+            <RowContainer className={"Row " + val + (numberRows.length === 2 ? " two-rows" : numberRows.length=== 3 ? " three-rows": "" )} 
                   provided={provided}
                   snapshot={snapshot}
                   passUpRef={this.passUpRef}
@@ -215,7 +227,7 @@ class MapsContainer extends Component {
                   unsyncMaps={this.unsyncMaps}
                   invalidateMapSizes={this.invalidateMapSizes}
                   overlays={this.props.overlays}
-                  layers={val === "row1" ? row1Layers : row2Layers}>
+                  layers={val === "row1" ? row1Layers : val === "row2" ? row2Layers : row3Layers}>
             </RowContainer>
           )}  
         </Droppable>

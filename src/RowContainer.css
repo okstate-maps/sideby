@@ -18,8 +18,10 @@
 	margin-right: 0;
 }
 
-
-.row1 .leaflet-container, .row2 .leaflet-container, div[data-react-beautiful-dnd-placeholder='0']  {
+.row1 .leaflet-container, 
+.row2 .leaflet-container,
+.row3 .leaflet-container,
+div[data-react-beautiful-dnd-placeholder='0']  {
 	height:100%;
 }
 
@@ -34,7 +36,10 @@ div[data-react-beautiful-dnd-placeholder='0'] {
 .row1.two-rows, .row2.two-rows {
 	height:50%;
 }
-.row1, .row2 {
+.row1.three-rows, .row2.three-rows, .row3.three-rows {
+	height:33%;
+}
+.row1, .row2, .row3 {
 	width:100%;
 }
 
