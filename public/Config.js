@@ -1,4 +1,5 @@
-window.Config = {
+window.sideby ={}
+window.sideby.Config = {
 
   // The maximum number of layers that can be displayed at a time. 
   // Pick a number from From 1 - 8, though why would you want 1?

@@ -11,7 +11,7 @@ class Geocoder extends Component {
 
   constructor(props) {
     super(props);
-    this.Config = window.Config;
+    this.Config = window.sideby.Config;
     this.mapboxToken = this.Config.mapboxToken;
   }
  

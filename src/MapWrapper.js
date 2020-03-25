@@ -42,7 +42,7 @@ class MapWrapper extends Component {
   
   constructor(props, context) {
     super(props)
-    this.Config = window.Config;
+    this.Config = window.sideby.Config;
     this.mapboxToken = this.Config.mapboxToken;
     this.labelLayerUrl = this.Config.labelLayerUrl + this.mapboxToken;
 

@@ -12,7 +12,7 @@ class Item extends Component {
 
   constructor(props) {
     super(props);
-    this.Config = window.Config;
+    this.Config = window.sideby.Config;
     this.onClick = this.onClick.bind(this);
     this.state = {isToggledOn: false,
                   opacity: 1.0};

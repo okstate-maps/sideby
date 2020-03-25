@@ -11,7 +11,7 @@ class AddLayerItem extends Item {
 
   constructor(props) {
     super(props);
-    this.Config = window.Config;
+    this.Config = window.sideby.Config;
     library.add(faMap);
     library.add(faPlus);
     this.onClick = this.onClick.bind(this);
