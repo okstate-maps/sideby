@@ -5,12 +5,12 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faCopy);
 
 class ExportLayersToJSONButton extends Component {
 
   constructor(props) {
     super(props);
+    library.add(faCopy);
     this.onClick = this.onClick.bind(this);
     this.state = {
       showLayers: false

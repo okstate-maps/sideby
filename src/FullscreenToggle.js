@@ -12,7 +12,7 @@ class FullscreenToggle extends Component {
     return (
         <button onClick={() => this.props.toggleFullscreen()}
           name='Toggle Fullscreen Mode'
-          title='Toggle Fullscreen Mode'>
+          title={this.props.isFullscreenEnabled ? 'Exit Fullscreen Mode' : 'Enter Fullscreen Mode'}>
           <FontAwesomeIcon 
               icon={this.props.isFullscreenEnabled ? 'compress' : 'expand'} 
               size='2x'

@@ -15,8 +15,7 @@ class AddLayerItem extends Item {
     library.add(faMap);
     library.add(faPlus);
     this.onClick = this.onClick.bind(this);
-    this.state = {isToggledOn: false,
-                  opacity: 1.0};
+    this.state = {isToggledOn: false};
     this.modalType = 'AddLayerItem';
   }
  

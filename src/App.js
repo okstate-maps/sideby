@@ -21,6 +21,7 @@ class App extends Component {
     this.toggleFullscreen = this.toggleFullscreen.bind(this);
     this.toggleLabels = this.toggleLabels.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.toggleViewbarVisibility = this.toggleViewbarVisibility.bind(this);
     this.rebuildTooltip = this.rebuildTooltip.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -38,7 +39,8 @@ class App extends Component {
                   "labelLayerOn": true,
                   "rebuildTooltip": false,
                   "modalIsOpen": false,
-                  "modalContent": ""};
+                  "modalContent": "",
+                  "viewbarVisible": true};
     
     //for the initial app load, set state using LayersInfo
     let viewbarLayers = window.sideby.LayersInfo.map(item => 
@@ -80,6 +82,12 @@ class App extends Component {
   toggleModal(bool) {
     this.setState({"modalIsOpen": bool});
   }
+
+  toggleViewbarVisibility() {
+    let current_val = this.state.viewbarVisible;
+    this.setState({viewbarVisible: !current_val});
+  }
+
 
   modalSubmit(modalType, data){
     //console.log(modalType);
@@ -157,7 +165,8 @@ class App extends Component {
   handleItemClick(data) {
     let found = false;
     let foundIdx;
-    let newStateLayers = cloneDeep(this.state.layers);  
+    let newStateLayers = cloneDeep(this.state.layers);
+    let newViewbarLayers = cloneDeep(this.state.viewbarLayers);  
 
     newStateLayers.forEach((lyr, index) => {
       if (data.id === lyr.id){
@@ -178,13 +187,20 @@ class App extends Component {
       moveWithinArray(newStateLayers, foundIdx, newStateLayers.length - 1);
     }
 
+    newViewbarLayers.forEach((lyr, index) => {
+      if (data.id === lyr.id){
+        newViewbarLayers[index].isToggledOn = !this.state.viewbarLayers[index].isToggledOn;
+      }
+    });  
+
     newStateLayers = this.calculateDisplayIndexes(newStateLayers);
     newStateLayers = this.calculateRowLayers(newStateLayers);
 
     let newNumberOfLayersOn = newStateLayers.filter(i => i.isToggledOn).length;
 
-    let newState = {"layers": newStateLayers,
-                  "numberOfLayersOn": newNumberOfLayersOn};
+    let newState = {'layers': newStateLayers,
+                  'numberOfLayersOn': newNumberOfLayersOn,
+                  'viewbarLayers': newViewbarLayers};
 
     this.setState(newState);
   }
@@ -305,6 +321,7 @@ calculateRowLayers(layers) {
             <UtilityBar transmitGeocode={this.transmitGeocode} 
                         toggleFullscreen={this.toggleFullscreen}
                         toggleLabels={this.toggleLabels}
+                        toggleViewbarVisibility={this.toggleViewbarVisibility}
                         labelLayerOn={this.state.labelLayerOn}
                         isFullscreenEnabled={this.state.isFullscreenEnabled}
                         overlays={this.state.overlays}
@@ -313,19 +330,21 @@ calculateRowLayers(layers) {
                         deleteOverlay={this.deleteOverlay}
                         openModal={this.openModal}
                         closeModal={this.closeModal}
+                        viewbarVisible={this.state.viewbarVisible}
                         />
           }
 
-          <ViewBar onItemClick={this.handleItemClick}
-                   numberOfLayersOn={this.state.numberOfLayersOn}
-                   toggleModal={this.toggleModal}
-                   openModal={this.openModal}
-                   closeModal={this.closeModal}
-                   viewbarLayers={this.state.viewbarLayers}
-                   newLayer={this.state.newLayer} 
-                   addLayer={this.addLayer}
-                   />
-
+          {this.state.viewbarVisible &&
+            <ViewBar onItemClick={this.handleItemClick}
+                     numberOfLayersOn={this.state.numberOfLayersOn}
+                     toggleModal={this.toggleModal}
+                     openModal={this.openModal}
+                     closeModal={this.closeModal}
+                     viewbarLayers={this.state.viewbarLayers}
+                     newLayer={this.state.newLayer} 
+                     addLayer={this.addLayer}
+                     />
+          }
         </div>
       </Fullscreen>
     );

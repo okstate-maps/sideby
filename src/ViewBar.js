@@ -116,7 +116,7 @@ class ViewBar extends Component {
     const items = this.state.layers || [];
     
     return (
-      <footer className='ViewBar-container bottom'>
+      <footer id='Viewbar' className='ViewBar-container bottom'>
         <ScrollButton direction="left" onClick={this.handleScrollButtonClick}/>
 
          <div onWheel={this.onWheel} onScroll={this.onScroll} scrollleft={this.state.scrollLeft} className='flip-move' id="viewbarItems">

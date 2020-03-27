@@ -36,6 +36,7 @@ export const AddLayerItemForm = (props) => {
     >
 
       <Form>
+        <h3 className="modalHeader">Add New Layer <TooltipIcon tooltipName={TooltipText.AddNewLayer}/></h3>
         <label className='textInputLabel' htmlFor='url'>Url&nbsp;</label>
         <TooltipIcon tooltipName={TooltipText.LayerUrl}/>
         <Textarea name='url' />

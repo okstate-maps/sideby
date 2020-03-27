@@ -14,8 +14,6 @@ class Item extends Component {
     super(props);
     this.Config = window.sideby.Config;
     this.onClick = this.onClick.bind(this);
-    this.state = {isToggledOn: false,
-                  opacity: 1.0};
     this.resolveThumbnail.bind(this);
     this.getThumbnailByLayerType.bind(this);
     this.guessLayerTypeByUrl.bind(this);
@@ -55,10 +53,9 @@ class Item extends Component {
   onClick(e) {
 
     let numLyrs = this.props.numberOfLayersOn;
-
   
     if (numLyrs === this.Config.maxLayers) {
-      if (!this.state.isToggledOn){
+      if (!this.props.isToggledOn){
         this.props.openModal("maxLayers", 
           this.Config.maxLayersWarning.replace("{maxLayers}", 
           this.Config.maxLayers), 
@@ -68,21 +65,12 @@ class Item extends Component {
       }
     }
 
-    this.setState(prevState => ({
-      isToggledOn: !prevState.isToggledOn,
-      opacity: 1.0
-    }));
-
-
-    let props = {
-      "opacity": 1.0,
-      ...this.props
-    };
-    delete(props.onItemClick);
-    delete(props.isToggledOn);   
-    props.isToggledOn = !this.state.isToggledOn;
+    let data = {...this.props};
+    data.isToggledOn = !this.props.isToggledOn;
+       
+    delete(data.onItemClick);
     
-    this.props.onItemClick(props);
+    this.props.onItemClick(data);
 
 
 
@@ -100,7 +88,7 @@ class Item extends Component {
   render() {
     let dispName = this.props.display_name;
     return (
-      <button className={this.state.isToggledOn ? 'item on' : 'item off'} 
+      <button className={this.props.isToggledOn ? 'item on' : 'item off'} 
           onClick={this.onClick} 
           style={{backgroundImage: "url('" + this.thumbnail_path + "')"}}
           id={this.props.id}>

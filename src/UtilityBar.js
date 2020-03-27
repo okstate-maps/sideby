@@ -4,6 +4,7 @@ import AddOverlay from './AddOverlay';
 import ManageOverlays from './ManageOverlays';
 import Settings from './Settings';
 import FullscreenToggle from './FullscreenToggle';
+import HideViewbarToggle from './HideViewbarToggle';
 import './UtilityBar.css';
 import './UtilityBarButton.css';
 
@@ -47,6 +48,8 @@ class UtilityBar extends Component {
           toggleLabels={this.props.toggleLabels}
           viewbarLayers={this.props.viewbarLayers}
                                         />
+        <HideViewbarToggle toggleViewbarVisibility={this.props.toggleViewbarVisibility}
+                           viewbarVisible={this.props.viewbarVisible} />
         
       </div>
     );

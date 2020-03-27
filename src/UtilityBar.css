@@ -7,6 +7,7 @@
 	align-items: center;
 	justify-content: center;
 	z-index: 1000;
+	margin-bottom: 4px;
 	/*column-gap: 20px;  applies to flex only on FF currently,
 		so for now stick to the .Ut > div margin stuff below */
 }
