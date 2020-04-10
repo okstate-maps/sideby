@@ -26,7 +26,8 @@ class UtilityBar extends Component {
   render() {
     return (
       <div id='UtilityBar' className={'UtilityBar'}>
-        <Geocoder transmitGeocode={this.transmitGeocode} />
+        <Geocoder transmitGeocode={this.transmitGeocode}
+                  viewbarVisible={this.props.viewbarVisible} />
         <AddOverlay 
             numberOfLayersOn={this.props.numberOfLayersOn} 
             addOverlay={this.props.addOverlay}
