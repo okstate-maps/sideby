@@ -4,6 +4,7 @@
 div.leaflet-control-zoom.leaflet-control-layer-container.leaflet-bar.leaflet-control {
 	background-color: transparent;
 	border: none;
+	box-shadow: none;
 }
 
 a.leaflet-control-loading {
