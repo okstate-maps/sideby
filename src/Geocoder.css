@@ -31,6 +31,17 @@
 	background-color: white;
 }
 
+.Geocoder.Viewbar-hidden .leaflet-control-geocoder-alternatives, 
+	.Geocoder .leaflet-control-geocoder-form-no-error,
+	.Geocoder .leaflet-control-geocoder-error
+	{
+		bottom:38px;
+	}
+
+.Geocoder.Viewbar-hidden .leaflet-control-geocoder {
+	border-radius: 0 0 5px 5px;
+}
+
 .leaflet-control-geocoder-alternatives li {
 	white-space: normal;
 }

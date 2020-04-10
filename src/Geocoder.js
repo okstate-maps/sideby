@@ -50,7 +50,7 @@ class Geocoder extends Component {
 
   render() {
     return (
-      <div id='Geocoder' className={'Geocoder'}>
+      <div id='Geocoder' className={this.props.viewbarVisible ? 'Geocoder' : 'Geocoder Viewbar-hidden'}>
         <div id='hidden-geocoder-map'></div>
         
       </div>
