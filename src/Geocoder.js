@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch  } from '@fortawesome/free-solid-svg-icons';
 import L from 'leaflet';
 import 'leaflet-control-geocoder';
 import './Geocoder/images/geocoder.png';
@@ -11,7 +14,9 @@ class Geocoder extends Component {
 
   constructor(props) {
     super(props);
+    library.add(faSearch);
     this.Config = window.sideby.Config;
+
     this.mapboxToken = this.Config.mapboxToken;
   }
  
@@ -32,7 +37,7 @@ class Geocoder extends Component {
           //   }
           // }
         ),
-        "collapsed": false,
+        "collapsed": true,
         "placeholder": this.Config.geocoderSearchPlaceholderText,
         "suggestMinLength": 3,
         "queryMinLength": 1,
@@ -51,7 +56,8 @@ class Geocoder extends Component {
   render() {
     return (
       <div id='Geocoder' className={this.props.viewbarVisible ? 'Geocoder' : 'Geocoder Viewbar-hidden'}>
-        <div id='hidden-geocoder-map'></div>
+        <div id='hidden-geocoder-map'>
+        </div>
         
       </div>
     );
