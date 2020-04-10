@@ -42,7 +42,7 @@ class Item extends Component {
         this.thumbnail_path = this.props.thumbnail_file;
       }
       else {
-        this.thumbnail_path = 'assets/images/' + this.props.thumbnail_file;
+        this.thumbnail_path = process.env.PUBLIC_URL + '/assets/images/' + this.props.thumbnail_file;
       }  
     }
     if (this.props.type){
