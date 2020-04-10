@@ -34,7 +34,7 @@ window.sideby.LayersInfo =  //leave this line and
     "type": "WMSTileLayer",
     "layers": "gpw-v3:gpw-v3-population-density_2000",
     "url": "https://sedac.ciesin.columbia.edu/geoserver/wms",
-    "thumbnail_file": "wms2.jpg",
+    "thumbnail_file": "wms2.JPG",
     "display_name": "WMS"
   },
 
