@@ -124,7 +124,7 @@ class App extends Component {
   }
 
   rebuildTooltip(bool) {
-    //console.log("rebuildTooltip", bool);
+    console.log("rebuildTooltip", bool);
     this.setState({"rebuildTooltip": bool});
   }
 
@@ -343,6 +343,7 @@ calculateRowLayers(layers) {
                      viewbarLayers={this.state.viewbarLayers}
                      newLayer={this.state.newLayer} 
                      addLayer={this.addLayer}
+                     rebuildTooltip={this.rebuildTooltip}
                      />
           }
         </div>

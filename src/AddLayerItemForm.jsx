@@ -57,6 +57,12 @@ export const AddLayerItemForm = (props) => {
           </div>
 
           <div className='inputGroup'>
+            <Field id='typeWMTSTileLayer' name='type' type='radio' value="WMTSTileLayer"/>
+            <label className='radioGroupLabel' htmlFor='typeWMTSTileLayer'>WMTSTileLayer</label>
+            <TooltipIcon tooltipName={TooltipText.WMTSTileLayer}/>
+          </div>
+
+          <div className='inputGroup'>
             <Field id='typeEsriTiledMapLayer' name='type' type='radio' value="EsriTiledMapLayer"/>
             <label className='radioGroupLabel' htmlFor='typeEsriTiledMapLayer'>EsriTiledMapLayer</label>
             <TooltipIcon tooltipName={TooltipText.EsriTiledMapLayer}/>
@@ -74,6 +80,12 @@ export const AddLayerItemForm = (props) => {
             <TooltipIcon tooltipName={TooltipText.EsriFeatureLayer}/>
           </div>
           
+
+          <div className='inputGroup'>
+            <Field id='typeEsriImageLayer' name='type' type='radio' value="EsriImageLayer"/>
+            <label className='radioGroupLabel' htmlFor='typeEsriImageLayer'>EsriImageLayer</label>
+            <TooltipIcon tooltipName={TooltipText.EsriImageLayer}/>
+          </div>
 
         </div>
 

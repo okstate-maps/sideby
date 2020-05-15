@@ -8714,7 +8714,7 @@ react-leaflet-control@^2.0.0:
 
 react-leaflet-wmts@okstate-maps/react-leaflet-wmts:
   version "0.1.0"
-  resolved "https://codeload.github.com/okstate-maps/react-leaflet-wmts/tar.gz/a9a4bb5a0bc50a2d1b0910dca41773d92d99e0ec"
+  resolved "https://codeload.github.com/okstate-maps/react-leaflet-wmts/tar.gz/5b4ce10af6322caeadfe0ba62260789e414c2170"
   dependencies:
     lodash "^4.17.11"
 

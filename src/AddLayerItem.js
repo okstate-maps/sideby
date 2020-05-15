@@ -28,6 +28,7 @@ class AddLayerItem extends Item {
     return (
       <button className='add-layer item background-black' 
           onClick={this.onClick}
+          data-tip="Add Layer"
           title="Add Layer"
           name="Add Layer"
           id='add-layer'>

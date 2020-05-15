@@ -127,10 +127,12 @@ class ViewBar extends Component {
                 onItemClick={this.handleItemClick}
                 openModal={this.props.openModal}
                 closeModal={this.props.closeModal}
+                rebuildTooltip={this.props.rebuildTooltip}
                 {...item}
               />)}
 
             <AddLayerItem 
+              rebuildTooltip={this.props.rebuildTooltip}
               numberOfLayersOn={this.props.numberOfLayersOn} 
               openModal={this.props.openModal}
               closeModal={this.props.closeModal}

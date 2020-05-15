@@ -16,9 +16,9 @@ class Tooltip extends Component {
 
   componentDidUpdate(prevProps, prevState){
     if (this.props.rebuildTooltip === true) {
-      ReactTooltip.rebuild();
       this.resetRebuildTooltip();
     }
+      ReactTooltip.rebuild();
   }
 
   onChange() {
@@ -33,7 +33,7 @@ class Tooltip extends Component {
               id="modal" 
               place="right"
               multiline={true}
-              globalEventOff='click'/>
+              />
           <ReactTooltip effect="solid" id="home" />
       </>
     );

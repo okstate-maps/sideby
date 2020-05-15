@@ -21,6 +21,9 @@ class Item extends Component {
 
   }
  
+  componentDidMount(state,props){
+    this.props.rebuildTooltip();
+  }
   guessLayerTypeByUrl(){
 
   }
@@ -87,13 +90,23 @@ class Item extends Component {
 
   render() {
     let dispName = this.props.display_name;
+     // All of the data- attribs in the button element are for ReactTooltip purposes 
     return (
+
       <button className={this.props.isToggledOn ? 'item on' : 'item off'} 
           onClick={this.onClick} 
           style={{backgroundImage: "url('" + this.thumbnail_path + "')"}}
-          id={this.props.id}>
-        <div className={dispName.length >= 10 ? "label long-title" : "label"}>
-          {dispName.length >= 20 ? dispName.slice(0,21)+"..." : dispName}
+          id={this.props.id}
+          data-tip={this.props.display_name} 
+          data-for='modal' 
+          data-event='mouseover'
+          data-delay-show='1000'
+          data-event-off='mouseout'
+          >
+        <div className={dispName.length >= 10 ? "label long-title" : "label"}
+
+        >
+          {dispName.length > 20 ? dispName.slice(0, 20)+"..." : dispName}
         </div>
 
        {/* 
