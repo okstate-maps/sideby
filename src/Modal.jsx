@@ -94,7 +94,7 @@ class Modal extends Component {
 
   render() {
   	let content = this.formatContent(this.props.modalType, this.props.modalContent);
-    let options = this.props.modalOptions || {};
+    //let options = this.props.modalOptions || {};
   	return <ReactModal
           id="modalContainer"
           ref={this.ref}

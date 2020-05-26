@@ -3,8 +3,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap, faPlus} from '@fortawesome/free-solid-svg-icons';
 import AddLayerItemForm from './AddLayerItemForm';
-import TooltipIcon from './TooltipIcon';
-import TooltipText from './TooltipText';
 import Item from './Item';
 
 class AddLayerItem extends Item {

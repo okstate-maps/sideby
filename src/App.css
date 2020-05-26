@@ -117,6 +117,9 @@ table {
 }
 
 #maps {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
   flex-grow: 1;
   position: relative;
 }

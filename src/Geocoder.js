@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch  } from '@fortawesome/free-solid-svg-icons';
 import L from 'leaflet';
 import 'leaflet-control-geocoder';

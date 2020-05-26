@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 //import Config from './Config';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle, faCircle } from '@fortawesome/free-solid-svg-icons';
 import './Item.css';
 
