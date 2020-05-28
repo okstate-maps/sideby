@@ -16,6 +16,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.Config = window.sideby.Config;
+
     this.handleItemClick = this.handleItemClick.bind(this);
     this.transmitGeocode = this.transmitGeocode.bind(this);
     this.toggleFullscreen = this.toggleFullscreen.bind(this);
@@ -33,7 +34,7 @@ class App extends Component {
     this.deleteOverlay = this.deleteOverlay.bind(this);
     this.addLayer = this.addLayer.bind(this);
     this.state = {"layers":[],
-                  "overlays": this.Config.defaultOverlays || [],
+                  "overlays": window.sideby.OverlaysInfo || [],
                   "numberOfLayersOn": 0, 
                   "geocodeResult": {},
                   "labelLayerOn": true,

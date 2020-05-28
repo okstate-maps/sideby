@@ -18,7 +18,6 @@ class ManageOverlays extends Component {
     let currentOverlays = this.props.overlays;
     let modalContent =  
       <>
-        <form>
           <table className='table'>
             <caption> Current Overlays</caption>
                 <thead>
@@ -46,7 +45,6 @@ class ManageOverlays extends Component {
             <ExportLayersToJSONButton layers={currentOverlays} />
             <br/>
             <button type="button" onClick={this.props.closeModal}>OK</button>
-          </form>
       </>
 
     this.props.openModal("ManageOverlays", modalContent, {noSubmit: true});
