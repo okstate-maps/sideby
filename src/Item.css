@@ -53,6 +53,7 @@ button.item div.label {
   flex: none;
   font-family: 'Montserrat', 'Open Sans', sans-serif;
   font-weight: 600;
+  letter-spacing: 0.5px;
   line-height: 1.1;
   white-space: normal;
   text-shadow: black 0 0 2px, black 0 0 2px, 

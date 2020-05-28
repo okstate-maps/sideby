@@ -39,12 +39,12 @@ class Item extends Component {
 
 
   resolveThumbnail() {
-    if (this.props.thumbnail_file){
-      if (this.props.thumbnail_file.startsWith("http")){
-        this.thumbnail_path = this.props.thumbnail_file;
+    if (this.props.thumbnail_path){
+      if (this.props.thumbnail_path.startsWith("http")){
+        this.thumbnail_path = this.props.thumbnail_path;
       }
       else {
-        this.thumbnail_path = process.env.PUBLIC_URL + '/assets/images/' + this.props.thumbnail_file;
+        this.thumbnail_path = process.env.PUBLIC_URL + '/assets/images/' + this.props.thumbnail_path;
       }  
     }
     if (this.props.type){
@@ -78,7 +78,7 @@ class Item extends Component {
 
     //   "sortVal": this.props.sortVal,
     //   "id": this.props.id,
-    //   "thumbnail_file": this.props.thumbnail_file,
+    //   "thumbnail_path": this.props.thumbnail_path,
     //   "url": this.props.url,
     //   "type": this.props.type,
     //   "layers": this.props.layers,

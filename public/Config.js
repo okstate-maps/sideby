@@ -24,33 +24,33 @@ window.sideby.Config = {
   /*
     EsriFeatureLayer example
   */
-    {
-      "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0",
-      "type": "EsriFeatureLayer",
-      "style": function(){ // you can use style options from https://leafletjs.com/reference-1.5.0.html#path-option 
-        return {
-          "fill": false, 
-          "color": "#fafafa", 
-          "weight": 1
-        }
-      },
-      "id": "stateoutlinesoverlay",
-      "display_name": "EsriFeatureLayer (USA State Outlines)", // this appears in the manage overlays pop up
-      "interactive": false // prevent the layer from seeming "clickable"
-    },
+    // {
+    //   "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0",
+    //   "type": "EsriFeatureLayer",
+    //   "style": function(){ // you can use style options from https://leafletjs.com/reference-1.5.0.html#path-option 
+    //     return {
+    //       "fill": false, 
+    //       "color": "#fafafa", 
+    //       "weight": 1
+    //     }
+    //   },
+    //   "id": "stateoutlinesoverlay",
+    //   "display_name": "EsriFeatureLayer (USA State Outlines)", // this appears in the manage overlays pop up
+    //   "interactive": false // prevent the layer from seeming "clickable"
+    // },
 
     /*
       WMS example layer from Geoserver
     */
-    {
-      "url": "http://ogi.state.ok.us/geoserver/wms?",
-      "type": "WMSTileLayer",
-      "format": "image/png8",
-      "transparent": "true",
-      "layers": "ogi:ok_counties",
-      "display_name": "WMSTileLayer (Oklahoma Counties)",
-      "id": "ogi:ok_counties"
-    },
+    // {
+    //   "url": "http://ogi.state.ok.us/geoserver/wms?",
+    //   "type": "WMSTileLayer",
+    //   "format": "image/png8",
+    //   "transparent": "true",
+    //   "layers": "ogi:ok_counties",
+    //   "display_name": "WMSTileLayer (Oklahoma Counties)",
+    //   "id": "ogi:ok_counties"
+    // },
 
     /*
       Example of WFS layer via Geoserver 

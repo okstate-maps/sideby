@@ -134,6 +134,7 @@ class App extends Component {
     var new_layer = data;
     new_layer.isOverlay = true;
     new_layer.id = shortid.generate();
+    new_layer.interactive = false;
     overlays.push(new_layer);
     this.setState({"overlays": overlays});
   }
