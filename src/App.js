@@ -71,23 +71,22 @@ class App extends Component {
   }
 
   /*
-    Toggle map labels for 
+    Toggle map labels
   */
   toggleLabels() {
-    //console.log("toggleLabels");
     let curr = this.state.labelLayerOn;
     this.setState({"labelLayerOn": !curr});
   }
 
-  toggleModal(bool) {
-    this.setState({"modalIsOpen": bool});
-  }
 
   toggleViewbarVisibility() {
     let current_val = this.state.viewbarVisible;
     this.setState({viewbarVisible: !current_val});
   }
 
+  toggleModal(bool) {
+    this.setState({"modalIsOpen": bool});
+  }
 
   modalSubmit(modalType, data){
     //console.log(modalType);
@@ -108,6 +107,7 @@ class App extends Component {
   renderModal(){
 
   }
+
   openModal(modalType, modalContent, modalOptions){
     
     this.setState({
@@ -135,7 +135,7 @@ class App extends Component {
     new_layer.isOverlay = true;
     new_layer.id = shortid.generate();
     overlays.push(new_layer);
-    this.setState({"overlays":overlays});
+    this.setState({"overlays": overlays});
   }
 
   deleteOverlay(obj) {
@@ -144,12 +144,12 @@ class App extends Component {
     let overlays = cloneDeep(this.state.overlays);
     let matchIndex = findWithAttr(overlays, "id", id);
     overlays.splice(matchIndex, 1);
-    this.setState({"overlays":overlays});
+    this.setState({"overlays": overlays});
 
   }
 
   addLayer(data) {
-    console.log(data);
+    //console.log(data);
     let new_layer = data,
       id = shortid.generate(), 
       maxZoom = 20;

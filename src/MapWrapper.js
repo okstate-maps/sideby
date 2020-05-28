@@ -27,11 +27,11 @@ class Handle extends React.Component {
   render() {
     const { provided, display_name } = this.props;
     return (
-      <div className={display_name.length >= 10 ? "Handle map-title long-title" : "Handle map-title"}>
+      <div className="Handle map-title">
          <span className="Handle-span" {...provided.dragHandleProps}>
           <FontAwesomeIcon className="Handle-drag-icon" icon="grip-vertical" size="1x"/>
         </span>
-         &nbsp;{display_name}
+         &nbsp;{display_name.length > 20 ? display_name.slice(0, 20)+"..." : display_name}
       </div>
     );
   }
@@ -66,10 +66,10 @@ class MapWrapper extends Component {
     // The following parameters are not passed on to the map layer. This
     // was originally implemented to avoid confusing WMS servers, and
     // there may be unintended consequences.
-    // this.layerOptionBlacklist = ["minZoom", "maxZoom", "isToggledOn",
-    //     "visibleIndex","id","startBounds","thumbnail_file",
-    //     "display_name","numberOfLayersOn"];
-        this.layerOptionBlacklist = [];
+    this.layerOptionBlacklist = ["minZoom", "maxZoom", "isToggledOn",
+         "visibleIndex","id","startBounds","thumbnail_file",
+         "display_name","numberOfLayersOn"];
+    this.layerOptionBlacklist = [];
   }
 
   componentWillUnmount(){
@@ -79,6 +79,10 @@ class MapWrapper extends Component {
   componentDidMount(prevProps, prevState){
     this.passUpRef(this.props.layer.id, this.props.mapRef);
   }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return true;
+  // }
   
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.layer.visibleIndex !== 
@@ -88,7 +92,7 @@ class MapWrapper extends Component {
   }
 
   onResize(e) {
-
+    //console.log("resize");
   }
 
   moveend(e) {
@@ -109,6 +113,7 @@ class MapWrapper extends Component {
   }
 
   passUpRef(id, ref, deleteRef=false) {
+    this.setState({mapRef: ref});
     this.props.passUpRef(id, ref, deleteRef);
   }
 

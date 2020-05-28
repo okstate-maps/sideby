@@ -27,7 +27,10 @@ class AddLayerItem extends Item {
       <button className='add-layer item background-black' 
           onClick={this.onClick}
           data-tip="Add Layer"
-          title="Add Layer"
+          data-for='modal' 
+          data-event='mouseover'
+          data-delay-show='900'
+          data-event-off='mouseout'
           name="Add Layer"
           id='add-layer'>
         <div className="icon-label">

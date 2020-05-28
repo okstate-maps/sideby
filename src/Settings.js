@@ -23,7 +23,12 @@ class Settings extends Component {
         <button className='settings-button' 
             onClick={this.onClick}
             name='Settings'
-            title='Settings' 
+            data-tip='Settings' 
+            data-for='modal' 
+            data-event='mouseover'
+            data-delay-show='900'
+            data-place='top'
+            data-event-off='mouseout'
             id='settings-button'>
           <div className="icon-label">
              <FontAwesomeIcon icon='cog' size="2x"/>

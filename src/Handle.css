@@ -1,26 +1,33 @@
 .Handle-drag-icon {
 	font-size: 20px;
 	vertical-align: baseline;
-	filter: drop-shadow(0px 0px 1px black);
+	filter: drop-shadow(0px 0px 2px black);
+}
+
+div.Handle {
+	display: flex;
+	align-items: center;
+	background-color: rgba(0,0,0,0.15);
+	padding: 3px;
+	border-radius: 2%;
 }
 
 .Handle-span {
 	padding:0 7px;
-	border-radius: 50%;
-	transition: all 0.3s ease-out;
-	box-shadow: none;
-	background-color: none;
 }
 
-.Handle-span:hover {
-	background-color: rgba(255, 255, 255, 0.2);
-	box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
-}
+
 
 .Handle.map-title {
-	color: var(--label-color);
+    font-size: 1.2em;
+	color: white;
 	font-family: 'Montserrat', 'Open Sans', sans-serif;
-	text-shadow: black 0 0 0.1em, black 0 0 0.1em, black 0 0 0.1em;
+	font-weight: 600;
+	text-shadow: black 0 0 2px, black 0 0 2px, 
+				 black 0 0 2px, black 0 0 2px, 
+				 black 0 0 2px, black 0 0 2px, 
+				 black 0 0 2px, black 0 0 2px, 
+				 black 0 0 2px;
 	max-width: 150px;
 	-webkit-user-select: none;  
   	-moz-user-select: none;     

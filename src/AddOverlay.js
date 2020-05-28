@@ -50,91 +50,6 @@ class AddOverlay extends Component {
     console.log(this.props);
     let modalContent = <AddOverlayForm {...this.props} />
 
-    /*
-    <>
-
-        <div className='inputGroup'>
-            <label className='textInputLabel' htmlFor='addOverlayUrl'>Url: </label>
-            <textarea
-                id='addOverlayUrl' 
-                name='addOverlayUrl' 
-                placeholder='Enter the URL to your map/data.'
-                onBlur={this.onBlur}></textarea>
-            <TooltipIcon tooltipName={this.Config.tooltips.Url} />
-        </div>
-        <div className="radioGroup">
-            <label className="radioGroupLabel" htmlFor="overlayType">Type</label>
-                <div className="inputGroup">
-                    <input 
-                        name="overlayType" 
-                        id="overlay-input-TileLayer" 
-                        type="radio"
-                        checked={this.state.layerTypeGuess === "TileLayer"}
-                        onChange={this.handleLayerTypeChange}
-                        value="TileLayer" />
-                    <label htmlFor="overlay-input-TileLayer">TileLayer</label>
-                    <TooltipIcon tooltipName={this.Config.tooltips.TileLayer}/>
-                </div>
-                
-                <div className="inputGroup">
-                    <input 
-                        name="overlayType" 
-                        id="overlay-input-WMSTileLayer" 
-                        type="radio" 
-                        checked={this.state.layerTypeGuess === "WMSTileLayer"} 
-                        onChange={this.handleLayerTypeChange}
-                        value="WMSTileLayer" />
-                    <label htmlFor="overlay-input-WMSTileLayer">WMSTileLayer</label>
-                </div>
-                
-                <div className="inputGroup">
-                    <input 
-                        name="overlayType" 
-                        id="overlay-input-EsriTiledMapLayer" 
-                        type="radio" 
-                        checked={this.state.layerTypeGuess === "EsriTiledMapLayer"} 
-                        onChange={this.handleLayerTypeChange}
-                        value="EsriTiledMapLayer" />
-                    <label htmlFor="overlay-input-EsriTiledMapLayer">EsriTiledMapLayer</label>
-                </div>
-                
-                <div className="inputGroup">
-                    <input 
-                        name="overlayType" 
-                        id="overlay-input-EsriDynamicMapLayer" 
-                        type="radio" 
-                        checked={this.state.layerTypeGuess === "EsriDynamicMapLayer"} 
-                        onChange={this.handleLayerTypeChange}
-                        value="EsriDynamicMapLayer" />
-                    <label htmlFor="overlay-input-EsriDynamicMapLayer">EsriDynamicMapLayer</label>
-                </div>
-                
-                <div className="inputGroup">
-                    <input 
-                        name="overlayType" 
-                        id="overlay-input-EsriFeatureLayer" 
-                        type="radio" 
-                        checked={this.state.layerTypeGuess === "EsriFeatureLayer"} 
-                        onChange={this.handleLayerTypeChange}
-                        value="EsriFeatureLayer" />
-                    <label htmlFor="overlay-input-EsriFeatureLayer">EsriFeatureLayer</label><br/>
-                    <TooltipIcon tooltipName={this.Config.tooltips.EsriFeatureLayer} />
-                </div>
-        </div>
-        
-        <div className="inputGroup">
-            <label className="textInputLabel" 
-                htmlFor="overlay-input-displayName">
-                Display Name: 
-            </label>
-
-            <input 
-                name="overlayDisplayName" 
-                id="overlay-input-displayName" 
-                type="text"/>
-        </div>
-        </>
-    */
       this.props.openModal(this.modalType, modalContent);
   }
 
@@ -143,8 +58,14 @@ class AddOverlay extends Component {
         <button className='add-overlay'
             onClick={this.onClick} 
             name="Add Overlay"
-            title="Add Overlay"
-            id='add-overlay'>
+            id='add-overlay'
+            data-tip='Add an overlay layer' 
+            data-for='modal' 
+            data-event='mouseover'
+            data-delay-show='900'
+            data-place='top'
+            data-event-off='mouseout' 
+            >
             <FontAwesomeIcon icon='plus-square' size="2x"/>
         </button>
     );

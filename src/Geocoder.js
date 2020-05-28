@@ -54,7 +54,14 @@ class Geocoder extends Component {
 
   render() {
     return (
-      <div id='Geocoder' className={this.props.viewbarVisible ? 'Geocoder' : 'Geocoder Viewbar-hidden'}>
+      <div id='Geocoder' className={this.props.viewbarVisible ? 'Geocoder' : 'Geocoder Viewbar-hidden'}
+          data-tip='Search for an address/place' 
+          data-for='modal' 
+          data-event='mouseover'
+          data-delay-show='900'
+          data-event-off='mouseout'
+          data-place='top'
+      >
         <div id='hidden-geocoder-map'>
         </div>
         

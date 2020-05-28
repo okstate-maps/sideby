@@ -99,7 +99,7 @@ class Item extends Component {
           data-tip={this.props.display_name} 
           data-for='modal' 
           data-event='mouseover'
-          data-delay-show='1000'
+          data-delay-show='900'
           data-event-off='mouseout'
           >
         <div className={dispName.length >= 10 ? "label long-title" : "label"}

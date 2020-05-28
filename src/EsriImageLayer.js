@@ -2,12 +2,13 @@ import {MapLayer, withLeaflet} from 'react-leaflet';
 import {imageMapLayer} from 'esri-leaflet';
 
 type Props = {
-  url: string 
+  url: string
 } & MapLayerProps
 
 class EsriImageLayer extends MapLayer<LeafletElement, Props> {
   createLeafletElement(props: Props): LeafletElement {
   	let options = {...props};
+    options.zIndex = 2;
     const el = imageMapLayer(
       options
     )

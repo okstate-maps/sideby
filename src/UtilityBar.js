@@ -27,27 +27,34 @@ class UtilityBar extends Component {
     return (
       <div id='UtilityBar' className={'UtilityBar'}>
         <Geocoder transmitGeocode={this.transmitGeocode}
-                  viewbarVisible={this.props.viewbarVisible} />
+                  viewbarVisible={this.props.viewbarVisible}
+                   />
         <AddOverlay 
             numberOfLayersOn={this.props.numberOfLayersOn} 
             addOverlay={this.props.addOverlay}
             openModal={this.props.openModal} 
-            closeModal={this.props.closeModal} 
+            closeModal={this.props.closeModal}
+             
             />
         {this.props.overlays.length > 0 &&
           <ManageOverlays 
               overlays={this.props.overlays}
               openModal={this.props.openModal}
-              deleteOverlay={this.props.deleteOverlay} />
+              closeModal={this.props.closeModal} 
+              deleteOverlay={this.props.deleteOverlay}
+                />
           }
         <FullscreenToggle toggleFullscreen={this.props.toggleFullscreen} 
-                          isFullscreenEnabled={this.props.isFullscreenEnabled} />
+                          isFullscreenEnabled={this.props.isFullscreenEnabled} 
+                          
+                          />
         <Settings 
           openModal={this.props.openModal}
           closeModal={this.props.closeModal}
           labelLayerOn={this.props.labelLayerOn}
           toggleLabels={this.props.toggleLabels}
           viewbarLayers={this.props.viewbarLayers}
+         
                                         />
         <HideViewbarToggle toggleViewbarVisibility={this.props.toggleViewbarVisibility}
                            viewbarVisible={this.props.viewbarVisible} />
