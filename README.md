@@ -28,7 +28,22 @@ Option             |  Description  |  Default (blank if none)
 `mapDefaultCenter` | A latitude/longitude pair that the map will center on initially | `[20,-50]`
   
 # LayersInfo.js
-Alongside `Config.js` in the public folder you'll see another file called `LayersInfo.js`. This file contains the data used to create the different layer options that are displayed on the bottom view bar of Sideby. By combining the use of Add Layer Item and Export Layers, you can save yourself some tedium.
+Alongside `Config.js` in the public folder you'll see another file called `LayersInfo.js`. This file contains the data used to create the different layer options that are displayed on the bottom view bar of Sideby. 
 
-## Coming soon
-More on adding layers.
+Each layer has the following values:
+
+Name             |  Type  |  Required?  |  Description
+-------------------|-------|------------|-------------
+`type`          | string  | Required   |  The Leaflet layer type. Currently, supported values are  `EsriTiledMapLayer`, `EsriDynamicMapLayer`, `EsriFeatureLayer`, `EsriImageLayer`, `TileLayer`, `WFSLayer`, `WMSTileLayer`, `WMTSTileLayer`.
+`display_name` | string | Required | The name to be shown over the layer's selection tile. Keep it short and sweet.
+`url`          | string | Required  | The url to the layer.
+`thumbnail_path` | string | Optional, but recommended. | You can either reference the name of a file stored locally in `public/assets/images` or provide the full url to a thumbnail stored elsewhere. For example, IIIF links work very nicely if available.
+`start_bounds` | string | Optional | In addition to setting the default map bounds in `Config.js`, you can also provide them on a layer basis. The format is `sw longitude, sw latitude, ne longitude, ne latitude`. Klokan's Bounding Box tool's CSV provides this format. **Note!** `start_bounds` is only used when the layer is the first one turned on by the user.
+
+You can also supply options that are specific to the type of layer. For some layers there are additional required fields. For example, for a WMS layer, you must provide a "layers" parameter specifying which layers to use in a comma separated list like 'layer1,layer2'.
+
+See the documentation for each layer to see other options.  
+https://leafletjs.com/reference-1.5.0.html  
+http://esri.github.io/esri-leaflet/api-reference/
+
+Note: Layers need to be capable of serving in Web Mercator (EPSG: 3857). For Esri services, if a tiled service is not served in 3857, you can oftentimes use the same service as a dynamic layer, which will reproject the layer into 3857 on the fly.
