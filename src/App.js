@@ -23,6 +23,7 @@ class App extends Component {
     this.toggleLabels = this.toggleLabels.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.toggleViewbarVisibility = this.toggleViewbarVisibility.bind(this);
+    this.toggleDeleteMode = this.toggleDeleteMode.bind(this);
     this.rebuildTooltip = this.rebuildTooltip.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -33,6 +34,7 @@ class App extends Component {
     this.addOverlay = this.addOverlay.bind(this);
     this.deleteOverlay = this.deleteOverlay.bind(this);
     this.addLayer = this.addLayer.bind(this);
+    this.deleteLayer = this.deleteLayer.bind(this);
     this.state = {"layers":[],
                   "overlays": window.sideby.OverlaysInfo || [],
                   "numberOfLayersOn": 0, 
@@ -41,7 +43,9 @@ class App extends Component {
                   "rebuildTooltip": false,
                   "modalIsOpen": false,
                   "modalContent": "",
-                  "viewbarVisible": true};
+                  "viewbarVisible": true,
+                  "deleteModeActive": false
+                };
     
     //for the initial app load, set state using LayersInfo
     let viewbarLayers = window.sideby.LayersInfo.map(item => 
@@ -79,6 +83,11 @@ class App extends Component {
     this.setState({"labelLayerOn": !curr});
   }
 
+
+  toggleDeleteMode(bool) {
+    this.setState({deleteModeActive: bool});
+    this.forceUpdate();
+  }
 
   toggleViewbarVisibility() {
     let current_val = this.state.viewbarVisible;
@@ -162,6 +171,13 @@ class App extends Component {
     let state = {"viewbarLayers": this.state.viewbarLayers};
     state.viewbarLayers.push(new_layer);
     this.setState(state);
+  }
+
+  deleteLayer(id) {
+    let viewbarLayers = cloneDeep(this.state.viewbarLayers);
+    let matchIndex = findWithAttr(viewbarLayers, "id", id);
+    viewbarLayers.splice(matchIndex, 1);
+    this.setState({"viewbarLayers": viewbarLayers});
   }
 
   handleItemClick(data) {
@@ -346,6 +362,9 @@ calculateRowLayers(layers) {
                      newLayer={this.state.newLayer} 
                      addLayer={this.addLayer}
                      rebuildTooltip={this.rebuildTooltip}
+                     toggleDeleteMode={this.toggleDeleteMode}
+                     deleteModeActive={this.state.deleteModeActive}
+                     deleteLayer={this.deleteLayer}
                      />
           }
         </div>

@@ -68,8 +68,8 @@ class MapWrapper extends Component {
     // there may be unintended consequences.
     this.layerOptionBlacklist = ["minZoom", "maxZoom", "isToggledOn",
          "visibleIndex","id","startBounds","thumbnail_file",
-         "display_name","numberOfLayersOn"];
-    this.layerOptionBlacklist = [];
+         "display_name","numberOfLayersOn","deleteLayer"];
+    //this.layerOptionBlacklist = [];
   }
 
   componentWillUnmount(){
@@ -125,7 +125,7 @@ class MapWrapper extends Component {
   checkLayerBounds(){
     let layer = this.props.layer;
     
-    if (layer.startBounds) {
+    if (layer.start_bounds) {
       return this.bboxStringToLatLngBoundsArray()
     }
 

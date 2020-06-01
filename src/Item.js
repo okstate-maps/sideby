@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 //import Config from './Config';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faInfoCircle, faCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle, faCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import './Item.css';
 
 library.add(faInfoCircle);
 library.add(faCircle);
+library.add(faTrash);
 
 class Item extends Component {
 
@@ -67,44 +69,67 @@ class Item extends Component {
       }
     }
 
+    if (this.props.deleteModeActive){
+      
+      if (this.props.isToggledOn){
+      
+        let data = {...this.props};
+        data.isToggledOn = !this.props.isToggledOn;
+        delete data.deleteModeActive;      
+        delete data.onItemClick;
+        
+        this.props.onItemClick(data);
+
+      } 
+
+      this.props.deleteLayer(this.props.id);
+      return;
+    }
+
+
     let data = {...this.props};
     data.isToggledOn = !this.props.isToggledOn;
-       
-    delete(data.onItemClick);
+    delete data.deleteModeActive;      
+    delete data.onItemClick;
     
     this.props.onItemClick(data);
-
-
-
-    //   "sortVal": this.props.sortVal,
-    //   "id": this.props.id,
-    //   "thumbnail_path": this.props.thumbnail_path,
-    //   "url": this.props.url,
-    //   "type": this.props.type,
-    //   "layers": this.props.layers,
-    //   "maxZoom": this.props.maxZoom,
-    //   "display_name": this.props.display_name
 
   }
 
   render() {
     let dispName = this.props.display_name;
+    let className = 'item ';
+    if (this.props.isToggledOn){
+      className = className + "on "
+    }
+    else {
+      className = className + "off "
+    }
+
+    if (this.props.deleteModeActive) {
+      className = className + "deleteModeActive";
+    }
+
      // All of the data- attribs in the button element are for ReactTooltip purposes 
     return (
 
-      <button className={this.props.isToggledOn ? 'item on' : 'item off'} 
+      <button className={className} 
           onClick={this.onClick} 
           style={{backgroundImage: "url('" + this.thumbnail_path + "')"}}
           id={this.props.id}
           data-tip={this.props.display_name} 
+          data-place='top'
           data-for='modal' 
           data-event='mouseover'
           data-delay-show='900'
           data-event-off='mouseout'
           >
-        <div className={dispName.length >= 10 ? "label long-title" : "label"}
+          <div className={this.props.deleteModeActive ? 'deleteModeOn' : 'deleteModeOff'}>
+            <FontAwesomeIcon icon='trash' color='red' size='5x'  />
+          </div>
+        
 
-        >
+        <div className={dispName.length >= 10 ? "label long-title" : "label"}>
           {dispName.length > 20 ? dispName.slice(0, 20)+"..." : dispName}
         </div>
 

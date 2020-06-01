@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { cloneDeep } from 'lodash';
 import Item from './Item';
 import AddLayerItem from './AddLayerItem';
+import DeleteLayersItem from './DeleteLayersItem';
 import ScrollButton from './ScrollButton';
 //import LayersInfo from './LayersInfo';
 import './ViewBar.css';
@@ -114,14 +115,17 @@ class ViewBar extends Component {
 
   render() {
     const items = this.state.layers || [];
-    
+    let deleteModeActive = this.props.deleteModeActive;
+
     return (
       <footer id='Viewbar' className='ViewBar-container bottom'>
         <ScrollButton direction="left" onClick={this.handleScrollButtonClick}/>
 
          <div onWheel={this.onWheel} onScroll={this.onScroll} scrollleft={this.state.scrollLeft} className='flip-move' id="viewbarItems">
            
-           {items.map(item => <Item 
+           {items.map(item => <Item
+                deleteModeActive={deleteModeActive} 
+                deleteLayer={this.props.deleteLayer}
                 numberOfLayersOn={this.props.numberOfLayersOn}
                 key={item.id} 
                 onItemClick={this.handleItemClick}
@@ -137,6 +141,12 @@ class ViewBar extends Component {
               openModal={this.props.openModal}
               closeModal={this.props.closeModal}
               addLayer={this.props.addLayer} 
+              />
+
+            <DeleteLayersItem
+              rebuildTooltip={this.props.rebuildTooltip}
+              deleteModeActive={deleteModeActive} 
+              toggleDeleteMode={this.props.toggleDeleteMode}
               />
           </div>
         <ScrollButton direction="right" onClick={this.handleScrollButtonClick}/>

@@ -28,6 +28,7 @@ class AddLayerItem extends Item {
           onClick={this.onClick}
           data-tip="Add Layer"
           data-for='modal' 
+          data-place='top'
           data-event='mouseover'
           data-delay-show='900'
           data-event-off='mouseout'

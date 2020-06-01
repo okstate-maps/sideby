@@ -85,30 +85,30 @@
       URL in the GetFeature request for some reason. 
     */
 
-     {
-      "url": "https://dservices1.arcgis.com/jWQlP64OuwDh6GGX/arcgis/services/current_footprints_16Jul2019/WFSServer",
-      "type": "WFSLayer",
-      "arcgis": true,
-      "typeNSName": "current_footprints_16Jul2019",
-      "typeNS": "current_footprints_16Jul2019",
-      "typeName": "current_footprints_16Jul2019",
-      "id": "current_footprints_16Jul2019",
-      "version": "1.1.0",
-      "style": function(){ return {
-            weight: 2,
-            color: "orange"
-      }
-       }
-    },
+    //  {
+    //   "url": "https://dservices1.arcgis.com/jWQlP64OuwDh6GGX/arcgis/services/current_footprints_16Jul2019/WFSServer",
+    //   "type": "WFSLayer",
+    //   "arcgis": true,
+    //   "typeNSName": "current_footprints_16Jul2019",
+    //   "typeNS": "current_footprints_16Jul2019",
+    //   "typeName": "current_footprints_16Jul2019",
+    //   "id": "current_footprints_16Jul2019",
+    //   "version": "1.1.0",
+    //   "style": function(){ return {
+    //         weight: 2,
+    //         color: "orange"
+    //   }
+    //    }
+    // },
 
-    {
-      "url": "https://dservices.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/services/JapanPrefectures2018/WFSServer",
-       "type": "WFSLayer",
-        "arcgis": true,
-      "typeName": "JapanPrefectures2018",
-      "typeNameNS": "JapanPrefectures2018",
-      "id": "japan",
-      "version": "1.1.0"
-    }
+    // {
+    //   "url": "https://dservices.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/services/JapanPrefectures2018/WFSServer",
+    //    "type": "WFSLayer",
+    //     "arcgis": true,
+    //   "typeName": "JapanPrefectures2018",
+    //   "typeNameNS": "JapanPrefectures2018",
+    //   "id": "japan",
+    //   "version": "1.1.0"
+    // }
 
   ]
