@@ -17,11 +17,13 @@ window.sideby.Config = {
   //The text displayed in the search box before.
   "geocoderSearchPlaceholderText": "Search for a place...",
   
-
-
   "mapboxToken": "pk.eyJ1Ijoia3JkeWtlIiwiYSI6Ik15RGcwZGMifQ.IR_NpAqXL1ro8mFeTIdifg",//replace with your own
+  
   "labelLayerUrl": "https://api.mapbox.com/styles/v1/krdyke/cjf9wgvwg0zlh2rmo4jx9jcec/tiles/256/{z}/{x}/{y}?access_token=",//replace with your own label layer if you'd like
+  
   "mapDefaultZoom": 3, //lower = more zoomed out
+  
   "mapMinZoom": 3, //lower = more zoomed out
+  
   "mapDefaultCenter": [20,-50] //latitude,longitude
 };
