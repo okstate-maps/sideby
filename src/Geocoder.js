@@ -3,6 +3,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch  } from '@fortawesome/free-solid-svg-icons';
 import L from 'leaflet';
 import 'leaflet-control-geocoder';
+import { isMobile } from './Util';
 import './Geocoder/images/geocoder.png';
 import './Geocoder/images/throbber.gif';
 import './Geocoder/Control.Geocoder.css';
@@ -61,6 +62,7 @@ class Geocoder extends Component {
           data-delay-show='900'
           data-event-off='mouseout'
           data-place='top'
+          data-tip-disable={isMobile} 
       >
         <div id='hidden-geocoder-map'>
         </div>

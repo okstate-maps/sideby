@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { isMobile } from './Util';
 import { faExpand, faCompress } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faExpand);
@@ -17,6 +18,7 @@ class FullscreenToggle extends Component {
           data-event='mouseover'
           data-delay-show='800'
           data-place='top'
+          data-tip-disable={isMobile} 
           data-event-off='mouseout'>
           
           <FontAwesomeIcon 

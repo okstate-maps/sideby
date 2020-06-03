@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { isMobile } from './Util';
 import SettingsForm from './SettingsForm';
 
 
@@ -29,6 +30,7 @@ class Settings extends Component {
             data-delay-show='900'
             data-place='top'
             data-event-off='mouseout'
+            data-tip-disable={isMobile} 
             id='settings-button'>
           <div className="icon-label">
              <FontAwesomeIcon icon='cog' size="2x"/>

@@ -21,20 +21,20 @@ Note: Layers need to be capable of serving in Web Mercator (EPSG: 3857). For Esr
 
 window.sideby.LayersInfo =  //leave this line and 
 [
-  {
-    "type": "EsriTiledMapLayer",
-    "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
-    "display_name": "Esri Tiled Map Layer",
-    "thumbnail_path": "http://www.arcgis.com/sharing/rest/content/items/30e5fe3149c34df1ba922e6f5bbf808f/info/thumbnail/thumbnail1581038983201.jpeg",
-    "id": "56jjzza1",
-    "maxZoom": 20
-  },
+  // {
+  //   "type": "EsriTiledMapLayer",
+  //   "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",
+  //   "display_name": "Esri Tiled Map Layer",
+  //   //"thumbnail_path": "http://www.arcgis.com/sharing/rest/content/items/30e5fe3149c34df1ba922e6f5bbf808f/info/thumbnail/thumbnail1581038983201.jpeg",
+  //   "id": "56jjzza1",
+  //   "maxZoom": 20
+  // },
 
   {
     "type": "WMSTileLayer",
     "layers": "gpw-v3:gpw-v3-population-density_2000",
     "url": "https://sedac.ciesin.columbia.edu/geoserver/wms",
-    "thumbnail_path": "wms2.JPG",
+    //"thumbnail_path": "wms2.JPG",
     "display_name": "WMS Layer"
   },
 
@@ -42,14 +42,14 @@ window.sideby.LayersInfo =  //leave this line and
     "type": "EsriImageLayer",
     "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/PS/ImageServer",
     "display_name": "Esri Image Layer (Landsat)",
-    "thumbnail_path": "esri_image3.jpg"
+    //"thumbnail_path": "esri_image3.jpg"
   },
 
   // {
   //   "type": "EsriImageLayer",
   //   "url": "https://lcgis.linncounty.org/ags/rest/services/PublicImagery/img1930/ImageServer",
   //   "display_name": "Esri Image Layer",
-  //   "thumbnail_path": "esri_image.jpg",
+  //   //"thumbnail_path": "esri_image.jpg",
   //   "start_bounds": "-91.820375,41.975089,-91.471559,42.152487"
   // },
 
@@ -58,6 +58,7 @@ window.sideby.LayersInfo =  //leave this line and
   //   "url": "https://mapwarper.net/maps/tile/34156/{z}/{x}/{y}.png",
   //   "display_name": "XYZ (from MapWarper)",
   //   "thumbnail_path": "mapwarper_34156.JPG",
+  //https://mapwarper.net/uploads/34156/thumb/0776002.png
   //   "start_bounds": "-127.5,23.3,-64.1,51.4",
   //   "id": "4supxIrT",
   //   "maxZoom": 20
@@ -112,11 +113,11 @@ window.sideby.LayersInfo =  //leave this line and
   //   "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer",
   //   "type": "EsriTiledMapLayer",
   //   "display_name": "Base Map",
-  //   "thumbnail_path": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/info/thumbnail",
+  //   //"thumbnail_path": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/info/thumbnail",
   //   "isToggledOn": false,
   //   "id": "rbJDITOUM"
   // },
-  // {
+  //{
   //   "type": "EsriTiledMapLayer",
   //   "thumbnail_path": "https://osu-geog.maps.arcgis.com/sharing/rest/content/items/24e82d4524a6475d8787e3b9783b494c/info/thumbnail/thumbnail1553624734746.png",
   //   "display_name": "oksm SS 4959 p807c",
@@ -177,20 +178,5 @@ window.sideby.LayersInfo =  //leave this line and
   //   "isToggledOn": false,
   //   "id": "mu5KTMhmz"
   // },
-  // {
-  //   "type": "EsriDynamicMapLayer",
-  //   "display_name": "Hennepin 2015",
-  //   "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_2015/MapServer",
-  //   "start_bounds": "-93.770195,44.78738,-93.176871,45.246598",
-  //   "isToggledOn": false,
-  //   "id": "9ie-1CNMc"
-  // },
-  // {
-  //   "type": "EsriDynamicMapLayer",
-  //   "display_name": "Hennepin 1940",
-  //   "url": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_1940/MapServer",
-  //   "start_bounds": "-93.770195,44.78738,-93.176871,45.246598",
-  //   "isToggledOn": false,
-  //   "id": "GiQlHxMAS"
-  // }
+  
 ]

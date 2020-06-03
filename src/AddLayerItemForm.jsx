@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import TooltipText from './TooltipText';
 import TooltipIcon from './TooltipIcon';
 import Textarea from './Textarea';
+import {RegexURL} from './Util';
 import './Textarea.css';
 
 
@@ -20,7 +21,7 @@ export const AddLayerItemForm = (props) => {
       
       validationSchema={Yup.object({
         url: Yup.string()
-          .url('Needs to be a valid URL.')
+          .matches(RegexURL, 'Needs to be a valid URL.')
           .required('Required'),
         type: Yup.string(),
         display_name: Yup.string()

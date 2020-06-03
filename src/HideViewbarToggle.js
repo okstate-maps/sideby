@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { isMobile } from './Util';
+
 
 library.add(faArrowDown);
 library.add(faArrowUp);
@@ -18,6 +20,7 @@ class HideViewbarToggle extends Component {
             data-delay-show='800'
             data-event-off='mouseout'
             data-place='top'
+            data-tip-disable={isMobile} 
           >
           <FontAwesomeIcon 
               icon={this.props.viewbarVisible ? 'arrow-down' : 'arrow-up'}

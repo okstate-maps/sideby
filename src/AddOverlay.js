@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusSquare  } from '@fortawesome/free-solid-svg-icons';
+import { isMobile } from './Util';
 import AddOverlayForm from './AddOverlayForm';
+
 
 class AddOverlay extends Component {
 
@@ -47,7 +49,6 @@ class AddOverlay extends Component {
   }
 
   onClick(e) {
-    console.log(this.props);
     let modalContent = <AddOverlayForm {...this.props} />
 
       this.props.openModal(this.modalType, modalContent);
@@ -64,7 +65,8 @@ class AddOverlay extends Component {
             data-event='mouseover'
             data-delay-show='900'
             data-place='top'
-            data-event-off='mouseout' 
+            data-event-off='mouseout'
+            data-tip-disable={isMobile} 
             >
             <FontAwesomeIcon icon='plus-square' size="2x"/>
         </button>

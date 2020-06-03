@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle, faCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { isMobile, fetchJson } from './Util';
 import './Item.css';
 
 library.add(faInfoCircle);
@@ -15,43 +16,104 @@ class Item extends Component {
     super(props);
     this.Config = window.sideby.Config;
     this.onClick = this.onClick.bind(this);
+    this.infoClick = this.infoClick.bind(this);
     this.resolveThumbnail.bind(this);
     this.getThumbnailByLayerType.bind(this);
     this.guessLayerTypeByUrl.bind(this);
-    this.resolveThumbnail();
+    this.state = {};
 
   }
  
   componentDidMount(state,props){
     this.props.rebuildTooltip();
+    this.resolveThumbnail();
   }
   guessLayerTypeByUrl(){
 
   }
 
   getThumbnailByLayerType(layerType){
+    var that = this;
+    var default_thumb = process.env.PUBLIC_URL + '/assets/images/default.jpg';
 
-    // switch (layerType) {
+    switch (layerType) {
 
-    //   case "TileLayer" {
+      case "EsriDynamicMapLayer":
+      case "EsriImageLayer":
+      case "EsriTiledMapLayer":
 
-    //   }
+        fetchJson(this.props.url + "/info/iteminfo?f=json").then(function (r){
+            if (r.data.thumbnail) {
+              that.setState({thumbnail_path: that.props.url + "/info/" + r.data.thumbnail});
+            }
+            else {
+              that.setState({thumbnail_path: default_thumb})
+            }
+        });
+        break;
+
+      case "WMSTileLayer":
+
+        if (this.props.url.indexOf('geoserver') >= 0){
+
+          //for more on wms reflector see https://docs.geoserver.org/latest/en/user/tutorials/wmsreflector.html
+          this.setState({thumbnail_path: this.props.url + "/reflect?height=200&width=300&layers=" + this.props.layers})
+        }
+        else {
+              this.setState({thumbnail_path: default_thumb})
+            }
+        break;
+      //case "TileLayer":
+
+      case "WMTSTileLayer":
+
+        if (this.props.url.indexOf('MapServer/WMTS') >= 0){
+            //this.thumbnail_path = this.props.url.slice(0, this.props.url.indexOf('/WMTS')) + "/info/thumbnail/thumbnail.png";
+            this.setState({thumbnail_path: this.props.url.slice(0, this.props.url.indexOf('/WMTS')) + "/info/thumbnail/thumbnail.png"});
+        }
+        else {
+              this.setState({thumbnail_path: default_thumb})
+            }
+        break;
+
+      default:
+        this.setState({thumbnail_path: default_thumb})
+      //case "WFSLayer":    
+    }
+
+    // if (!this.thumbnail_path) {
+    //   this.guessLayerTypeByUrl(this.props.url);
     // }
   }
 
 
   resolveThumbnail() {
+
+    var local_path = process.env.PUBLIC_URL + '/assets/images/';
+    
     if (this.props.thumbnail_path){
+    
       if (this.props.thumbnail_path.startsWith("http")){
-        this.thumbnail_path = this.props.thumbnail_path;
+    
+        this.setState({thumbnail_path: this.props.thumbnail_path});
+    
       }
+    
       else {
-        this.thumbnail_path = process.env.PUBLIC_URL + '/assets/images/' + this.props.thumbnail_path;
+        this.setState({thumbnail_path: local_path + this.props.thumbnail_path});
+    
       }  
+
     }
-    if (this.props.type){
+
+    else if (this.props.type){
       this.getThumbnailByLayerType(this.props.type);
     }
+  }
+
+  infoClick(e) {
+    e.stopPropagation();
+    alert("info click");
   }
 
   onClick(e) {
@@ -115,7 +177,7 @@ class Item extends Component {
 
       <button className={className} 
           onClick={this.onClick} 
-          style={{backgroundImage: "url('" + this.thumbnail_path + "')"}}
+          style={{backgroundImage: "url('" + this.state.thumbnail_path + "')"}}
           id={this.props.id}
           data-tip={this.props.display_name} 
           data-place='top'
@@ -123,6 +185,8 @@ class Item extends Component {
           data-event='mouseover'
           data-delay-show='900'
           data-event-off='mouseout'
+          data-clickable='false'
+          data-tip-disable={isMobile}
           >
           <div className={this.props.deleteModeActive ? 'deleteModeOn' : 'deleteModeOff'}>
             <FontAwesomeIcon icon='trash' color='red' size='5x'  />
@@ -134,7 +198,15 @@ class Item extends Component {
         </div>
 
        {/* 
-        <span className='layerInfoButton fa-layers fa-fw'>
+        <span onClick={this.infoClick} 
+              className='layerInfoButton fa-layers fa-fw'
+              data-tip='View Layer Information'
+              data-place='top'
+              data-for='modal' 
+              data-event='mouseover'
+              data-delay-show='900'
+              data-clickable='false'
+              data-event-off='mouseout'>
           <FontAwesomeIcon icon='circle' color='var(--label-color)' transform='grow-6'  />
           <FontAwesomeIcon 
               icon='info-circle'
@@ -142,7 +214,7 @@ class Item extends Component {
               transform='grow-6'
               />
           </span>
-      */}
+        */}
 
       </button>
     );

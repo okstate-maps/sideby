@@ -92,6 +92,7 @@ End animations section
     top: 0;
     width:500px;
     max-width: 90%;
+    max-height:90%;
     bottom: 5%;
     border: 1px solid rgb(204, 204, 204);
     background: rgb(255, 255, 255);

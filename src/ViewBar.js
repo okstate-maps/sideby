@@ -143,11 +143,13 @@ class ViewBar extends Component {
               addLayer={this.props.addLayer} 
               />
 
-            <DeleteLayersItem
-              rebuildTooltip={this.props.rebuildTooltip}
-              deleteModeActive={deleteModeActive} 
-              toggleDeleteMode={this.props.toggleDeleteMode}
-              />
+            {items.length > 0 &&
+              <DeleteLayersItem
+                rebuildTooltip={this.props.rebuildTooltip}
+                deleteModeActive={deleteModeActive} 
+                toggleDeleteMode={this.props.toggleDeleteMode}
+                />
+            }
           </div>
         <ScrollButton direction="right" onClick={this.handleScrollButtonClick}/>
       </footer>

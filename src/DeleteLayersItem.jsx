@@ -2,9 +2,10 @@ import React from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import { isMobile } from './Util';
 import Item from './Item';
 
-class AddLayerItem extends Item {
+class DeleteLayersItem extends Item {
 
   constructor(props) {
     super(props);
@@ -28,6 +29,8 @@ class AddLayerItem extends Item {
           data-event='mouseover'
           data-delay-show='900'
           data-event-off='mouseout'
+          data-tip-disable={isMobile} 
+
           name="Delete Layers"
           id='delete-layers'>
         <div className="icon-label">
@@ -38,4 +41,4 @@ class AddLayerItem extends Item {
   }
 }
 
-export default AddLayerItem;
+export default DeleteLayersItem;

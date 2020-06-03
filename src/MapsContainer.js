@@ -191,6 +191,12 @@ class MapsContainer extends Component {
       this.handleGeocode(this.props.geocodeResult);
     }
 
+    //this prop is used by non-map componenets upstream (well, for now, only HideViewbar)
+    if (this.props.invalidateMapSizes) {
+      this.invalidateMapSizes();
+      this.props.toggleInvalidateMapSizes(false);
+    }
+
   }
 
   render() {

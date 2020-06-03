@@ -67,16 +67,18 @@ class MapWrapper extends Component {
     // was originally implemented to avoid confusing WMS servers, and
     // there may be unintended consequences.
     this.layerOptionBlacklist = ["minZoom", "maxZoom", "isToggledOn",
-         "visibleIndex","id","startBounds","thumbnail_file",
-         "display_name","numberOfLayersOn","deleteLayer"];
+         "visibleIndex","id","start_bounds","thumbnail_path",
+         "display_name","numberOfLayersOn","deleteLayer","closeModal", 
+         "openModal","rebuildTooltip", "leaflet","type","row"];
     //this.layerOptionBlacklist = [];
   }
 
   componentWillUnmount(){
     this.passUpRef(this.props.layer.id, this.props.mapRef, true);
-  }
+  
+    }
 
-  componentDidMount(prevProps, prevState){
+ componentDidMount(prevProps, prevState){
     this.passUpRef(this.props.layer.id, this.props.mapRef);
   }
 
@@ -118,7 +120,7 @@ class MapWrapper extends Component {
   }
 
   bboxStringToLatLngBoundsArray(){
-      var a = this.props.layer.startBounds.split(",");
+      var a = this.props.layer.start_bounds.split(",");
       return [[a[1],a[0]], [a[3],a[2]]];
   }; 
 
@@ -169,8 +171,8 @@ class MapWrapper extends Component {
             <Overlay  
                 url={layer.url}
                 key={layer.id} 
-                zIndex={100000}
-                pane="overlayPane"
+                zIndex={layer.isBasemap ? 1 : 100000}
+                pane={layer.isBasemap ? "tilePane" : "overlayPane"}
                 {...deleteArrayofKeys(cloneDeep(layer), this.layerOptionBlacklist)}
                 />
           )
@@ -236,6 +238,7 @@ class MapWrapper extends Component {
 
                 <Layer 
                   key={layer.id} 
+                  zIndex={1000000}
                   {...deleteArrayofKeys(layer, this.layerOptionBlacklist)}
                 />
 

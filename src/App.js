@@ -8,6 +8,7 @@ import ViewBar from './ViewBar';
 import Modal from './Modal';
 import Tooltip from './Tooltip';
 import MapsContainer from './MapsContainer';
+import NYCLayersInfo from './NYCLayersInfo';
 //import Config, { welcomeText, siteTitle } from './Config';
 import './App.css';
 
@@ -20,6 +21,7 @@ class App extends Component {
     this.handleItemClick = this.handleItemClick.bind(this);
     this.transmitGeocode = this.transmitGeocode.bind(this);
     this.toggleFullscreen = this.toggleFullscreen.bind(this);
+    this.toggleInvalidateMapSizes = this.toggleInvalidateMapSizes.bind(this);
     this.toggleLabels = this.toggleLabels.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.toggleViewbarVisibility = this.toggleViewbarVisibility.bind(this);
@@ -27,7 +29,7 @@ class App extends Component {
     this.rebuildTooltip = this.rebuildTooltip.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.modalSubmit = this.modalSubmit.bind(this);
+    //this.modalSubmit = this.modalSubmit.bind(this);
     this.calculateDisplayIndexes = this.calculateDisplayIndexes.bind(this);
     this.calculateRowLayers = this.calculateRowLayers.bind(this);
     this.updateLayerDisplayIndexesAndRows = this.updateLayerDisplayIndexesAndRows.bind(this);
@@ -44,9 +46,36 @@ class App extends Component {
                   "modalIsOpen": false,
                   "modalContent": "",
                   "viewbarVisible": true,
-                  "deleteModeActive": false
+                  "deleteModeActive": false,
+                  "invalidateMapSizes": false
                 };
     
+
+    /*
+    All of the window.location.hash stuff is just a hacky way
+    to create shortcuts 
+    */
+
+    if (window.location.hash === "#builder") {
+      window.sideby.LayersInfo = [];
+    }
+
+    if (window.location.hash === "#nyc") {
+      this.Config.siteTitle= "New York City through the years";
+      this.Config.welcomeText = "Using aerial photos from NYC Then & Now, click the buttons below to see how the city has changed over the last 100 years."
+      window.sideby.LayersInfo = NYCLayersInfo;
+      this.state.overlays = [  {
+        "type": "TileLayer",
+        "url": "https://maps.nyc.gov/xyz/1.0.0/carto/basemap/{z}/{x}/{y}.jpg",
+        "id": "asfasdfasfadfadf",
+        "thumbnail_path": "nyc.jpg",
+        "display_name": "basemap",
+        "start_bounds": "-74.447928,40.442617,-73.512717,40.988043",
+        "format": "image/jpeg",
+        "isBasemap": true
+      }];
+    }
+
     //for the initial app load, set state using LayersInfo
     let viewbarLayers = window.sideby.LayersInfo.map(item => 
         ({...item, isToggledOn: false, id: shortid.generate()})
@@ -92,34 +121,40 @@ class App extends Component {
   toggleViewbarVisibility() {
     let current_val = this.state.viewbarVisible;
     this.setState({viewbarVisible: !current_val});
+    this.toggleInvalidateMapSizes(true);
   }
 
   toggleModal(bool) {
     this.setState({"modalIsOpen": bool});
   }
 
-  modalSubmit(modalType, data){
-    //console.log(modalType);
-    //console.log(data);
-    switch (modalType){
-      case "AddLayerItem":
-        this.addLayer(data);
-        break;
-      case "AddOverlay":
-        this.addOverlay(data);
-        break;
-      default:
-        console.log("mooooo");
-    }
-
+  toggleInvalidateMapSizes(bool) {
+    console.log("toggleInvalMap", bool);
+    this.setState({invalidateMapSizes: bool});
   }
 
-  renderModal(){
+  // modalSubmit(modalType, data){
+  //   console.log("modalSubmit. Does this do anything anymore???");
+  //   //console.log(data);
+  //   switch (modalType){
+  //     case "AddLayerItem":
+  //       this.addLayer(data);
+  //       break;
+  //     case "AddOverlay":
+  //       this.addOverlay(data);
+  //       break;
+  //     default:
+  //       console.log("mooooo");
+  //   }
 
-  }
+  // }
+
+  // renderModal(){
+
+  // }
 
   openModal(modalType, modalContent, modalOptions){
-    
+    console.log("openMOdal");   
     this.setState({
       modalType: modalType,
       modalContent: modalContent,
@@ -134,7 +169,7 @@ class App extends Component {
   }
 
   rebuildTooltip(bool) {
-    console.log("rebuildTooltip", bool);
+    //console.log("rebuildTooltip", bool);
     this.setState({"rebuildTooltip": bool});
   }
 
@@ -329,6 +364,8 @@ calculateRowLayers(layers) {
                            overlays={this.state.overlays}
                            mapCenter={this.mapCenter}
                            geocodeResult={this.state.geocode}
+                           invalidateMapSizes={this.state.invalidateMapSizes}
+                           toggleInvalidateMapSizes={this.toggleInvalidateMapSizes}
                            labelLayerOn={this.state.labelLayerOn}
                            numberOfLayersOn={this.state.numberOfLayersOn}
                            updateLayerDisplayIndexesAndRows={this.updateLayerDisplayIndexesAndRows}

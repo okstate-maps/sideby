@@ -3,6 +3,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap, faPlus} from '@fortawesome/free-solid-svg-icons';
 import AddLayerItemForm from './AddLayerItemForm';
+import { isMobile } from './Util';
 import Item from './Item';
 
 class AddLayerItem extends Item {
@@ -32,6 +33,7 @@ class AddLayerItem extends Item {
           data-event='mouseover'
           data-delay-show='900'
           data-event-off='mouseout'
+          data-tip-disable={isMobile} 
           name="Add Layer"
           id='add-layer'>
         <div className="icon-label">

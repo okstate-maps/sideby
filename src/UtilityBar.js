@@ -59,7 +59,8 @@ class UtilityBar extends Component {
             />
 
         <HideViewbarToggle toggleViewbarVisibility={this.props.toggleViewbarVisibility}
-                           viewbarVisible={this.props.viewbarVisible} />
+                           viewbarVisible={this.props.viewbarVisible}
+                           invalidateMapSizes={this.props.invalidateMapSizes} />
         
       </div>
     );
