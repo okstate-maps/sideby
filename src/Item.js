@@ -119,7 +119,7 @@ class Item extends Component {
   onClick(e) {
 
     let numLyrs = this.props.numberOfLayersOn;
-  
+
     if (numLyrs === this.Config.maxLayers) {
       if (!this.props.isToggledOn){
         this.props.openModal("maxLayers", 
@@ -153,6 +153,7 @@ class Item extends Component {
     data.isToggledOn = !this.props.isToggledOn;
     delete data.deleteModeActive;      
     delete data.onItemClick;
+    delete data.numberOfLayersOn;
     
     this.props.onItemClick(data);
 
@@ -160,22 +161,11 @@ class Item extends Component {
 
   render() {
     let dispName = this.props.display_name;
-    let className = 'item ';
-    if (this.props.isToggledOn){
-      className = className + "on "
-    }
-    else {
-      className = className + "off "
-    }
-
-    if (this.props.deleteModeActive) {
-      className = className + "deleteModeActive";
-    }
-
+    
      // All of the data- attribs in the button element are for ReactTooltip purposes 
     return (
 
-      <button className={className} 
+      <button className={this.props.isToggledOn ? 'item on': 'item off'} 
           onClick={this.onClick} 
           style={{backgroundImage: "url('" + this.state.thumbnail_path + "')"}}
           id={this.props.id}

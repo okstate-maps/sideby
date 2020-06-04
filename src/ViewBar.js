@@ -57,7 +57,6 @@ class ViewBar extends Component {
     if (this.props.viewbarLayers && this.props.viewbarLayers.length !== this.state.layers.length){
       this.setState({"layers": this.props.viewbarLayers});
     }
-
   }
 
   componentDidMount(prevProps, prevState){

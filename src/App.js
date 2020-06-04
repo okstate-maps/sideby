@@ -129,7 +129,6 @@ class App extends Component {
   }
 
   toggleInvalidateMapSizes(bool) {
-    console.log("toggleInvalMap", bool);
     this.setState({invalidateMapSizes: bool});
   }
 
@@ -154,7 +153,6 @@ class App extends Component {
   // }
 
   openModal(modalType, modalContent, modalOptions){
-    console.log("openMOdal");   
     this.setState({
       modalType: modalType,
       modalContent: modalContent,
