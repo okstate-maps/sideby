@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle, faCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { isMobile, fetchJson } from './Util';
+import { getThumbnailByLayerType } from './Helpers';
+import { isMobile } from './Util';
 import './Item.css';
 
 library.add(faInfoCircle);
@@ -18,8 +19,6 @@ class Item extends Component {
     this.onClick = this.onClick.bind(this);
     this.infoClick = this.infoClick.bind(this);
     this.resolveThumbnail.bind(this);
-    this.getThumbnailByLayerType.bind(this);
-    this.guessLayerTypeByUrl.bind(this);
     this.state = {};
 
   }
@@ -28,64 +27,6 @@ class Item extends Component {
     this.props.rebuildTooltip();
     this.resolveThumbnail();
   }
-  guessLayerTypeByUrl(){
-
-  }
-
-  getThumbnailByLayerType(layerType){
-    var that = this;
-    var default_thumb = process.env.PUBLIC_URL + '/assets/images/default.jpg';
-
-    switch (layerType) {
-
-      case "EsriDynamicMapLayer":
-      case "EsriImageLayer":
-      case "EsriTiledMapLayer":
-
-        fetchJson(this.props.url + "/info/iteminfo?f=json").then(function (r){
-            if (r.data.thumbnail) {
-              that.setState({thumbnail_path: that.props.url + "/info/" + r.data.thumbnail});
-            }
-            else {
-              that.setState({thumbnail_path: default_thumb})
-            }
-        });
-        break;
-
-      case "WMSTileLayer":
-
-        if (this.props.url.indexOf('geoserver') >= 0){
-
-          //for more on wms reflector see https://docs.geoserver.org/latest/en/user/tutorials/wmsreflector.html
-          this.setState({thumbnail_path: this.props.url + "/reflect?height=200&width=300&layers=" + this.props.layers})
-        }
-        else {
-              this.setState({thumbnail_path: default_thumb})
-            }
-        break;
-      //case "TileLayer":
-
-      case "WMTSTileLayer":
-
-        if (this.props.url.indexOf('MapServer/WMTS') >= 0){
-            //this.thumbnail_path = this.props.url.slice(0, this.props.url.indexOf('/WMTS')) + "/info/thumbnail/thumbnail.png";
-            this.setState({thumbnail_path: this.props.url.slice(0, this.props.url.indexOf('/WMTS')) + "/info/thumbnail/thumbnail.png"});
-        }
-        else {
-              this.setState({thumbnail_path: default_thumb})
-            }
-        break;
-
-      default:
-        this.setState({thumbnail_path: default_thumb})
-      //case "WFSLayer":    
-    }
-
-    // if (!this.thumbnail_path) {
-    //   this.guessLayerTypeByUrl(this.props.url);
-    // }
-  }
-
 
   resolveThumbnail() {
 
@@ -100,14 +41,16 @@ class Item extends Component {
       }
     
       else {
-        this.setState({thumbnail_path: local_path + this.props.thumbnail_path});
+        this.setState({thumbnail_path: local_path + 
+                                       this.props.thumbnail_path});
     
       }  
-
+      return;
     }
 
-    else if (this.props.type){
-      this.getThumbnailByLayerType(this.props.type);
+    if (this.props.type){
+      this.setState({thumbnail_path: getThumbnailByLayerType(this.props)});
+      return;
     }
   }
 

@@ -29,7 +29,8 @@ class AddOverlay extends Component {
   onBlur(e) {
     let typeREs = {
         TileLayer: /.*\{z\}.*\{x\}.*\{y\}.*/,
-        WMSTileLayer: /.*wmts.*/i,
+        WMSTileLayer: /.*wms.*/i,
+        WMTSTileLayer: /.*wmts.*/i,
         EsriImageLayer: /.*arcgis.*ImageServer.*/,
         EsriFeatureLayer: /.*arcgis.*FeatureServer.*/, //though an individ layer from esri dynam map service can also act as a feature layer...
         EsriTiledMapLayer: /.*arcgis.*MapServer.*/, 
@@ -49,9 +50,8 @@ class AddOverlay extends Component {
   }
 
   onClick(e) {
-    let modalContent = <AddOverlayForm {...this.props} />
-
-      this.props.openModal(this.modalType, modalContent);
+    let modalContent = <AddOverlayForm onBlur={this.onBlur} {...this.props} />
+    this.props.openModal(this.modalType, modalContent);
   }
 
   render() {

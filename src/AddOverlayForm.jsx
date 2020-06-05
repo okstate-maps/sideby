@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import TooltipText from './TooltipText';
 import TooltipIcon from './TooltipIcon';
 import Textarea from './Textarea';
+import {RegexURL} from './Util';
 import './Textarea.css';
 
 
@@ -19,9 +20,10 @@ export const AddOverlayForm = (props) => {
       
       validationSchema={Yup.object({
         url: Yup.string()
-          .url('Needs to be a valid URL.')
+          .matches(RegexURL, 'Needs to be a valid URL.')
+          .required('Required'), 
+        type: Yup.string()
           .required('Required'),
-        type: Yup.string(),
         display_name: Yup.string()
           .required('Required')
       })}
@@ -37,7 +39,7 @@ export const AddOverlayForm = (props) => {
       <h3 className="modalHeader">Add New Overlay</h3>
         <label className='textInputLabel' htmlFor='url'>Url&nbsp;</label>
         <TooltipIcon tooltipName={TooltipText.LayerUrl}/>
-        <Textarea name='url' />
+        <Textarea name='url' onBlur={props.onBlur} />
 
         <div className='radioGroup'>
           <label className='radioGroupLabel'>Type of Layer</label>
