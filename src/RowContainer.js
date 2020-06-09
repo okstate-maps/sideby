@@ -1,7 +1,7 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import MapWrapper from './MapWrapper';
-import "./RowContainer.css";
+import './RowContainer.css';
 
 class RowContainer extends React.Component {
 
@@ -9,8 +9,8 @@ class RowContainer extends React.Component {
     const { provided, layers } = this.props;
 
   	let maps = layers.map((layer, index) => (
-		<Draggable draggableId={"draggable-"+layer.id} 
-				   key={"draggable-"+layer.id} 
+		<Draggable draggableId={'draggable-'+layer.id} 
+				   key={'draggable-'+layer.id} 
 				   index={index}>
 		 	{(provided, snapshot) => (
 		  	<MapWrapper

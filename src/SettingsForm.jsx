@@ -25,7 +25,7 @@ export const SettingsForm = (props) => {
         <ExportLayersToJSONButton layers={props.viewbarLayers} />
         <TooltipIcon tooltipName={TooltipText.ExportLayers}/>
       </div>
-      <button type="submit">OK</button>
+      <button type='submit'>OK</button>
     </form>
   );
 };

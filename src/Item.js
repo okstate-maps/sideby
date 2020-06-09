@@ -34,7 +34,7 @@ class Item extends Component {
     
     if (this.props.thumbnail_path){
     
-      if (this.props.thumbnail_path.startsWith("http")){
+      if (this.props.thumbnail_path.startsWith('http')){
     
         this.setState({thumbnail_path: this.props.thumbnail_path});
     
@@ -48,7 +48,7 @@ class Item extends Component {
       return;
     }
 
-    if (this.props.type){
+    if (this.props.layer_type){
       this.setState({thumbnail_path: getThumbnailByLayerType(this.props)});
       return;
     }
@@ -56,7 +56,7 @@ class Item extends Component {
 
   infoClick(e) {
     e.stopPropagation();
-    alert("info click");
+    alert('info click');
   }
 
   onClick(e) {
@@ -65,8 +65,8 @@ class Item extends Component {
 
     if (numLyrs === this.Config.maxLayers) {
       if (!this.props.isToggledOn){
-        this.props.openModal("maxLayers", 
-          this.Config.maxLayersWarning.replace("{maxLayers}", 
+        this.props.openModal('maxLayers', 
+          this.Config.maxLayersWarning.replace('{maxLayers}', 
           this.Config.maxLayers), 
           {noSubmit: true}
         );
@@ -110,7 +110,7 @@ class Item extends Component {
 
       <button className={this.props.isToggledOn ? 'item on': 'item off'} 
           onClick={this.onClick} 
-          style={{backgroundImage: "url('" + this.state.thumbnail_path + "')"}}
+          style={{backgroundImage: 'url("' + this.state.thumbnail_path + '")'}}
           id={this.props.id}
           data-tip={this.props.display_name} 
           data-place='top'
@@ -126,8 +126,8 @@ class Item extends Component {
           </div>
         
 
-        <div className={dispName.length >= 10 ? "label long-title" : "label"}>
-          {dispName.length > 20 ? dispName.slice(0, 20)+"..." : dispName}
+        <div className={dispName.length >= 10 ? 'label long-title' : 'label'}>
+          {dispName.length > 20 ? dispName.slice(0, 20)+'...' : dispName}
         </div>
 
        {/* 

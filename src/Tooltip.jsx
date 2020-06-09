@@ -28,13 +28,13 @@ class Tooltip extends Component {
     return (
       <>
           <ReactTooltip 
-              className="superHighZIndex" 
-              effect="solid" 
-              id="modal" 
-              place="right"
+              className='superHighZIndex' 
+              effect='solid' 
+              id='modal' 
+              place='right'
               multiline={true}
               />
-          <ReactTooltip effect="solid" id="home" />
+          <ReactTooltip effect='solid' id='home' />
       </>
     );
   }

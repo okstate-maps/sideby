@@ -14,7 +14,7 @@ class HideViewbarToggle extends Component {
     return (
         <button onClick={() => this.props.toggleViewbarVisibility()}
           name='Hide view bar'
-           data-tip={this.props.viewbarVisible ? 'Hide Layer Selector' : "Show Layer Selector"} 
+           data-tip={this.props.viewbarVisible ? 'Hide Layer Selector' : 'Show Layer Selector'} 
             data-for='modal' 
             data-event='mouseover'
             data-delay-show='800'

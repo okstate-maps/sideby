@@ -25,5 +25,13 @@ window.sideby.Config = {
   
   "mapMinZoom": 3, //lower = more zoomed out
   
-  "mapDefaultCenter": [20,-50] //latitude,longitude
+  "mapDefaultCenter": [20,-50], //latitude,longitude
+  
+  //theming options
+  "themeHeaderColor": "#222",
+  "themeHeaderFontFamily": '"Montserrat", "sans-serif"',
+  "themeLabelColor": "rgb(208, 208, 208)",
+  "themeTextPrimaryColor": "#FE5c00",
+  "themeTextTertiaryColor": "rgb(228, 228, 228)",
+  "themeBackgroundColor": "rgb(215, 215, 215)"
 };

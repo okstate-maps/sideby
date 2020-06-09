@@ -16,7 +16,7 @@ class Settings extends Component {
  
   onClick(e) {
     let modalContent = <SettingsForm {...this.props} />
-    this.props.openModal("Settings", modalContent, {noSubmit: true});
+    this.props.openModal('Settings', modalContent, {noSubmit: true});
   }
 
   render() {
@@ -32,8 +32,8 @@ class Settings extends Component {
             data-event-off='mouseout'
             data-tip-disable={isMobile} 
             id='settings-button'>
-          <div className="icon-label">
-             <FontAwesomeIcon icon='cog' size="2x"/>
+          <div className='icon-label'>
+             <FontAwesomeIcon icon='cog' size='2x'/>
           </div>
         </button>
       );

@@ -23,7 +23,7 @@ class DeleteLayersItem extends Item {
     return (
       <button className={this.props.deleteModeActive ? 'item background-black deleteModeOn':'item background-black deleteModeOff'} 
           onClick={this.onClick}
-          data-tip="Delete Layers"
+          data-tip='Delete Layers'
           data-for='modal'
           data-place='top' 
           data-event='mouseover'
@@ -31,10 +31,10 @@ class DeleteLayersItem extends Item {
           data-event-off='mouseout'
           data-tip-disable={isMobile} 
 
-          name="Delete Layers"
+          name='Delete Layers'
           id='delete-layers'>
-        <div className="icon-label">
-            <FontAwesomeIcon icon="trash-alt" size='5x'/>
+        <div className='icon-label'>
+            <FontAwesomeIcon icon='trash-alt' size='5x'/>
         </div>
       </button>
     );

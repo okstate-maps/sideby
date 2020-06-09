@@ -1,3 +1,8 @@
+/*
+*	Default theming. Can be adjusted using config options
+*   	prefixed with theme
+*/
+
 :root {
     --header-color: #222;
     --header-font-family: "Montserrat", "sans-serif";

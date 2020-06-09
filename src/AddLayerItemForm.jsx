@@ -3,9 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import TooltipText from './TooltipText';
 import TooltipIcon from './TooltipIcon';
-import {LayerUrlField, LayerTypeRadioGroup} from './Textarea';
+import {LayerTypeRadioGroup} from './FormComponents';
 import {RegexURL} from './Util';
-import './Textarea.css';
+import './FormComponents.css';
 
 
 
@@ -16,7 +16,7 @@ export const AddLayerItemForm = (props) => {
       initialValues={
         {
           url: '',
-          type: '',
+          layer_type: '',
           display_name: '',
           thumbnail_path: ''
         }}
@@ -25,7 +25,7 @@ export const AddLayerItemForm = (props) => {
         url: Yup.string()
           .matches(RegexURL, 'Needs to be a valid URL.')
           .required('Required'),
-        type: Yup.string()
+        layer_type: Yup.string()
           .required('Required'),
         display_name: Yup.string()
           .required('Required'),
@@ -42,28 +42,46 @@ export const AddLayerItemForm = (props) => {
     >
 
       <Form>
-        <h3 className="modalHeader">Add New Layer <TooltipIcon tooltipName={TooltipText.AddNewLayer}/></h3>
-        <label className='textInputLabel' htmlFor='url'>Url&nbsp;</label>
+        <h3 className='modalHeader'>
+          Add New Layer&nbsp;
+          <TooltipIcon tooltipName={TooltipText.AddNewLayer}/>
+        </h3>
+        <label className='textInputLabel' 
+               htmlFor='url'>
+            Url&nbsp;
+        </label>
         <TooltipIcon tooltipName={TooltipText.LayerUrl}/>
         <div className='inputGroup'>
           <Field as='textarea' name='url' />
         </div>
-       <LayerTypeRadioGroup name='type' />
+       
+       <LayerTypeRadioGroup name='layer_type' />
+        
         <div className='inputGroup'>
-            <label className='textInputLabel' htmlFor='display_name'>Display Name</label>
+            <label className='textInputLabel' 
+                   htmlFor='display_name'>
+                Display Name
+            </label>
             <Field name='display_name' type='text' />
-            <ErrorMessage className='error' component='div' name='display_name' />
+            <ErrorMessage className='error' 
+                          component='div' 
+                          name='display_name' />
         </div>
 
         <div className='inputGroup'>
-            <label className='textInputLabel' htmlFor='thumbnail_path'>Thumbnail location (optional)</label>
+            <label className='textInputLabel' 
+                   htmlFor='thumbnail_path'>
+                Thumbnail location (optional)
+            </label>
             <Field name='thumbnail_path' type='text' />
-            <ErrorMessage className='error' component='div' name='thumbnail_path' />
+            <ErrorMessage className='error' 
+                          component='div' 
+                          name='thumbnail_path' />
         </div>
 
         <br/>
-        <button type="submit">OK</button>
-        <button type="button" onClick={props.closeModal}>Cancel</button>
+        <button type='submit'>OK</button>
+        <button type='button' onClick={props.closeModal}>Cancel</button>
       </Form>
 
     </Formik>

@@ -13,41 +13,9 @@ class AddOverlay extends Component {
     this.Config = window.sideby.Config;
     library.add(faPlusSquare);
     this.onClick = this.onClick.bind(this);
-    this.onBlur = this.onBlur.bind(this);
-    this.handleLayerTypeChange = this.handleLayerTypeChange.bind(this);
     this.modalType = 'AddOverlay';
-    this.state = {layerTypeGuess: null};
   }
   
-  handleLayerTypeChange(event) {
-    console.log(event.target.value);
-    this.setState({
-      layerTypeGuess: event.target.value
-    });
-  }
-
-  onBlur(e) {
-    let typeREs = {
-        TileLayer: /.*\{z\}.*\{x\}.*\{y\}.*/,
-        WMSTileLayer: /.*wms.*/i,
-        WMTSTileLayer: /.*wmts.*/i,
-        EsriImageLayer: /.*arcgis.*ImageServer.*/,
-        EsriFeatureLayer: /.*arcgis.*FeatureServer.*/, //though an individ layer from esri dynam map service can also act as a feature layer...
-        EsriTiledMapLayer: /.*arcgis.*MapServer.*/, 
-    };
-    let submittedUrl = e.target.value;
-    let newType = null;
-    
-    Object.entries(typeREs).forEach((lyrTypeRE) => {
-            if (lyrTypeRE[1].test(submittedUrl)) {
-                newType = lyrTypeRE[0];
-            }
-        }
-    )
-    
-    this.setState({layerTypeGuess: newType})
-
-  }
 
   onClick(e) {
     let modalContent = <AddOverlayForm onBlur={this.onBlur} {...this.props} />

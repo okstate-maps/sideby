@@ -50,22 +50,22 @@ class ViewBar extends Component {
     
       layers.push(newLayer);
 
-      this.setState({"layers": layers});
+      this.setState({'layers': layers});
     }
 
 
     if (this.props.viewbarLayers && this.props.viewbarLayers.length !== this.state.layers.length){
-      this.setState({"layers": this.props.viewbarLayers});
+      this.setState({'layers': this.props.viewbarLayers});
     }
   }
 
   componentDidMount(prevProps, prevState){
     //for the initial app load, set state using LayersInfo
-    this.setState({"layers": this.props.viewbarLayers});
+    this.setState({'layers': this.props.viewbarLayers});
   }
 
   onWheel(e){
-    let elem  = document.getElementById("viewbarItems"),
+    let elem  = document.getElementById('viewbarItems'),
         scrollUnit = 50,
 
         // deltaMode indicates if the deltaY value is pixels or lines (0 for pixels, 1 for lines, 2 for page)
@@ -77,15 +77,15 @@ class ViewBar extends Component {
     //e.preventDefault();
     
     elem.scrollLeft = elem.scrollLeft + scrollSize;
-    //this.setState({"scrollLeft": elem.scrollLeft});
+    //this.setState({'scrollLeft': elem.scrollLeft});
   }
 
   scrollTo(direction, duration) {
-    let elem  = document.getElementById("viewbarItems"),
+    let elem  = document.getElementById('viewbarItems'),
         start = elem.scrollLeft,
         clientWidth = document.documentElement.clientWidth,
         moveSize = Math.max(clientWidth/2, 300),
-        change = direction === "left" ? -moveSize : +moveSize,
+        change = direction === 'left' ? -moveSize : +moveSize,
         currentTime = 0,
         increment = 20,
         that = this;
@@ -118,9 +118,9 @@ class ViewBar extends Component {
 
     return (
       <footer id='Viewbar' className='ViewBar-container bottom'>
-        <ScrollButton direction="left" onClick={this.handleScrollButtonClick}/>
+        <ScrollButton direction='left' onClick={this.handleScrollButtonClick}/>
 
-         <div onWheel={this.onWheel} onScroll={this.onScroll} scrollleft={this.state.scrollLeft} className='flip-move' id="viewbarItems">
+         <div onWheel={this.onWheel} onScroll={this.onScroll} scrollleft={this.state.scrollLeft} className='flip-move' id='viewbarItems'>
            
            {items.map(item => <Item
                 deleteModeActive={deleteModeActive} 
@@ -150,7 +150,7 @@ class ViewBar extends Component {
                 />
             }
           </div>
-        <ScrollButton direction="right" onClick={this.handleScrollButtonClick}/>
+        <ScrollButton direction='right' onClick={this.handleScrollButtonClick}/>
       </footer>
     );
   }

@@ -19,11 +19,11 @@ class ScrollButton extends Component {
   }
 
   render() {
-    let arrow = this.props.direction === "left" ? "angle-left" : "angle-right";
+    let arrow = this.props.direction === 'left' ? 'angle-left' : 'angle-right';
     return (
       <div className={'ScrollButton ' + this.props.direction}
            onClick={this.onClick}>  
-          <button><FontAwesomeIcon icon={arrow} size="lg"/></button>
+          <button><FontAwesomeIcon icon={arrow} size='lg'/></button>
       </div>
     );
   }

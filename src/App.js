@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import Fullscreen from 'react-fullscreen-crossbrowser';
 import { cloneDeep } from 'lodash';
 import shortid from 'shortid';
+
 import { findWithAttr, moveWithinArray } from './Util';
 import UtilityBar from './UtilityBar';
 import ViewBar from './ViewBar';
 import Modal from './Modal';
 import Tooltip from './Tooltip';
 import MapsContainer from './MapsContainer';
-import NYCLayersInfo from './NYCLayersInfo';
-//import Config, { welcomeText, siteTitle } from './Config';
+import { LayersInfoNYC, LayersInfoStillwater} from './LayersInfoDemo';
 import './App.css';
 
 class App extends Component {
@@ -18,63 +18,77 @@ class App extends Component {
     super(props);
     this.Config = window.sideby.Config;
 
+    this.addLayer = this.addLayer.bind(this);
+    this.addOverlay = this.addOverlay.bind(this);
+    this.calculateDisplayIndexes = this.calculateDisplayIndexes.bind(this);
+    this.calculateRowLayers = this.calculateRowLayers.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.deleteLayer = this.deleteLayer.bind(this);
+    this.deleteOverlay = this.deleteOverlay.bind(this);
     this.handleItemClick = this.handleItemClick.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.rebuildTooltip = this.rebuildTooltip.bind(this);
     this.transmitGeocode = this.transmitGeocode.bind(this);
+    this.toggleDeleteMode = this.toggleDeleteMode.bind(this);
     this.toggleFullscreen = this.toggleFullscreen.bind(this);
     this.toggleInvalidateMapSizes = this.toggleInvalidateMapSizes.bind(this);
     this.toggleLabels = this.toggleLabels.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.toggleViewbarVisibility = this.toggleViewbarVisibility.bind(this);
-    this.toggleDeleteMode = this.toggleDeleteMode.bind(this);
-    this.rebuildTooltip = this.rebuildTooltip.bind(this);
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-    //this.modalSubmit = this.modalSubmit.bind(this);
-    this.calculateDisplayIndexes = this.calculateDisplayIndexes.bind(this);
-    this.calculateRowLayers = this.calculateRowLayers.bind(this);
     this.updateLayerDisplayIndexesAndRows = this.updateLayerDisplayIndexesAndRows.bind(this);
-    this.addOverlay = this.addOverlay.bind(this);
-    this.deleteOverlay = this.deleteOverlay.bind(this);
-    this.addLayer = this.addLayer.bind(this);
-    this.deleteLayer = this.deleteLayer.bind(this);
-    this.state = {"layers":[],
-                  "overlays": window.sideby.OverlaysInfo || [],
-                  "numberOfLayersOn": 0, 
-                  "geocodeResult": {},
-                  "labelLayerOn": true,
-                  "rebuildTooltip": false,
-                  "modalIsOpen": false,
-                  "modalContent": "",
-                  "viewbarVisible": true,
-                  "deleteModeActive": false,
-                  "invalidateMapSizes": false
+    
+    this.state = {'layers':[],
+                  'overlays': window.sideby.OverlaysInfo || [],
+                  'numberOfLayersOn': 0, 
+                  'geocodeResult': {},
+                  'labelLayerOn': true,
+                  'rebuildTooltip': false,
+                  'modalIsOpen': false,
+                  'modalContent': '',
+                  'viewbarVisible': true,
+                  'deleteModeActive': false,
+                  'invalidateMapSizes': false
                 };
     
-
     /*
     All of the window.location.hash stuff is just a hacky way
     to create shortcuts 
     */
-
-    if (window.location.hash === "#builder") {
+    if (window.location.hash === '#builder') {
       window.sideby.LayersInfo = [];
     }
 
-    if (window.location.hash === "#nyc") {
-      this.Config.siteTitle= "New York City through the years";
-      this.Config.welcomeText = "Using aerial photos from NYC Then & Now, click the buttons below to see how the city has changed over the last 100 years."
-      window.sideby.LayersInfo = NYCLayersInfo;
+    if (window.location.hash === '#stw') {
+      this.Config.siteTitle= 'Stillwater from the Air';
+      this.Config.welcomeText = 'It\'s Stillwater!';
+      this.Config.themeBackgroundColor = '#f60';
+      window.sideby.LayersInfo = LayersInfoStillwater;
+    }
+
+    if (window.location.hash === '#nyc') {
+      this.Config.siteTitle= 'New York City through the years';
+      this.Config.welcomeText = 'Using aerial photos from NYC Then & Now, click the buttons below to see how the city has changed over the last 100 years.'
+      window.sideby.LayersInfo = LayersInfoNYC;
       this.state.overlays = [  {
-        "type": "TileLayer",
-        "url": "https://maps.nyc.gov/xyz/1.0.0/carto/basemap/{z}/{x}/{y}.jpg",
-        "id": "asfasdfasfadfadf",
-        "thumbnail_path": "nyc.jpg",
-        "display_name": "basemap",
-        "start_bounds": "-74.447928,40.442617,-73.512717,40.988043",
-        "format": "image/jpeg",
-        "isBasemap": true
+        'layer_type': 'TileLayer',
+        'url': 'https://maps.nyc.gov/xyz/1.0.0/carto/basemap/{z}/{x}/{y}.jpg',
+        'id': 'asfasdfasfadfadf',
+        'thumbnail_path': 'nyc.jpg',
+        'display_name': 'basemap',
+        'start_bounds': '-74.447928,40.442617,-73.512717,40.988043',
+        'format': 'image/jpeg',
+        'is_basemap': true
       }];
     }
+
+    //set theming options
+    document.title = this.Config.siteTitle;
+    document.documentElement.style.setProperty('--header-color', this.Config.themeHeaderColor);
+    document.documentElement.style.setProperty('--header-font-family', this.Config.themeHeaderFontFamily);
+    document.documentElement.style.setProperty('--label-color', this.Config.themeLabelColor);
+    document.documentElement.style.setProperty('--text-primary-color', this.Config.themeTextPrimaryColor);
+    document.documentElement.style.setProperty('--text-tertiary-color', this.Config.themeTextTertiaryColor);
+    document.documentElement.style.setProperty('--background-color', this.Config.themeBackgroundColor);
 
     //for the initial app load, set state using LayersInfo
     let viewbarLayers = window.sideby.LayersInfo.map(item => 
@@ -83,112 +97,6 @@ class App extends Component {
     this.state.viewbarLayers =  viewbarLayers.sort( (a, b) => {
       return b.sortVal - a.sortVal
     });
-
-  }
-
-  /*
-    Function that is used to move the response received by 
-    the Geocoder component from the Geocoder, up to the App,
-    and then back down to the MapsContainer
-  */
-  transmitGeocode(geocode) {
-    this.setState({"geocode": geocode});
-  }
-
-
-  /*
-    Toggle fullscreen mode. Used by FullscreenToggle component on the UtilityBar
-  */
-  toggleFullscreen() {
-    let current_val = this.state.isFullscreenEnabled;
-    this.setState({isFullscreenEnabled: !current_val});
-  }
-
-  /*
-    Toggle map labels
-  */
-  toggleLabels() {
-    let curr = this.state.labelLayerOn;
-    this.setState({"labelLayerOn": !curr});
-  }
-
-
-  toggleDeleteMode(bool) {
-    this.setState({deleteModeActive: bool});
-    this.forceUpdate();
-  }
-
-  toggleViewbarVisibility() {
-    let current_val = this.state.viewbarVisible;
-    this.setState({viewbarVisible: !current_val});
-    this.toggleInvalidateMapSizes(true);
-  }
-
-  toggleModal(bool) {
-    this.setState({"modalIsOpen": bool});
-  }
-
-  toggleInvalidateMapSizes(bool) {
-    this.setState({invalidateMapSizes: bool});
-  }
-
-  // modalSubmit(modalType, data){
-  //   console.log("modalSubmit. Does this do anything anymore???");
-  //   //console.log(data);
-  //   switch (modalType){
-  //     case "AddLayerItem":
-  //       this.addLayer(data);
-  //       break;
-  //     case "AddOverlay":
-  //       this.addOverlay(data);
-  //       break;
-  //     default:
-  //       console.log("mooooo");
-  //   }
-
-  // }
-
-  // renderModal(){
-
-  // }
-
-  openModal(modalType, modalContent, modalOptions){
-    this.setState({
-      modalType: modalType,
-      modalContent: modalContent,
-      modalOptions: modalOptions
-    });
-    this.toggleModal(true);
-
-  }
-  
-  closeModal() {
-    this.toggleModal(false);
-  }
-
-  rebuildTooltip(bool) {
-    //console.log("rebuildTooltip", bool);
-    this.setState({"rebuildTooltip": bool});
-  }
-
-  addOverlay(data) {
-    //console.log("------ ADD OVERLAY ------");
-    let overlays = cloneDeep(this.state.overlays);  
-    var new_layer = data;
-    new_layer.isOverlay = true;
-    new_layer.id = shortid.generate();
-    new_layer.interactive = false;
-    overlays.push(new_layer);
-    this.setState({"overlays": overlays});
-  }
-
-  deleteOverlay(obj) {
-    let id = obj.currentTarget.dataset.overlayId;
-    document.getElementById(id).style.display = "none";
-    let overlays = cloneDeep(this.state.overlays);
-    let matchIndex = findWithAttr(overlays, "id", id);
-    overlays.splice(matchIndex, 1);
-    this.setState({"overlays": overlays});
 
   }
 
@@ -201,16 +109,93 @@ class App extends Component {
     new_layer.id = id;
     new_layer.maxZoom = maxZoom;
     
-    let state = {"viewbarLayers": this.state.viewbarLayers};
+    let state = {'viewbarLayers': this.state.viewbarLayers};
     state.viewbarLayers.push(new_layer);
     this.setState(state);
   }
 
+  addOverlay(data) {
+    //console.log('------ ADD OVERLAY ------');
+    let overlays = cloneDeep(this.state.overlays);  
+    var new_layer = data;
+    new_layer.isOverlay = true;
+    new_layer.id = shortid.generate();
+    new_layer.interactive = false;
+    overlays.push(new_layer);
+    this.setState({'overlays': overlays});
+  }
+
+  calculateDisplayIndexes(layers) {
+    var visibleIndex = 0;
+    let newLayers = layers.map(function(lyr){
+      if (lyr.isToggledOn) {
+        lyr.visibleIndex = visibleIndex;
+        visibleIndex ++;
+      }
+
+      return lyr;
+    });
+    return newLayers;
+  }
+    
+  calculateRowLayers(layers) {
+    let visibleLayers = layers.filter(i => i.isToggledOn);
+    let numberOfLayersOn = visibleLayers.length;
+    visibleLayers.sort(function(a,b){
+      return a.visibleIndex - b.visibleIndex;
+    })
+
+    switch(numberOfLayersOn){
+      case 1:
+      case 2:
+      case 3:
+        visibleLayers.forEach(i => i.row = 'row1');
+        break;
+      case 4:
+        visibleLayers.slice(0,2).forEach(i => i.row = 'row1');
+        visibleLayers.slice(2).forEach(i => i.row = 'row2');
+        break;
+      case 5:
+      case 6:
+        visibleLayers.slice(0,3).forEach(i => i.row = 'row1');
+        visibleLayers.slice(3).forEach(i => i.row = 'row2');
+        break;
+      case 7:
+        visibleLayers.slice(0,4).forEach(i => i.row = 'row1');
+        visibleLayers.slice(4).forEach(i => i.row = 'row2');
+        break;
+      case 8:
+      case 9:
+        visibleLayers.slice(0,3).forEach(i => i.row = 'row1');
+        visibleLayers.slice(3,6).forEach(i => i.row = 'row2');
+        visibleLayers.slice(6).forEach(i => i.row = 'row3');
+        break;
+      
+      default:
+        break;
+    }
+    return visibleLayers;
+  }
+
+  closeModal() {
+    this.toggleModal(false);
+  }
+
+
+  deleteOverlay(obj) {
+    let id = obj.currentTarget.dataset.overlayId;
+    document.getElementById(id).style.display = 'none';
+    let overlays = cloneDeep(this.state.overlays);
+    let matchIndex = findWithAttr(overlays, 'id', id);
+    overlays.splice(matchIndex, 1);
+    this.setState({'overlays': overlays});
+  }
+
   deleteLayer(id) {
     let viewbarLayers = cloneDeep(this.state.viewbarLayers);
-    let matchIndex = findWithAttr(viewbarLayers, "id", id);
+    let matchIndex = findWithAttr(viewbarLayers, 'id', id);
     viewbarLayers.splice(matchIndex, 1);
-    this.setState({"viewbarLayers": viewbarLayers});
+    this.setState({'viewbarLayers': viewbarLayers});
   }
 
   handleItemClick(data) {
@@ -256,69 +241,74 @@ class App extends Component {
     this.setState(newState);
   }
 
-
- updateLayerDisplayIndexesAndRows(layers) {
-  let newLayers = cloneDeep(this.state.layers);
-  layers.forEach((lyr, index) => {
-    var lyrIndex = findWithAttr(newLayers, "id", lyr.id);
-    newLayers[lyrIndex].visibleIndex = index;
-  });
-  newLayers = this.calculateRowLayers(newLayers);
-
-  this.setState({"layers": newLayers});
- }
-
- calculateDisplayIndexes(layers) {
-    var visibleIndex = 0;
-    let newLayers = layers.map(function(lyr){
-      if (lyr.isToggledOn) {
-        lyr.visibleIndex = visibleIndex;
-        visibleIndex ++;
-      }
-
-      return lyr;
+  openModal(modalType, modalContent, modalOptions){
+    this.setState({
+      modalType: modalType,
+      modalContent: modalContent,
+      modalOptions: modalOptions
     });
-    return newLayers;
+    this.toggleModal(true);
   }
-  
-calculateRowLayers(layers) {
-  let visibleLayers = layers.filter(i => i.isToggledOn);
-  let numberOfLayersOn = visibleLayers.length;
-  visibleLayers.sort(function(a,b){
-    return a.visibleIndex - b.visibleIndex;
-  })
 
-  switch(numberOfLayersOn){
-    case 1:
-    case 2:
-    case 3:
-      visibleLayers.forEach(i => i.row = "row1");
-      break;
-    case 4:
-      visibleLayers.slice(0,2).forEach(i => i.row = "row1");
-      visibleLayers.slice(2).forEach(i => i.row = "row2");
-      break;
-    case 5:
-    case 6:
-      visibleLayers.slice(0,3).forEach(i => i.row = "row1");
-      visibleLayers.slice(3).forEach(i => i.row = "row2");
-      break;
-    case 7:
-      visibleLayers.slice(0,4).forEach(i => i.row = "row1");
-      visibleLayers.slice(4).forEach(i => i.row = "row2");
-      break;
-    case 8:
-    case 9:
-      visibleLayers.slice(0,3).forEach(i => i.row = "row1");
-      visibleLayers.slice(3,6).forEach(i => i.row = "row2");
-      visibleLayers.slice(6).forEach(i => i.row = "row3");
-      break;
-    
-    default:
-      break;
+  rebuildTooltip(bool) {
+    //console.log('rebuildTooltip', bool);
+    this.setState({'rebuildTooltip': bool});
   }
-  return visibleLayers;
-}
+
+  toggleDeleteMode(bool) {
+    this.setState({deleteModeActive: bool});
+    this.forceUpdate();
+  }
+
+  /*
+    Toggle fullscreen mode. Used by FullscreenToggle component on the UtilityBar
+  */
+  toggleFullscreen() {
+    let current_val = this.state.isFullscreenEnabled;
+    this.setState({isFullscreenEnabled: !current_val});
+  }
+
+
+  /*
+    Function that is used to move the response received by 
+    the Geocoder component from the Geocoder, up to the App,
+    and then back down to the MapsContainer
+  */
+  transmitGeocode(geocode) {
+    this.setState({'geocode': geocode});
+  }
+
+  toggleInvalidateMapSizes(bool) {
+    this.setState({invalidateMapSizes: bool});
+  }
+
+  /*
+    Toggle map labels
+  */
+  toggleLabels() {
+    let curr = this.state.labelLayerOn;
+    this.setState({'labelLayerOn': !curr});
+  }
+
+  toggleModal(bool) {
+    this.setState({'modalIsOpen': bool});
+  }
+
+  toggleViewbarVisibility() {
+    let current_val = this.state.viewbarVisible;
+    this.setState({viewbarVisible: !current_val});
+    this.toggleInvalidateMapSizes(true);
+  }
+
+  updateLayerDisplayIndexesAndRows(layers) {
+    let newLayers = cloneDeep(this.state.layers);
+    layers.forEach((lyr, index) => {
+      var lyrIndex = findWithAttr(newLayers, 'id', lyr.id);
+      newLayers[lyrIndex].visibleIndex = index;
+    });
+    newLayers = this.calculateRowLayers(newLayers);
+    this.setState({'layers': newLayers});
+  }
 
   render() {
 
@@ -326,23 +316,23 @@ calculateRowLayers(layers) {
 
       <Fullscreen
           enabled={this.state.isFullscreenEnabled}
-          onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}>
+          onChange={isFullscreenEnabled => 
+                    this.setState({isFullscreenEnabled})}>
 
-        <div id="modalRoot"></div>
+        <div id='modalRoot'></div>
      
-        <div className="App">
-          <Modal isOpen={this.state.modalIsOpen} 
-              openModal={this.openModal}
-              closeModal={this.closeModal}
-              modalSubmit={this.modalSubmit}
-              modalContent={this.state.modalContent}
-              modalType={this.state.modalType}
-              modalOptions={this.state.modalOptions}
-              rebuildTooltip={this.rebuildTooltip}
-             
-              />
+        <div className='App'>
 
-          <header className="App-header">
+          <Modal closeModal={this.closeModal}
+              isOpen={this.state.modalIsOpen} 
+              modalContent={this.state.modalContent}
+              modalOptions={this.state.modalOptions}
+              modalSubmit={this.modalSubmit}
+              modalType={this.state.modalType}
+              openModal={this.openModal}
+              rebuildTooltip={this.rebuildTooltip} />
+
+          <header className='App-header'>
             {this.Config.siteTitle}
           </header>
 
@@ -358,48 +348,48 @@ calculateRowLayers(layers) {
           }
 
           {this.state.numberOfLayersOn > 0 && 
-            <MapsContainer layers={this.state.layers} 
-                           overlays={this.state.overlays}
-                           mapCenter={this.mapCenter}
-                           geocodeResult={this.state.geocode}
+            <MapsContainer geocodeResult={this.state.geocode}
                            invalidateMapSizes={this.state.invalidateMapSizes}
-                           toggleInvalidateMapSizes={this.toggleInvalidateMapSizes}
                            labelLayerOn={this.state.labelLayerOn}
+                           layers={this.state.layers} 
+                           mapCenter={this.mapCenter}
                            numberOfLayersOn={this.state.numberOfLayersOn}
+                           overlays={this.state.overlays}
+                           toggleInvalidateMapSizes={this.toggleInvalidateMapSizes}
                            updateLayerDisplayIndexesAndRows={this.updateLayerDisplayIndexesAndRows}
                            />
           }
 
           {this.state.numberOfLayersOn > 0 && 
-            <UtilityBar transmitGeocode={this.transmitGeocode} 
+            <UtilityBar addOverlay={this.addOverlay}
+                        closeModal={this.closeModal}
+                        deleteOverlay={this.deleteOverlay}
+                        isFullscreenEnabled={this.state.isFullscreenEnabled}
+                        labelLayerOn={this.state.labelLayerOn}
+                        openModal={this.openModal}
+                        overlays={this.state.overlays}
                         toggleFullscreen={this.toggleFullscreen}
                         toggleLabels={this.toggleLabels}
                         toggleViewbarVisibility={this.toggleViewbarVisibility}
-                        labelLayerOn={this.state.labelLayerOn}
-                        isFullscreenEnabled={this.state.isFullscreenEnabled}
-                        overlays={this.state.overlays}
+                        transmitGeocode={this.transmitGeocode} 
                         viewbarLayers={this.state.viewbarLayers}
-                        addOverlay={this.addOverlay}
-                        deleteOverlay={this.deleteOverlay}
-                        openModal={this.openModal}
-                        closeModal={this.closeModal}
                         viewbarVisible={this.state.viewbarVisible}
                         />
           }
 
           {this.state.viewbarVisible &&
-            <ViewBar onItemClick={this.handleItemClick}
-                     numberOfLayersOn={this.state.numberOfLayersOn}
-                     toggleModal={this.toggleModal}
-                     openModal={this.openModal}
+            <ViewBar addLayer={this.addLayer}
                      closeModal={this.closeModal}
-                     viewbarLayers={this.state.viewbarLayers}
+                     deleteLayer={this.deleteLayer}
+                     deleteModeActive={this.state.deleteModeActive}
                      newLayer={this.state.newLayer} 
-                     addLayer={this.addLayer}
+                     numberOfLayersOn={this.state.numberOfLayersOn}
+                     onItemClick={this.handleItemClick}
+                     openModal={this.openModal}
                      rebuildTooltip={this.rebuildTooltip}
                      toggleDeleteMode={this.toggleDeleteMode}
-                     deleteModeActive={this.state.deleteModeActive}
-                     deleteLayer={this.deleteLayer}
+                     toggleModal={this.toggleModal}
+                     viewbarLayers={this.state.viewbarLayers}
                      />
           }
         </div>

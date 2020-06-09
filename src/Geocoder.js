@@ -21,32 +21,32 @@ class Geocoder extends Component {
   }
  
   componentDidMount(){
-    //console.log("Geocoder mounted");
+    //console.log('Geocoder mounted');
     let that = this;
     this.map = L.map('hidden-geocoder-map');
     this.geocoderObj = new L.Control.Geocoder(
       {
-        "geocoder": new L.Control.Geocoder.Mapbox(
+        'geocoder': new L.Control.Geocoder.Mapbox(
           this.mapboxToken,
           //By uncommenting geocodingQueryParams below, you can restrict geocoding results
           //to a specific region using country and bbox. By default it is a world-wide geocoder.
           // {
-          //   "geocodingQueryParams": {
-          //     "country": "US",
-          //     "bbox":"-97.35122680664064,35.9357645138553, -96.75178527832033,36.324530335021876"
+          //   'geocodingQueryParams': {
+          //     'country': 'US',
+          //     'bbox':'-97.35122680664064,35.9357645138553, -96.75178527832033,36.324530335021876'
           //   }
           // }
         ),
-        "collapsed": true,
-        "placeholder": this.Config.geocoderSearchPlaceholderText,
-        "suggestMinLength": 3,
-        "queryMinLength": 1,
-        "defaultMarkGeocode": false
+        'collapsed': true,
+        'placeholder': this.Config.geocoderSearchPlaceholderText,
+        'suggestMinLength': 3,
+        'queryMinLength': 1,
+        'defaultMarkGeocode': false
       });
     this.geocoderObj.addTo(this.map);
-    this.geocoderObj.on("markgeocode", e => that.transmitGeocode(e));
+    this.geocoderObj.on('markgeocode', e => that.transmitGeocode(e));
     let container = this.geocoderObj.getContainer();
-    window.document.getElementById("Geocoder").appendChild(container);
+    window.document.getElementById('Geocoder').appendChild(container);
   }
 
   transmitGeocode(geocode){

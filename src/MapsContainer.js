@@ -16,12 +16,12 @@ class MapsContainer extends Component {
     this.invalidateMapSizes = this.invalidateMapSizes.bind(this);
     this.handleGeocode = this.handleGeocode.bind(this);
     this.clearGeocode = this.clearGeocode.bind(this);
-    this.state = {"mapRefs": {}}
+    this.state = {'mapRefs': {}}
     this.passUpRef = this.passUpRef.bind(this);
   }
 
   passUpRef(id, ref, deleteRef) {
-    let mapRefs = {"mapRefs": this.state.mapRefs};
+    let mapRefs = {'mapRefs': this.state.mapRefs};
 
     if (deleteRef) {
       this.unsyncMaps(id);
@@ -36,7 +36,7 @@ class MapsContainer extends Component {
   }
 
  setMapRef(DOMNode) {
-    let mapRefs = {"mapRefs": this.state.mapRefs};
+    let mapRefs = {'mapRefs': this.state.mapRefs};
 
     if (DOMNode) {
       mapRefs.mapRefs[DOMNode.container.id] = DOMNode;
@@ -56,25 +56,25 @@ class MapsContainer extends Component {
     let destRow = draggedLayer.destination.droppableId; 
     let currentLayerIndex, destinationIndex;
     
-    if (currentRow === "row2") {
-      currentLayerIndex = allLayers.filter(i => i.row === "row1").length + draggedLayer.source.index;
+    if (currentRow === 'row2') {
+      currentLayerIndex = allLayers.filter(i => i.row === 'row1').length + draggedLayer.source.index;
     }
-    else if (currentRow === "row3") {
-      currentLayerIndex = allLayers.filter(i => i.row === "row1").length + 
-                          allLayers.filter(i => i.row === "row2").length +
+    else if (currentRow === 'row3') {
+      currentLayerIndex = allLayers.filter(i => i.row === 'row1').length + 
+                          allLayers.filter(i => i.row === 'row2').length +
                           draggedLayer.source.index;
     }
     else {
       currentLayerIndex = draggedLayer.source.index;
     }
 
-    if (destRow === "row2") {
-      destinationIndex = allLayers.filter(i => i.row === "row1").length + 
+    if (destRow === 'row2') {
+      destinationIndex = allLayers.filter(i => i.row === 'row1').length + 
                           draggedLayer.destination.index;
     }
-    else if (destRow === "row3") {
-      destinationIndex = allLayers.filter(i => i.row === "row1").length + 
-                          allLayers.filter(i => i.row === "row2").length +
+    else if (destRow === 'row3') {
+      destinationIndex = allLayers.filter(i => i.row === 'row1').length + 
+                          allLayers.filter(i => i.row === 'row2').length +
                           draggedLayer.destination.index;
     }
     else {
@@ -98,7 +98,7 @@ class MapsContainer extends Component {
     for (let i in mapRefs){ 
     
       map = mapRefs[i].leafletElement;
-      lyr = layers[findWithAttr(layers, "id", i)];
+      lyr = layers[findWithAttr(layers, 'id', i)];
       zoomControlNeeded = lyr.visibleIndex === 0 ? true : false;
       
       if (zoomControlNeeded){
@@ -147,7 +147,7 @@ class MapsContainer extends Component {
   }
 
   clearGeocode() {
-  	this.setState({"geocodeResult": false});
+  	this.setState({'geocodeResult': false});
   }
 
   handleGeocode(geocodeResult){
@@ -163,7 +163,7 @@ class MapsContainer extends Component {
     else {
       randomMap.leafletElement.setView(center, 15);
     }
-    this.setState({"geocodeResult": center});
+    this.setState({'geocodeResult': center});
     setTimeout(this.clearGeocode, 2000);
 
   }
@@ -208,19 +208,19 @@ class MapsContainer extends Component {
     numberRows = new Set(numberRows);
     numberRows = [...numberRows];
 
-    let row1Layers = layers.filter(i => i.row === "row1");
+    let row1Layers = layers.filter(i => i.row === 'row1');
     row1Layers.sort((a, b) => a.visibleIndex - b.visibleIndex);
-    let row2Layers = layers.filter(i => i.row === "row2");
+    let row2Layers = layers.filter(i => i.row === 'row2');
     row2Layers.sort((a, b) => a.visibleIndex - b.visibleIndex);
-    let row3Layers = layers.filter(i => i.row === "row3");
+    let row3Layers = layers.filter(i => i.row === 'row3');
     row2Layers.sort((a, b) => a.visibleIndex - b.visibleIndex);
     
 
     let rows = numberRows.map( (val, index) => { 
       return (
-        <Droppable droppableId={val} key={val} direction="horizontal">
+        <Droppable droppableId={val} key={val} direction='horizontal'>
           {(provided, snapshot) => (
-            <RowContainer className={"Row " + val + (numberRows.length === 2 ? " two-rows" : numberRows.length=== 3 ? " three-rows": "" )} 
+            <RowContainer className={'Row ' + val + (numberRows.length === 2 ? ' two-rows' : numberRows.length=== 3 ? ' three-rows': '')} 
                   provided={provided}
                   snapshot={snapshot}
                   passUpRef={this.passUpRef}
@@ -233,7 +233,7 @@ class MapsContainer extends Component {
                   unsyncMaps={this.unsyncMaps}
                   invalidateMapSizes={this.invalidateMapSizes}
                   overlays={this.props.overlays}
-                  layers={val === "row1" ? row1Layers : val === "row2" ? row2Layers : row3Layers}>
+                  layers={val === 'row1' ? row1Layers : val === 'row2' ? row2Layers : row3Layers}>
             </RowContainer>
           )}  
         </Droppable>

@@ -27,6 +27,7 @@
     "react-fullscreen-crossbrowser": "^1.0.9",
     "react-leaflet": "^2.4.0",
     "react-leaflet-control": "^2.0.0",
+    "react-leaflet-vectorgrid": "^2.2.1",
     "react-leaflet-wmts": "okstate-maps/react-leaflet-wmts",
     "react-modal": "^3.9.1",
     "react-scripts": "^3.1.1",

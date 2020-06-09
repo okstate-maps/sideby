@@ -34,7 +34,7 @@ class ManageOverlays extends Component {
                         <td>{o.display_name}</td>
                         <td>
                             <button data-overlay-id={o.id} onClick={this.props.deleteOverlay}>
-                                <FontAwesomeIcon icon='times-circle' size="2x" />
+                                <FontAwesomeIcon icon='times-circle' size='2x' />
                             </button>
                         </td>
                     </tr>
@@ -44,10 +44,10 @@ class ManageOverlays extends Component {
             </table>
             <ExportLayersToJSONButton layers={currentOverlays} />
             <br/>
-            <button type="button" onClick={this.props.closeModal}>OK</button>
+            <button type='button' onClick={this.props.closeModal}>OK</button>
       </>
 
-    this.props.openModal("ManageOverlays", modalContent, {noSubmit: true});
+    this.props.openModal('ManageOverlays', modalContent, {noSubmit: true});
   }
 
   render() {
@@ -63,8 +63,8 @@ class ManageOverlays extends Component {
             data-event-off='mouseout'
             data-place='top'
             >
-          <div className="icon-label">
-             <FontAwesomeIcon icon='layer-group' size="2x"/>
+          <div className='icon-label'>
+             <FontAwesomeIcon icon='layer-group' size='2x'/>
           </div>
 
         </button>

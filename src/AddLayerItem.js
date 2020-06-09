@@ -20,26 +20,26 @@ class AddLayerItem extends Item {
  
   onClick(e) {
     let modalContent = <AddLayerItemForm {...this.props} />
-    this.props.openModal("AddLayerItem", modalContent);
+    this.props.openModal('AddLayerItem', modalContent);
   }
 
   render() {
     return (
       <button className='add-layer item background-black' 
           onClick={this.onClick}
-          data-tip="Add Layer"
+          data-tip='Add Layer'
           data-for='modal' 
           data-place='top'
           data-event='mouseover'
           data-delay-show='900'
           data-event-off='mouseout'
           data-tip-disable={isMobile} 
-          name="Add Layer"
+          name='Add Layer'
           id='add-layer'>
-        <div className="icon-label">
-          <span className="fa-layers fa-fw fa-5x">
-            <FontAwesomeIcon icon="map"/>
-            <FontAwesomeIcon icon="plus" transform="shrink-5" color="white" />
+        <div className='icon-label'>
+          <span className='fa-layers fa-fw fa-5x'>
+            <FontAwesomeIcon icon='map'/>
+            <FontAwesomeIcon icon='plus' transform='shrink-5' color='white' />
           </span>
         </div>
       </button>

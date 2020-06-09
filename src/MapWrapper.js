@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGripVertical } from '@fortawesome/free-solid-svg-icons';
 import { Map, TileLayer, WMSTileLayer, Marker } from 'react-leaflet';
 import WMTSTileLayer from 'react-leaflet-wmts';
+import VectorGrid from './VectorGrid';
 import WFSLayer from './WFSLayer';
 import EsriTiledMapLayer from './EsriTiledMapLayer';
 import EsriDynamicMapLayer from './EsriDynamicMapLayer';
@@ -27,11 +28,11 @@ class Handle extends React.Component {
   render() {
     const { provided, display_name } = this.props;
     return (
-      <div className="Handle map-title">
-         <span className="Handle-span" {...provided.dragHandleProps}>
-          <FontAwesomeIcon className="Handle-drag-icon" icon="grip-vertical" size="1x"/>
+      <div className='Handle map-title'>
+         <span className='Handle-span' {...provided.dragHandleProps}>
+          <FontAwesomeIcon className='Handle-drag-icon' icon='grip-vertical' size='1x'/>
         </span>
-         &nbsp;{display_name.length > 20 ? display_name.slice(0, 20)+"..." : display_name}
+         &nbsp;{display_name.length > 20 ? display_name.slice(0, 20)+'...' : display_name}
       </div>
     );
   }
@@ -66,10 +67,10 @@ class MapWrapper extends Component {
     // The following parameters are not passed on to the map layer. This
     // was originally implemented to avoid confusing WMS servers, and
     // there may be unintended consequences.
-    this.layerOptionBlacklist = ["minZoom", "maxZoom", "isToggledOn",
-         "visibleIndex","id","start_bounds","thumbnail_path",
-         "display_name","numberOfLayersOn","deleteLayer","closeModal", 
-         "openModal","rebuildTooltip", "leaflet","type","row"];
+    this.layerOptionBlacklist = ['minZoom', 'maxZoom', 'isToggledOn',
+         'visibleIndex','id','start_bounds','thumbnail_path',
+         'display_name','numberOfLayersOn','deleteLayer','closeModal', 
+         'openModal','rebuildTooltip', 'leaflet','layer_type','row'];
     //this.layerOptionBlacklist = [];
   }
 
@@ -94,7 +95,7 @@ class MapWrapper extends Component {
   }
 
   onResize(e) {
-    //console.log("resize");
+    //console.log('resize');
   }
 
   moveend(e) {
@@ -120,7 +121,7 @@ class MapWrapper extends Component {
   }
 
   bboxStringToLatLngBoundsArray(){
-      var a = this.props.layer.start_bounds.split(",");
+      var a = this.props.layer.start_bounds.split(',');
       return [[a[1],a[0]], [a[3],a[2]]];
   }; 
 
@@ -152,27 +153,28 @@ class MapWrapper extends Component {
 
   render() {
     const layer_components = {
-      "EsriFeatureLayer": EsriFeatureLayer,
-      "EsriTiledMapLayer": EsriTiledMapLayer,
-      "EsriImageLayer": EsriImageLayer,
-      "EsriDynamicMapLayer": EsriDynamicMapLayer,
-      "WMSTileLayer": WMSTileLayer,
-      "TileLayer": TileLayer,
-      "WMTSTileLayer": WMTSTileLayer,
-      "WFSLayer": WFSLayer
+      'EsriFeatureLayer': EsriFeatureLayer,
+      'EsriTiledMapLayer': EsriTiledMapLayer,
+      'EsriImageLayer': EsriImageLayer,
+      'EsriDynamicMapLayer': EsriDynamicMapLayer,
+      'TileLayer': TileLayer,
+      'VectorGrid': VectorGrid,
+      'WMSTileLayer': WMSTileLayer,
+      'WMTSTileLayer': WMTSTileLayer,
+      'WFSLayer': WFSLayer
     }
 
     const overlays = this.props.overlays;
     const Overlays = () => {return (
       <>
         {overlays.map(layer => {
-          let Overlay = layer_components[layer.type];
+          let Overlay = layer_components[layer.layer_type];
           return  (
             <Overlay  
                 url={layer.url}
                 key={layer.id} 
-                zIndex={layer.isBasemap ? 1 : 100000}
-                pane={layer.isBasemap ? "tilePane" : "overlayPane"}
+                zIndex={layer.is_basemap ? 1 : 100000}
+                pane={layer.is_basemap ? 'tilePane' : 'overlayPane'}
                 {...deleteArrayofKeys(cloneDeep(layer), this.layerOptionBlacklist)}
                 />
           )
@@ -181,7 +183,7 @@ class MapWrapper extends Component {
     };
     const layer = cloneDeep(this.props.layer);
     let that = this;
-    let Layer = layer_components[layer.type];
+    let Layer = layer_components[layer.layer_type];
     const { provided } = this.props;
 
     // Use ids from layers array to create list of urls
@@ -195,7 +197,7 @@ class MapWrapper extends Component {
                  onResize={this.onResize}
                  maxZoom={layer.maxZoom}
                  onViewportChanged={that.onViewportChanged}
-                 className ={'map'+ this.props.numberLayers + (this.props.isDragging ? "dragging": "nope")}  
+                 className ={'map'+ this.props.numberLayers + (this.props.isDragging ? 'dragging': 'nope')}  
                  id={layer.id}
                  key={layer.id} 
                  viewport={that.viewport}
@@ -228,9 +230,9 @@ class MapWrapper extends Component {
 
                 {this.props.labelLayerOn &&
                   <TileLayer 
-                    key={"labels-" + layer.id}
+                    key={'labels-' + layer.id}
                     url={this.labelLayerUrl}
-                    pane="shadowPane"
+                    pane='shadowPane'
                     zIndex={1000000} />
                 }
                   
@@ -241,6 +243,7 @@ class MapWrapper extends Component {
                   zIndex={1000000}
                   {...deleteArrayofKeys(layer, this.layerOptionBlacklist)}
                 />
+              
 
             </Map>
           </div>
