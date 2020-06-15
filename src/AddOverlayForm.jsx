@@ -1,12 +1,11 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
 import * as Yup from 'yup';
 import TooltipText from './TooltipText';
 import TooltipIcon from './TooltipIcon';
-import {LayerTypeRadioGroup} from './FormComponents';
+import {ConditionalLayerFields, LayerTypeRadioGroup} from './FormComponents';
 import {RegexURL} from './Util';
 import './FormComponents.css';
-
 
 export const AddOverlayForm = (props) => {
   return (
@@ -14,16 +13,20 @@ export const AddOverlayForm = (props) => {
       initialValues={
         {
           url: '',
-          type: '',
+          layer_type: '',
           display_name: '',
-          is_basemap: false
+          is_basemap: false,
+          layers: '',
+          typeNS: '',
+          typeName: '',
+          arcgis: false
         }}
       
       validationSchema={Yup.object({
         url: Yup.string()
           .matches(RegexURL, 'Needs to be a valid URL.')
           .required('Required'), 
-        type: Yup.string()
+        layer_type: Yup.string()
           .required('Required'),
         display_name: Yup.string()
           .required('Required'),
@@ -48,17 +51,20 @@ export const AddOverlayForm = (props) => {
           <ErrorMessage className='error' component='div' name='url' />
         </div>
 
-        <LayerTypeRadioGroup name='type' />
-
+        <LayerTypeRadioGroup name='layer_type' />
+   
+        <ConditionalLayerFields />
+        
         <div className='inputGroup'>
             <label className='textInputLabel' htmlFor='display_name'>Display Name</label>
             <Field name='display_name' type='text' />
             <ErrorMessage className='error' component='div' name='display_name' />
         </div>
+
         
         <div className='inputGroup'>
           <Field id='is_basemap' name='is_basemap' type='checkbox' />
-          <label className='radioGroupLabel' htmlFor='is_basemap'>Treat this layer as a basemap rather than an overlay.</label>
+          <label className='radioGroupLabel' htmlFor='is_basemap'>Place layer beneath others rather than on top.</label>
         </div>
 
         <button type='submit'>OK</button>

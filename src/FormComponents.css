@@ -15,6 +15,8 @@
   padding: 5px;
   margin: 5px;
 }
+
+
 #modalContent .modalHeader {
   font-size: 1.6em;
   font-weight: bold;
@@ -75,4 +77,17 @@
 
 #modalContent .error {
   color: red;
+}
+#modalContent div.conditionalLayerFields {
+  margin-left: 25px;
+}
+#modalContent .inputGroup.conditionalLayerField {
+  font-size: 80%;
+  margin-left: 10px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+h4.conditionalLayerFieldsHeader {
+  font-weight: bold;
 }

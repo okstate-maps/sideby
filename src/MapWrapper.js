@@ -171,8 +171,10 @@ class MapWrapper extends Component {
           let Overlay = layer_components[layer.layer_type];
           return  (
             <Overlay  
+                format='image/png8' 
+                transparent='true'
                 url={layer.url}
-                key={layer.id} 
+                key={layer.id}
                 zIndex={layer.is_basemap ? 1 : 100000}
                 pane={layer.is_basemap ? 'tilePane' : 'overlayPane'}
                 {...deleteArrayofKeys(cloneDeep(layer), this.layerOptionBlacklist)}

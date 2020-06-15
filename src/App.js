@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Fullscreen from 'react-fullscreen-crossbrowser';
 import { cloneDeep } from 'lodash';
 import shortid from 'shortid';
-
+import ReactTooltip from 'react-tooltip';
 import { findWithAttr, moveWithinArray } from './Util';
 import UtilityBar from './UtilityBar';
 import ViewBar from './ViewBar';
@@ -83,12 +83,13 @@ class App extends Component {
 
     //set theming options
     document.title = this.Config.siteTitle;
-    document.documentElement.style.setProperty('--header-color', this.Config.themeHeaderColor);
-    document.documentElement.style.setProperty('--header-font-family', this.Config.themeHeaderFontFamily);
-    document.documentElement.style.setProperty('--label-color', this.Config.themeLabelColor);
-    document.documentElement.style.setProperty('--text-primary-color', this.Config.themeTextPrimaryColor);
-    document.documentElement.style.setProperty('--text-tertiary-color', this.Config.themeTextTertiaryColor);
-    document.documentElement.style.setProperty('--background-color', this.Config.themeBackgroundColor);
+    let globalStyle = document.documentElement.style;
+    globalStyle.setProperty('--header-color', this.Config.themeHeaderColor);
+    globalStyle.setProperty('--header-font-family', this.Config.themeHeaderFontFamily);
+    globalStyle.setProperty('--label-color', this.Config.themeLabelColor);
+    globalStyle.setProperty('--text-primary-color', this.Config.themeTextPrimaryColor);
+    globalStyle.setProperty('--text-tertiary-color', this.Config.themeTextTertiaryColor);
+    globalStyle.setProperty('--background-color', this.Config.themeBackgroundColor);
 
     //for the initial app load, set state using LayersInfo
     let viewbarLayers = window.sideby.LayersInfo.map(item => 
@@ -101,7 +102,6 @@ class App extends Component {
   }
 
   addLayer(data) {
-    //console.log(data);
     let new_layer = data,
       id = shortid.generate(), 
       maxZoom = 20;
@@ -115,7 +115,6 @@ class App extends Component {
   }
 
   addOverlay(data) {
-    //console.log('------ ADD OVERLAY ------');
     let overlays = cloneDeep(this.state.overlays);  
     var new_layer = data;
     new_layer.isOverlay = true;
@@ -179,6 +178,7 @@ class App extends Component {
 
   closeModal() {
     this.toggleModal(false);
+    ReactTooltip.hide(); //in case any tooltips are showing
   }
 
 
@@ -241,6 +241,12 @@ class App extends Component {
     this.setState(newState);
   }
 
+  /*
+  Function to open modal.
+    modalType (string): Not really used anymore, should just remove
+    modalContent (jsx): A Formik form in JSX
+    modalOptions (object): really not used anymore, should remove as well.  
+  */
   openModal(modalType, modalContent, modalOptions){
     this.setState({
       modalType: modalType,
@@ -251,10 +257,12 @@ class App extends Component {
   }
 
   rebuildTooltip(bool) {
-    //console.log('rebuildTooltip', bool);
     this.setState({'rebuildTooltip': bool});
   }
 
+  /*
+    Toggle delete mode for the comparison layer bar.
+  */
   toggleDeleteMode(bool) {
     this.setState({deleteModeActive: bool});
     this.forceUpdate();
@@ -268,16 +276,10 @@ class App extends Component {
     this.setState({isFullscreenEnabled: !current_val});
   }
 
-
   /*
-    Function that is used to move the response received by 
-    the Geocoder component from the Geocoder, up to the App,
-    and then back down to the MapsContainer
+    Toggle that triggers invalidation of map sizes. Only use outside of 
+    MapContainer component is the hide/show viewbar button.
   */
-  transmitGeocode(geocode) {
-    this.setState({'geocode': geocode});
-  }
-
   toggleInvalidateMapSizes(bool) {
     this.setState({invalidateMapSizes: bool});
   }
@@ -290,14 +292,29 @@ class App extends Component {
     this.setState({'labelLayerOn': !curr});
   }
 
+  /*
+    Toggle for handling modal visibility state
+  */
   toggleModal(bool) {
     this.setState({'modalIsOpen': bool});
   }
 
+  /*
+    Toggle for handling layer comparison viewbar state
+  */
   toggleViewbarVisibility() {
     let current_val = this.state.viewbarVisible;
     this.setState({viewbarVisible: !current_val});
     this.toggleInvalidateMapSizes(true);
+  }
+
+  /*
+    Function that is used to move the response received by 
+    the Geocoder component from the Geocoder, up to the App,
+    and then back down to the MapsContainer
+  */
+  transmitGeocode(geocode) {
+    this.setState({'geocode': geocode});
   }
 
   updateLayerDisplayIndexesAndRows(layers) {

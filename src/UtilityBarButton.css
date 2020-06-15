@@ -1,4 +1,4 @@
-#UtilityBar > button {
+#UtilityBar  button {
 	padding: 5px 15px;
 	border-radius: 4px;
 	background-color: white;
@@ -7,14 +7,13 @@
     cursor: pointer;
 }
 
-#UtilityBar > button:hover  {
+#UtilityBar button:hover  {
 	background-color: #e5e5e5;
 }
 
-#UtilityBar > button:active  {
+#UtilityBar button:active  {
 	background-color: #bfbfbf;
 }
-
 
 @media (max-width: 600px) {
 

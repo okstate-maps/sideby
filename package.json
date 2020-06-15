@@ -1,6 +1,6 @@
 {
   "name": "sideby",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "homepage": "https://okstate-maps.github.io/sideby",
   "dependencies": {
@@ -28,7 +28,7 @@
     "react-leaflet": "^2.4.0",
     "react-leaflet-control": "^2.0.0",
     "react-leaflet-vectorgrid": "^2.2.1",
-    "react-leaflet-wmts": "okstate-maps/react-leaflet-wmts",
+    "react-leaflet-wmts": "okstate-maps/react-leaflet-wmts#0.1.0",
     "react-modal": "^3.9.1",
     "react-scripts": "^3.1.1",
     "react-spinners": "^0.6.0",

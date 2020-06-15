@@ -27,7 +27,7 @@ class AddLayerItem extends Item {
     return (
       <button className='add-layer item background-black' 
           onClick={this.onClick}
-          data-tip='Add Layer'
+          data-tip='Add Comparison Layer'
           data-for='modal' 
           data-place='top'
           data-event='mouseover'

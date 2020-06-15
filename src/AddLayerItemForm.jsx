@@ -1,12 +1,11 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
 import * as Yup from 'yup';
 import TooltipText from './TooltipText';
 import TooltipIcon from './TooltipIcon';
-import {LayerTypeRadioGroup} from './FormComponents';
+import {ConditionalLayerFields, LayerTypeRadioGroup} from './FormComponents';
 import {RegexURL} from './Util';
 import './FormComponents.css';
-
 
 
 export const AddLayerItemForm = (props) => {
@@ -18,7 +17,16 @@ export const AddLayerItemForm = (props) => {
           url: '',
           layer_type: '',
           display_name: '',
-          thumbnail_path: ''
+          thumbnail_path: '',
+          layers: '',
+          format: 'image/jpeg',
+          typeNS: '',
+          typeName: '',
+          geometryField: '',
+          maxFeatures: '',
+          arcgis: '',
+          layer: '',
+          tilematrixSet: ''
         }}
       
       validationSchema={Yup.object({
@@ -56,7 +64,9 @@ export const AddLayerItemForm = (props) => {
         </div>
        
        <LayerTypeRadioGroup name='layer_type' />
-        
+       
+       <ConditionalLayerFields name='brrr' />
+      
         <div className='inputGroup'>
             <label className='textInputLabel' 
                    htmlFor='display_name'>
@@ -77,6 +87,17 @@ export const AddLayerItemForm = (props) => {
             <ErrorMessage className='error' 
                           component='div' 
                           name='thumbnail_path' />
+        </div>
+
+        <div className='inputGroup'>
+            <label className='textInputLabel' 
+                   htmlFor='format'>
+                Image Format (optional)
+            </label>
+            <Field name='format' type='text' />
+            <ErrorMessage className='error' 
+                          component='div' 
+                          name='format' />
         </div>
 
         <br/>
