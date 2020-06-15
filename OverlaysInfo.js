@@ -23,6 +23,7 @@
 
     /*
       WMS example layer from Geoserver
+      ogi:ok_24K_DRG_Mosaic
     */
     // {
     //   "url": "http://ogi.state.ok.us/geoserver/wms?",
