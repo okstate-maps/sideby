@@ -13,7 +13,6 @@ class ViewBar extends Component {
     super(props);
     this.handleItemClick = this.handleItemClick.bind(this);
     this.handleScrollButtonClick = this.handleScrollButtonClick.bind(this);
-    //this.addLayer = this.addLayer.bind(this);
     this.scrollTo = this.scrollTo.bind(this);
     this.onWheel = this.onWheel.bind(this);
     this.easeInOutQuad = this.easeInOutQuad.bind(this);
@@ -53,7 +52,6 @@ class ViewBar extends Component {
       this.setState({'layers': layers});
     }
 
-
     if (this.props.viewbarLayers && this.props.viewbarLayers.length !== this.state.layers.length){
       this.setState({'layers': this.props.viewbarLayers});
     }
@@ -74,10 +72,7 @@ class ViewBar extends Component {
         //if the deltamode is anything but pixels (0), use scroll unit to calculate scroll amount
         scrollSize = deltaMode === (1 || 2) ? e.deltaY * scrollUnit: e.deltaY;
 
-    //e.preventDefault();
-    
     elem.scrollLeft = elem.scrollLeft + scrollSize;
-    //this.setState({'scrollLeft': elem.scrollLeft});
   }
 
   scrollTo(direction, duration) {

@@ -1,5 +1,4 @@
-import { fetchJson } from './Util';
- 
+
 export function getThumbnailByLayerType(layerProps){
 
     var layerType = layerProps.layer_type;
@@ -66,7 +65,7 @@ export function guessLayerTypeByUrl(url){
         WMTSTileLayer: /.*wmts.*/i,
         EsriImageLayer: /.*ImageServer.*/,
         EsriFeatureLayer: /.*FeatureServer.*/, //though an individ layer from esri dynam map service can also act as a feature layer...
-        EsriTiledMapLayer: /.*MapServer[\/ ]*$/, 
+        EsriTiledMapLayer: /.*MapServer[/ ]*$/, 
   };
   let submittedUrl = url;
   let newType = null;
@@ -156,7 +155,7 @@ export const vectorTileStyling = {
         color: '#f2b648',
         fillOpacity: 0.2,
         opacity: 0.4,
-//          dashArray: [4, 4]
+        //dashArray: [4, 4]
       },
       bridge: { // mapbox only
         weight: 0.5,
@@ -164,15 +163,15 @@ export const vectorTileStyling = {
         color: '#f2b648',
         fillOpacity: 0.2,
         opacity: 0.4,
-//          dashArray: [4, 4]
+        //dashArray: [4, 4]
       },
       transportation: { // openmaptiles only
         weight: 0.5,
         fillColor: '#f2b648',
         color: '#f2b648',
         fillOpacity: 0.2,
-        opacity: 0.4,
-//          dashArray: [4, 4]
+        opacity: 0.4, 
+        //dashArray: [4, 4]
       },
       transit: {  // nextzen only
         weight: 0.5,
@@ -180,7 +179,7 @@ export const vectorTileStyling = {
         color: '#f2b648',
         fillOpacity: 0.2,
         opacity: 0.4,
-//          dashArray: [4, 4]
+        //dashArray: [4, 4]
       },
       building: {
         fill: true,

@@ -328,11 +328,12 @@ class App extends Component {
   }
 
   render() {
+    let state = this.state;
 
     return (
 
       <Fullscreen
-          enabled={this.state.isFullscreenEnabled}
+          enabled={state.isFullscreenEnabled}
           onChange={isFullscreenEnabled => 
                     this.setState({isFullscreenEnabled})}>
 
@@ -340,23 +341,25 @@ class App extends Component {
      
         <div className='App'>
 
-          <Modal closeModal={this.closeModal}
-              isOpen={this.state.modalIsOpen} 
-              modalContent={this.state.modalContent}
-              modalOptions={this.state.modalOptions}
-              modalSubmit={this.modalSubmit}
-              modalType={this.state.modalType}
-              openModal={this.openModal}
-              rebuildTooltip={this.rebuildTooltip} />
+          <Modal 
+            closeModal={this.closeModal}
+            isOpen={state.modalIsOpen} 
+            modalContent={state.modalContent}
+            modalOptions={state.modalOptions}
+            modalSubmit={this.modalSubmit}
+            modalType={state.modalType}
+            openModal={this.openModal}
+            rebuildTooltip={this.rebuildTooltip} />
 
           <header className='App-header'>
             {this.Config.siteTitle}
           </header>
 
-          <Tooltip rebuildTooltip={this.state.rebuildTooltip}
-                   resetRebuildTooltip={this.rebuildTooltip} />
+          <Tooltip 
+            rebuildTooltip={state.rebuildTooltip}
+            resetRebuildTooltip={this.rebuildTooltip} />
          
-          {this.state.numberOfLayersOn === 0 && 
+          {state.numberOfLayersOn === 0 && 
             <div className='no-maps'>
               <p>
                 {this.Config.welcomeText}
@@ -364,50 +367,53 @@ class App extends Component {
             </div>
           }
 
-          {this.state.numberOfLayersOn > 0 && 
-            <MapsContainer geocodeResult={this.state.geocode}
-                           invalidateMapSizes={this.state.invalidateMapSizes}
-                           labelLayerOn={this.state.labelLayerOn}
-                           layers={this.state.layers} 
-                           mapCenter={this.mapCenter}
-                           numberOfLayersOn={this.state.numberOfLayersOn}
-                           overlays={this.state.overlays}
-                           toggleInvalidateMapSizes={this.toggleInvalidateMapSizes}
-                           updateLayerDisplayIndexesAndRows={this.updateLayerDisplayIndexesAndRows}
-                           />
+          {state.numberOfLayersOn > 0 && 
+            <MapsContainer 
+              geocodeResult={state.geocode}
+              invalidateMapSizes={state.invalidateMapSizes}
+              labelLayerOn={state.labelLayerOn}
+              layers={state.layers} 
+              mapCenter={this.mapCenter}
+              numberOfLayersOn={state.numberOfLayersOn}
+              overlays={state.overlays}
+              toggleInvalidateMapSizes={this.toggleInvalidateMapSizes}
+              updateLayerDisplayIndexesAndRows={this.updateLayerDisplayIndexesAndRows}
+              />
           }
 
-          {this.state.numberOfLayersOn > 0 && 
-            <UtilityBar addOverlay={this.addOverlay}
-                        closeModal={this.closeModal}
-                        deleteOverlay={this.deleteOverlay}
-                        isFullscreenEnabled={this.state.isFullscreenEnabled}
-                        labelLayerOn={this.state.labelLayerOn}
-                        openModal={this.openModal}
-                        overlays={this.state.overlays}
-                        toggleFullscreen={this.toggleFullscreen}
-                        toggleLabels={this.toggleLabels}
-                        toggleViewbarVisibility={this.toggleViewbarVisibility}
-                        transmitGeocode={this.transmitGeocode} 
-                        viewbarLayers={this.state.viewbarLayers}
-                        viewbarVisible={this.state.viewbarVisible}
-                        />
+          {state.numberOfLayersOn > 0 && 
+            <UtilityBar 
+              addOverlay={this.addOverlay}
+              closeModal={this.closeModal}
+              deleteOverlay={this.deleteOverlay}
+              isFullscreenEnabled={state.isFullscreenEnabled}
+              labelLayerOn={state.labelLayerOn}
+              openModal={this.openModal}
+              overlays={state.overlays}
+              toggleFullscreen={this.toggleFullscreen}
+              toggleLabels={this.toggleLabels}
+              toggleViewbarVisibility={this.toggleViewbarVisibility}
+              transmitGeocode={this.transmitGeocode} 
+              viewbarLayers={state.viewbarLayers}
+              viewbarVisible={state.viewbarVisible}
+              />
           }
 
-          {this.state.viewbarVisible &&
-            <ViewBar addLayer={this.addLayer}
-                     closeModal={this.closeModal}
-                     deleteLayer={this.deleteLayer}
-                     deleteModeActive={this.state.deleteModeActive}
-                     newLayer={this.state.newLayer} 
-                     numberOfLayersOn={this.state.numberOfLayersOn}
-                     onItemClick={this.handleItemClick}
-                     openModal={this.openModal}
-                     rebuildTooltip={this.rebuildTooltip}
-                     toggleDeleteMode={this.toggleDeleteMode}
-                     toggleModal={this.toggleModal}
-                     viewbarLayers={this.state.viewbarLayers}
-                     />
+          {state.viewbarVisible &&
+            <ViewBar 
+              addLayer={this.addLayer}
+              closeModal={this.closeModal}
+              deleteLayer={this.deleteLayer}
+              deleteModeActive={state.deleteModeActive}
+              newLayer={state.newLayer} 
+              numberOfLayersOn={state.numberOfLayersOn}
+              onItemClick={this.handleItemClick}
+              openModal={this.openModal}
+              rebuildTooltip={this.rebuildTooltip}
+              toggleDeleteMode={this.toggleDeleteMode}
+              toggleModal={this.toggleModal}
+              viewbarLayers={state.viewbarLayers}
+              />
           }
         </div>
       </Fullscreen>

@@ -6,7 +6,7 @@
 }
 
 #modalContent .textInputLabel {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 #modalContent .inputGroup {
@@ -54,25 +54,25 @@
 
 
 #modalContent div.radioGroup {
-    display: flex;
-    flex-direction: column;
-    margin-top: 13px;
-    margin-bottom: 13px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 13px;
+  margin-bottom: 13px;
 }
 
 /*
   For the parent label of a radio group
 */
 #modalContent .radioGroup > label.radioGroupLabel {
-    padding: 8px 8px 8px 0;
-    font-weight: bold;
+  padding: 8px 8px 8px 0;
+  font-weight: bold;
 }
 
 /*
   Indent individual radio button options
 */
 #modalContent .radioGroup .inputGroup{
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 #modalContent .error {
@@ -83,7 +83,7 @@
 }
 #modalContent .inputGroup.conditionalLayerField {
   font-size: 80%;
-  margin-left: 10px;
+  margin-left: 15px;
   margin-bottom: 0;
   margin-top: 0;
 }

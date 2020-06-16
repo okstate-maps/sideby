@@ -16,7 +16,6 @@ class AddOverlay extends Component {
     this.modalType = 'AddOverlay';
   }
   
-
   onClick(e) {
     let modalContent = <AddOverlayForm onBlur={this.onBlur} {...this.props} />
     this.props.openModal(this.modalType, modalContent);

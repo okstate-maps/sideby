@@ -19,6 +19,7 @@
 		-webkit-appearance: none;
 		/* Style the box. */
 		width: 2.8em;
+		min-width: 2.8em; /* seems needed for flex to work on mobile */
 		height: 2.8em;
 		border: 1px solid #808080;
 		background-color: white;

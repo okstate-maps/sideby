@@ -1,7 +1,8 @@
 import React from 'react';
-import { Field, useFormikContext, useField } from 'formik';
+import { Field, useFormikContext } from 'formik';
+import * as Yup from 'yup';
 import { guessLayerTypeByUrl } from './Helpers';
-import shortid from 'shortid';
+import {RegexURL} from './Util';
 import TooltipText from './TooltipText';
 import TooltipIcon from './TooltipIcon';
 
@@ -14,7 +15,6 @@ export const ConditionalLayerFields = (props) => {
       }
     
     const { values } = useFormikContext();
-    const [field, meta, helpers] = useField(props);
     let layer_type = values.layer_type;
     let layer_fields = layerTypeFields[layer_type];
     
@@ -22,14 +22,18 @@ export const ConditionalLayerFields = (props) => {
 
     return (
       <div className='conditionalLayerFields'>
-      <h4 className='conditionalLayerFieldsHeader'>{layer_type}: Additional Field{layer_fields.length > 1 ? 's' : ''}</h4>
+      <h4 className='conditionalLayerFieldsHeader'>
+        {layer_type}: Additional Field{layer_fields.length > 1 ? 's' : ''}
+      </h4>
       <div>
         <>
           {layer_fields.map(function(field_name) {
             return (
-              <div key={layer_type+'_'+field_name} className='conditionalLayerField inputGroup'>
-                <label className='textInputLabel' htmlFor={field_name}>{field_name}
-                    <Field  name={field_name} type="text"/>
+              <div key={layer_type+'_'+field_name} 
+                   className='conditionalLayerField inputGroup'>
+                <label className='textInputLabel' htmlFor={field_name}>
+                    {field_name}&nbsp;
+                    <Field name={field_name} type="text"/>
                 </label>
               </div>
             )
@@ -40,7 +44,6 @@ export const ConditionalLayerFields = (props) => {
 
     ) 
 }
-
 
 export const LayerTypeRadioGroup = props => {
  const {
@@ -159,5 +162,42 @@ export const LayerTypeRadioGroup = props => {
         </div>
   )
 }
+
+export const AddLayerInitialValues = {
+    url: '',
+    layer_type: '',
+    display_name: '',
+    thumbnail_path: '',
+    layers: '',
+    format: 'image/jpeg',
+    typeNS: '',
+    typeName: '',
+    geometryField: '',
+    maxFeatures: '',
+    arcgis: '',
+    layer: '',
+    tilematrixSet: ''        
+}
+
+export const AddLayerValidationSchema = Yup.object({
+    url: Yup.string()
+      .matches(RegexURL, 'Needs to be a valid URL.')
+      .required('Required'),
+    layer_type: Yup.string()
+      .required('Required'),
+    display_name: Yup.string()
+      .required('Required'),
+    thumbnail_path: Yup.string(),
+    layers: Yup.string(),
+    format: Yup.string(),
+    typeNS: Yup.string(),
+    typeName: Yup.string(),
+    geometryField: Yup.string(),
+    maxFeatures: Yup.string(),
+    arcgis: Yup.boolean(),
+    layer: Yup.string(),
+    tilematrixSet: Yup.string(),
+    is_basemap: Yup.boolean()
+});
 
 export default LayerTypeRadioGroup;

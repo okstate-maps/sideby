@@ -2,7 +2,7 @@
 
 Each layer has the following values:
 
-	type {string}: Required. The Leaflet layer type. Values can be WMSTileLayer, EsriTiledMapLayer, EsriDynamicMapLayer, TileLayer, and others.
+	layer_type {string}: Required. The Leaflet layer type. Values can be WMSTileLayer, EsriTiledMapLayer, EsriDynamicMapLayer, TileLayer, and others.
 		See Leaflet documentation for others. Esri Leaflet has more also, but they need porting to leaflet-react.
 	display_name {string}: Required. What you want to be displayed over the layer's selection tile. Keep it short!
 	url {string}: Required. The url to the service.
@@ -33,21 +33,20 @@ window.sideby.LayersInfo =  //leave this line and
   {
     "layer_type": "EsriImageLayer",
     "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/PS/ImageServer",
-    "display_name": "Esri Image Layer (Landsat)"
-    //"thumbnail_path": "esri_image3.jpg"
+    "display_name": "Esri Image Layer (Landsat)",
+    "thumbnail_path": "landsat.jpg"
   },
 
   {
     "layer_type": "WMTSTileLayer",
     "url": "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/wmts.cgi",
-    "layer": "MODIS_Aqua_SurfaceReflectance_Bands721",
+    "layer": "BlueMarble_ShadedRelief_Bathymetry",
     "thumbnail_path": "wmts.jpg",
-    "display_name": "WMTS Example (MODIS Aqua Bands 7-2-1)",
+    "display_name": "WMTS Example (Blue Marble)",
     "tilematrixSet": "GoogleMapsCompatible_Level8",
     //"start_bounds": "-74.447928,40.442617,-73.512717,40.988043",
     "format": "image/jpeg"
   }, 
-
 
   {
     "layer_type": "WMTSTileLayer",
