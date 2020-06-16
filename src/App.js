@@ -11,6 +11,7 @@ import Tooltip from './Tooltip';
 import MapsContainer from './MapsContainer';
 import { LayersInfoNYC, LayersInfoStillwater} from './LayersInfoDemo';
 import './App.css';
+import './leaflet.css';
 
 class App extends Component {
 
@@ -180,7 +181,6 @@ class App extends Component {
     this.toggleModal(false);
     ReactTooltip.hide(); //in case any tooltips are showing
   }
-
 
   deleteOverlay(obj) {
     let id = obj.currentTarget.dataset.overlayId;

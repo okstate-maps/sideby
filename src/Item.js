@@ -30,7 +30,7 @@ class Item extends Component {
 
   resolveThumbnail() {
 
-    var local_path = process.env.PUBLIC_URL + '/assets/images/';
+    var local_path = process.env.PUBLIC_URL + '/assets/layer_thumbnails/';
     
     if (this.props.thumbnail_path){
     
