@@ -2,7 +2,7 @@
   "name": "sideby",
   "version": "0.2.0",
   "private": true,
-  "homepage": "https://okstate-maps.github.io/sideby",
+  "homepage": ".",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
