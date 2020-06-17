@@ -1,5 +1,9 @@
 window.sideby.Config = {
 
+
+  //Google Analytics Tracking ID
+  "gaTrackingId": "UA-88563800-4",
+
   // The maximum number of layers that can be displayed at a time. 
   // Pick a number from From 1 - 9, though why would you want 1?
   "maxLayers": 9, 
@@ -30,8 +34,7 @@ window.sideby.Config = {
   //theming options
   "themeHeaderColor": "#222",
   "themeHeaderFontFamily": '"Montserrat", "sans-serif"',
-  "themeLabelColor": "rgb(208, 208, 208)",
-  "themeTextPrimaryColor": "#FE5c00",
-  "themeTextTertiaryColor": "rgb(228, 228, 228)",
+  "themeScrollButtonHoverColor": "rgb(208, 208, 208)",
+  "themeScrollButtonColor": "rgb(228, 228, 228)",
   "themeBackgroundColor": "rgb(215, 215, 215)"
 };

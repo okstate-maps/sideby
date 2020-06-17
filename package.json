@@ -25,6 +25,7 @@
     "react-beautiful-dnd": "^12.2.0",
     "react-dom": "^16.8.0",
     "react-fullscreen-crossbrowser": "^1.0.9",
+    "react-ga": "^3.0.0",
     "react-leaflet": "^2.4.0",
     "react-leaflet-control": "^2.0.0",
     "react-leaflet-vectorgrid": "^2.2.1",
