@@ -87,9 +87,8 @@ class App extends Component {
     let globalStyle = document.documentElement.style;
     globalStyle.setProperty('--header-color', this.Config.themeHeaderColor);
     globalStyle.setProperty('--header-font-family', this.Config.themeHeaderFontFamily);
-    globalStyle.setProperty('--label-color', this.Config.themeLabelColor);
-    globalStyle.setProperty('--text-primary-color', this.Config.themeTextPrimaryColor);
-    globalStyle.setProperty('--text-tertiary-color', this.Config.themeTextTertiaryColor);
+    globalStyle.setProperty('--scroll-button-hover-color', this.Config.themeScrollButtonHoverColor);
+    globalStyle.setProperty('--scroll-button-color', this.Config.themeScrollButtonColor);
     globalStyle.setProperty('--background-color', this.Config.themeBackgroundColor);
 
     //for the initial app load, set state using LayersInfo

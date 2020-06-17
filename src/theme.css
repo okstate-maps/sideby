@@ -6,8 +6,7 @@
 :root {
     --header-color: #222;
     --header-font-family: "Montserrat", "sans-serif";
-    --label-color: rgb(208, 208, 208);
-    --text-primary-color: #FE5c00;
-    --text-tertiary-color: rgb(228, 228, 228);
+    --scroll-button-hover-color: rgb(208, 208, 208);
+    --scroll-button-color: rgb(228, 228, 228);
     --background-color: rgb(215, 215, 215);
 }

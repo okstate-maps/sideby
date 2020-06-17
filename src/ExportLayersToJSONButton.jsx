@@ -5,7 +5,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 
-
 class ExportLayersToJSONButton extends Component {
 
   constructor(props) {

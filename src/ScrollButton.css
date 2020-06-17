@@ -24,7 +24,7 @@
   font-size: 25px;
   border-radius: 50%;
   border: solid black 1px;
-  background-color: var(--text-tertiary-color);
+  background-color: var(--scroll-button-color);
   color: black;
   box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
 	transition: background-color 0.1s linear;
@@ -40,7 +40,7 @@
 }
 
 .ScrollButton button:hover {
-  background-color: var(--label-color);
+  background-color: var(--scroll-button-hover-color);
   box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
   transition: background-color 0.1s linear;
   transition: box-shadow 0.1s linear; 
