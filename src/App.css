@@ -76,7 +76,7 @@ table {
 
 }
 
-@media (max-width: 461px) {
+@media (max-width: 561px) {
 
   .App-header {
     line-height: 1;
@@ -85,14 +85,14 @@ table {
     font-size: 1.5em;
   }
 }
-@media (min-width: 462px) and (max-width: 584px) {
+@media (min-width: 562px) and (max-width: 684px) {
   .App-header {
     font-size: 1.7em;
     letter-spacing: 2px;
   }
 }
 
-@media (min-width: 585px) and (max-width: 850px) {
+@media (min-width: 685px) and (max-width: 850px) {
 
   .App-header {
     font-size:2.4em;
