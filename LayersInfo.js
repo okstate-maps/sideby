@@ -34,7 +34,7 @@ window.sideby.LayersInfo =  //leave this line and
     "layer_type": "EsriImageLayer",
     "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/PS/ImageServer",
     "display_name": "Esri Image Layer (Landsat)",
-    "thumbnail_path": "landsat.jpg"
+    "thumbnail_path": "landsat.JPG"
   },
 
   {
