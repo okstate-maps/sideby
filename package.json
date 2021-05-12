@@ -18,7 +18,7 @@
     "leaflet-loading": "^0.1.24",
     "leaflet-wfst": "okstate-maps/leaflet-wfst#v2.0.1-beta.28",
     "leaflet.sync": "https://github.com/okstate-maps/Leaflet.Sync.git",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "prop-types": "^15.6.0",
     "react": "^16.8.0",
     "react-app-polyfill": "^1.0.2",
