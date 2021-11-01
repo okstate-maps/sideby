@@ -23,6 +23,13 @@ Note: Layers need to be capable of serving in Web Mercator (EPSG: 3857). For Esr
 window.sideby.LayersInfo =  //leave this line and 
 [
   {
+    "layer_type": "TileLayer",
+    "url": "https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}@2x.jpg90?access_token={access_token}",
+    "display_name": "Mapbox Satellite",
+    "access_token": "pk.eyJ1Ijoia3JkeWtlIiwiYSI6Ik15RGcwZGMifQ.IR_NpAqXL1ro8mFeTIdifg",
+    "thumbnail_path": "mapbox_satellite.jpg"
+  },
+  {
     "layer_type": "WMSTileLayer",
     "layers": "gpw-v3:gpw-v3-population-density_2000",
     "url": "https://sedac.ciesin.columbia.edu/geoserver/wms",
@@ -34,7 +41,7 @@ window.sideby.LayersInfo =  //leave this line and
     "layer_type": "EsriImageLayer",
     "url": "https://landsat.arcgis.com/arcgis/rest/services/Landsat/PS/ImageServer",
     "display_name": "Esri Image Layer (Landsat)",
-    "thumbnail_path": "landsat.JPG"
+    "thumbnail_path": "landsat.jpg"
   },
 
   {
