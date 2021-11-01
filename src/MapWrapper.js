@@ -158,7 +158,6 @@ class MapWrapper extends Component {
       'EsriImageLayer': EsriImageLayer,
       'EsriDynamicMapLayer': EsriDynamicMapLayer,
       'TileLayer': TileLayer,
-      'VectorGrid': VectorGrid,
       'WMSTileLayer': WMSTileLayer,
       'WMTSTileLayer': WMTSTileLayer,
       'WFSLayer': WFSLayer
