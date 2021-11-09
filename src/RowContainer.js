@@ -22,6 +22,7 @@ class RowContainer extends React.Component {
 		        layerIndex={index}
 		        provided={provided}
 		        isDragging={snapshot.isDragging}
+				passUpMapInstance={this.props.passUpMapInstance}
 		        passUpRef={this.props.passUpRef}
 		        mapRef={this.props.mapRef}
 		        syncMaps={this.props.syncMaps}

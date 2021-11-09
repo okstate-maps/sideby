@@ -16,34 +16,27 @@ class MapsContainer extends Component {
     this.invalidateMapSizes = this.invalidateMapSizes.bind(this);
     this.handleGeocode = this.handleGeocode.bind(this);
     this.clearGeocode = this.clearGeocode.bind(this);
-    this.state = {'mapRefs': {}}
-    this.passUpRef = this.passUpRef.bind(this);
+    this.state = {'mapRefs': {}, 'mapInstances': {}}
+    this.passUpMapInstance = this.passUpMapInstance.bind(this);
+
   }
 
-  passUpRef(id, ref, deleteRef) {
-    let mapRefs = {'mapRefs': this.state.mapRefs};
+  passUpMapInstance(id, instance, deleteInstance) {
+    let mapInstances = {'mapInstances': this.state.mapInstances};
 
-    if (deleteRef) {
+    if (deleteInstance) {
       this.unsyncMaps(id);
-      delete(mapRefs.mapRefs[id]);
-      this.setState(mapRefs);
+      delete(mapInstances.mapInstances[id]);
+  
     }
     else {
+      mapInstances.mapInstances[id] = instance;
       this.manageZoomControls();
       this.syncMaps();
     }
-    this.invalidateMapSizes();
-  }
 
- setMapRef(DOMNode) {
-    let mapRefs = {'mapRefs': this.state.mapRefs};
-
-    if (DOMNode) {
-      mapRefs.mapRefs[DOMNode.container.id] = DOMNode;
-      this.setState(mapRefs);
+    this.setState(mapInstances);
     }
-  }
-
 
  onDragEnd(draggedLayer) {
 
@@ -91,14 +84,16 @@ class MapsContainer extends Component {
 
 
   manageZoomControls() { 
-    let mapRefs = this.state.mapRefs;
+    let mapInstances = this.state.mapInstances;
     let layers = this.props.layers;
     var map, lyr, zoomControlNeeded;
 
-    for (let i in mapRefs){ 
+    for (let i in mapInstances){ 
     
-      map = mapRefs[i].leafletElement;
+      map = mapInstances[i];
       lyr = layers[findWithAttr(layers, 'id', i)];
+      
+      if (lyr){
       zoomControlNeeded = lyr.visibleIndex === 0 ? true : false;
       
       if (zoomControlNeeded){
@@ -113,33 +108,35 @@ class MapsContainer extends Component {
 
       }
     }
+    }
 
   }
 
   invalidateMapSizes() {
-    let mapRefs = this.state.mapRefs;
-    for (let i in mapRefs){ 
-      mapRefs[i].leafletElement.invalidateSize();
+    let mapInstances = this.state.mapInstances;
+    for (let i in mapInstances){ 
+      mapInstances[i].invalidateSize();
     }
   }
 
-  unsyncMaps(ref_id) {
-    let mapRefs = this.state.mapRefs;
-    for (var i in mapRefs){
-      if (i !== ref_id && mapRefs[ref_id]){
-          mapRefs[ref_id].leafletElement.unsync(mapRefs[i].leafletElement);
-          mapRefs[i].leafletElement.unsync(mapRefs[ref_id].leafletElement);
+  unsyncMaps(id) {
+    let mapInstances = this.state.mapInstances;
+    console.log(mapInstances);
+    for (var i in mapInstances){
+      if (i !== id && mapInstances[id]){
+          mapInstances[id].unsync(mapInstances[i]);
+          mapInstances[i].unsync(mapInstances[id]);
       }
     }
   }
 
   syncMaps() {
-    let mapRefs = this.state.mapRefs;
-    for (var i in mapRefs){
-      for (var j in mapRefs){
-        if (i !== j && !mapRefs[i].leafletElement.isSynced(mapRefs[j].leafletElement)){
-          mapRefs[i].leafletElement.sync(
-            mapRefs[j].leafletElement, {syncCursor: true}
+    let mapInstances = this.state.mapInstances;
+    for (var i in mapInstances){
+      for (var j in mapInstances){
+        if (i !== j && !mapInstances[i].isSynced(mapInstances[j])){
+          mapInstances[i].sync(
+            mapInstances[j], {syncCursor: true}
           );           
         }
       }
@@ -152,16 +149,16 @@ class MapsContainer extends Component {
 
   handleGeocode(geocodeResult){
   	//maybe move this to mapwrapper? other than setting state w/ center that is
-  	let randomMap = Object.entries(this.state.mapRefs)[0][1];
+  	let randomMap = Object.entries(this.state.mapInstances)[0][1];
     let bbox = this.props.geocodeResult.geocode.bbox;
     let center = this.props.geocodeResult.geocode.center;
 
     if (bbox._northEast.lat !== bbox._southWest.lat){
-      randomMap.leafletElement.fitBounds(bbox);
+      randomMap.fitBounds(bbox);
     }
 
     else {
-      randomMap.leafletElement.setView(center, 15);
+      randomMap.setView(center, 15);
     }
     this.setState({'geocodeResult': center});
     setTimeout(this.clearGeocode, 2000);
@@ -224,6 +221,7 @@ class MapsContainer extends Component {
                   provided={provided}
                   snapshot={snapshot}
                   passUpRef={this.passUpRef}
+                  passUpMapInstance={this.passUpMapInstance}
 				          geocodeResult={this.state.geocodeResult}
 				          clearGeocode={this.clearGeocode}
                   mapRef={this.setMapRef} 

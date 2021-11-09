@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import {createPathComponent} from '@react-leaflet/core';
-import L from 'leaflet';
-import 'leaflet-wfst';
+import { createLayerComponent, LeafletContextInterface, LayerProps  } from '@react-leaflet/core';
+import WMTS from './wmts';
 
 const updateOnCanvas = (map) => {
      
@@ -14,7 +13,7 @@ const createLeafletElement = (props, context) => {
     }
   }, []);
   
-  const instance = new L.WFS(props);    
+  const instance = new WMTS(props.url, props);    
   return { instance, context }; 
 }
 
@@ -24,5 +23,5 @@ const updateLeafletElement = (instance, props, prevProps) => {
 }
 
 // Pass the control instance to the React-Leaflet createControlComponent hook:
-const WFSLayer = createPathComponent(createLeafletElement, updateLeafletElement);
-export default WFSLayer;
+const WMTSTileLayer = createLayerComponent(createLeafletElement, updateLeafletElement);
+export default WMTSTileLayer;

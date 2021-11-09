@@ -3,16 +3,20 @@ import { cloneDeep } from 'lodash';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGripVertical } from '@fortawesome/free-solid-svg-icons';
-import { Map, TileLayer, WMSTileLayer, Marker } from 'react-leaflet';
-import WMTSTileLayer from 'react-leaflet-wmts';
-import VectorGrid from './VectorGrid';
+import 'leaflet.sync';
+import 'leaflet-loading';
+import { MapContainer, TileLayer, WMSTileLayer, Marker, CircleMarker} from 'react-leaflet';
+import WMTSTileLayer from './Leaflet.WMTS/index';
 import WFSLayer from './WFSLayer';
 import EsriTiledMapLayer from './EsriTiledMapLayer';
 import EsriDynamicMapLayer from './EsriDynamicMapLayer';
 import EsriFeatureLayer from './EsriFeatureLayer';
 import EsriImageLayer from './EsriImageLayer';
 import LeafletLoadingControl from './LeafletLoadingControl';
-import 'leaflet.sync';
+import { BasemapLayer, FeatureLayer, TiledMapLayer, ImageMapLayer, 
+  DynamicMapLayer} from 'react-esri-leaflet';
+import VectorBasemapLayer from "react-esri-leaflet/plugins/VectorBasemapLayer";
+import VectorTileLayer from "react-esri-leaflet/plugins/VectorTileLayer";
 import { deleteArrayofKeys } from './Util';
 // import {mapboxToken, 
 //         labelLayerUrl, 
@@ -58,7 +62,7 @@ class MapWrapper extends Component {
     this.unsyncMaps = this.unsyncMaps.bind(this);
     this.moveend = this.moveend.bind(this);
     this.onViewportChanged = this.onViewportChanged.bind(this);
-    this.passUpRef = this.passUpRef.bind(this);
+    this.passUpMapInstance = this.passUpMapInstance.bind(this);
     this.onResize = this.onResize.bind(this);
     this.onGeocodeClick = this.onGeocodeClick.bind(this);
     this.bboxStringToLatLngBoundsArray = this.bboxStringToLatLngBoundsArray.bind(this);
@@ -71,53 +75,66 @@ class MapWrapper extends Component {
          'visibleIndex','id','start_bounds','thumbnail_path',
          'display_name','numberOfLayersOn','deleteLayer','closeModal', 
          'openModal','rebuildTooltip', 'leaflet','layer_type','row'];
-    //this.layerOptionBlacklist = [];
-  }
+
+    this.layer_components = {
+      'EsriFeatureLayer': FeatureLayer,
+      'EsriTiledMapLayer': TiledMapLayer,
+      'EsriImageLayer': ImageMapLayer,
+      'EsriDynamicMapLayer': DynamicMapLayer,
+      'EsriVectorBasemapLayer': VectorBasemapLayer,
+      'EsriVectorTileLayer': VectorTileLayer,
+      'TileLayer': TileLayer,
+      'WFSLayer': WFSLayer,
+      'WMSTileLayer': WMSTileLayer,
+      'WMTSTileLayer': WMTSTileLayer
+    };
+  
+    this.Overlays = () => {return (
+    <>
+      {this.props.overlays.map(layer => {
+        let Overlay = this.layer_components[layer.layer_type];
+        return  (
+          <Overlay  
+              format='image/png8' 
+              transparent='true'
+              url={layer.url}
+              key={layer.id}
+              zIndex={layer.is_basemap ? 1 : 100000}
+              pane={layer.is_basemap ? 'tilePane' : 'overlayPane'}
+              {...deleteArrayofKeys(cloneDeep(layer), this.layerOptionBlacklist)}
+              />
+        )
+      })}
+    </>)
+  };
+    }
 
   componentWillUnmount(){
-    this.passUpRef(this.props.layer.id, this.props.mapRef, true);
+    this.passUpMapInstance(this.props.layer.id, this.mapRef, true);
+  }
+
+  componentDidMount(prevProps, prevState){}
   
-    }
+  componentDidUpdate(prevProps, prevState) {}
 
- componentDidMount(prevProps, prevState){
-    this.passUpRef(this.props.layer.id, this.props.mapRef);
-  }
+  onResize(e) {}
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return true;
-  // }
-  
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.layer.visibleIndex !== 
-          this.props.layer.visibleIndex) {
-
-    }
-  }
-
-  onResize(e) {
-    //console.log('resize');
-  }
-
-  moveend(e) {
-
-  }
+  moveend(e) {}
   
   invalidateMapSizes() {
     this.props.invalidateMapSizes();
   }
   
-
-  unsyncMaps(ref_id) {
-     this.props.unsyncMaps(ref_id);
+  unsyncMaps(instance_id) {
+     this.props.unsyncMaps(instance_id);
   }
 
   syncMaps() {
     this.props.syncMaps();
   }
 
-  passUpRef(id, ref, deleteRef=false) {
-    this.setState({mapRef: ref});
-    this.props.passUpRef(id, ref, deleteRef);
+  passUpMapInstance(id, instance, deleteInstance=false) {
+    this.props.passUpMapInstance(id, instance, deleteInstance);
   }
 
   bboxStringToLatLngBoundsArray(){
@@ -152,39 +169,14 @@ class MapWrapper extends Component {
   }
 
   render() {
-    const layer_components = {
-      'EsriFeatureLayer': EsriFeatureLayer,
-      'EsriTiledMapLayer': EsriTiledMapLayer,
-      'EsriImageLayer': EsriImageLayer,
-      'EsriDynamicMapLayer': EsriDynamicMapLayer,
-      'TileLayer': TileLayer,
-      'WMSTileLayer': WMSTileLayer,
-      'WMTSTileLayer': WMTSTileLayer,
-      'WFSLayer': WFSLayer
-    }
+    //console.log("Render:MapWrapper ");
+   
 
-    const overlays = this.props.overlays;
-    const Overlays = () => {return (
-      <>
-        {overlays.map(layer => {
-          let Overlay = layer_components[layer.layer_type];
-          return  (
-            <Overlay  
-                format='image/png8' 
-                transparent='true'
-                url={layer.url}
-                key={layer.id}
-                zIndex={layer.is_basemap ? 1 : 100000}
-                pane={layer.is_basemap ? 'tilePane' : 'overlayPane'}
-                {...deleteArrayofKeys(cloneDeep(layer), this.layerOptionBlacklist)}
-                />
-          )
-        })}
-      </>)
-    };
-    const layer = cloneDeep(this.props.layer);
+    const Overlays = this.Overlays;    
+    var layer = cloneDeep(this.props.layer);
     let that = this;
-    let Layer = layer_components[layer.layer_type];
+    let Layer = this.layer_components[layer.layer_type];
+    var layerId = layer.id;
     const { provided } = this.props;
 
     // Use ids from layers array to create list of urls
@@ -192,37 +184,40 @@ class MapWrapper extends Component {
               {...provided.draggableProps}
               ref={provided.innerRef}>
               <Handle provided={provided} display_name={layer.display_name} />
-              <Map ref={this.props.mapRef}
+              <MapContainer 
                  minZoom={this.Config.mapMinZoom}
                  bounds={this.checkLayerBounds()}
                  onResize={this.onResize}
                  maxZoom={layer.maxZoom}
                  onViewportChanged={that.onViewportChanged}
-                 className ={'map'+ this.props.numberLayers + (this.props.isDragging ? 'dragging': 'nope')}  
-                 id={layer.id}
-                 key={layer.id} 
-                 viewport={that.viewport}
+                 className ={'map'+ this.props.numberLayers + (this.props.isDragging ? 'dragging': '')}  
+                 id={layerId}
+                 key={layerId} 
+                 center={this.viewport.center}
+                 zoom={this.viewport.zoom}
                  zoomControlAdded={true}
                  loadingControl={true}
-                 preferCanvas={true} //fixes window resizing bug, for now...
+                 preferCanvas={false} //fixes window resizing bug, for now...
+                 whenCreated={(mapInstance) => {this.passUpMapInstance(layerId, mapInstance)}}
                  >
-                <LeafletLoadingControl opts={{
-                    position: 'bottomleft',
-                    spinjs: true,
-                    separate: true,
-                    //delayIndicator: 1000, //this doesn't actually seem to work...
-                    spin:{
-                      lines: 15,
-                      length: 10,
-                      width: 3,
-                      radius: 15,
-                      color: '#ffffff',
+
+                <LeafletLoadingControl 
+                    position='bottomleft'
+                    spinjs={true}
+                    separate={true}
+                    //delayIndicator=1000, //this doesn't actually seem to work...
+                    spin={{
+                      lines:15,
+                      length:10,
+                      width:3,
+                      radius:15,
+                      color:'#ffffff',
                       left:'100%',
                       top:'-25%', 
-                      fadeColor: 'black',
-                      shadow: '0 0 5px black'
-                    }
-                  }}/>
+                      fadeColor:'black',
+                      shadow:'0 0 5px black'
+                    }}
+                  /> 
 
                 {this.props.geocodeResult &&
                   <Marker position={this.props.geocodeResult}
@@ -246,12 +241,11 @@ class MapWrapper extends Component {
                 />
               
 
-            </Map>
+            </MapContainer>
           </div>
     )
   }
 }  
 
-
-export default React.forwardRef((props, ref) => <MapWrapper mapRef={ref} {...props} />);
-
+//export default React.forwardRef((props, ref) => <MapWrapper mapRef={ref} {...props} />);
+export default MapWrapper;

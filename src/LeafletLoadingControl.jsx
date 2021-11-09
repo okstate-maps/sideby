@@ -1,16 +1,15 @@
-import { MapControl, withLeaflet } from 'react-leaflet';
+import { createControlComponent  } from '@react-leaflet/core';
 import L from 'leaflet';
 import './Leaflet.loading/Control.Loading.js';
-import './Leaflet.loading/Control.Loading.css';
 import './LeafletLoadingControl.css';
 
+const createControlLayer = (props) => {
+  // Set up an instance of the control:
+  const controlInstance = new L.Control.loading(props);
+  return controlInstance;
+};
 
-class LeafletLoadingControl extends MapControl {
+// Pass the control instance to the React-Leaflet createControlComponent hook:
+const LeafletLoadingControl = createControlComponent(createControlLayer);
 
-  createLeafletElement(props) {
-  	let opts = props.opts;
-    return new L.Control.Loading(opts); 
-  }
-}
-
-export default withLeaflet(LeafletLoadingControl);
+export default LeafletLoadingControl;
