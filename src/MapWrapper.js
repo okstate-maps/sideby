@@ -8,10 +8,6 @@ import 'leaflet-loading';
 import { MapContainer, TileLayer, WMSTileLayer, Marker, CircleMarker} from 'react-leaflet';
 import WMTSTileLayer from './Leaflet.WMTS/index';
 import WFSLayer from './WFSLayer';
-import EsriTiledMapLayer from './EsriTiledMapLayer';
-import EsriDynamicMapLayer from './EsriDynamicMapLayer';
-import EsriFeatureLayer from './EsriFeatureLayer';
-import EsriImageLayer from './EsriImageLayer';
 import LeafletLoadingControl from './LeafletLoadingControl';
 import { BasemapLayer, FeatureLayer, TiledMapLayer, ImageMapLayer, 
   DynamicMapLayer} from 'react-esri-leaflet';
