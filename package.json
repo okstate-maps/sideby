@@ -4,23 +4,23 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
+    "@craco/craco": "^6.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
-    "axios": "^0.21.2",
+    "axios": "^0.24.0",
     "clipboard": "^2.0.4",
     "css-vars-ponyfill": "^2.1.1",
-    "esri-leaflet": "3.0.3",
-    "esri-leaflet-vector": "^3.1.0",
+    "esri-leaflet": "^3.0.1",
+    "esri-leaflet-vector": "^3.1.1",
     "formik": "^2.0.6",
     "gh-pages": "^1.1.0",
     "leaflet": "1.7.1",
     "leaflet-control-geocoder": "^1.6.0",
     "leaflet-loading": "^0.1.24",
     "leaflet-wfst": "okstate-maps/leaflet-wfst#v2.0.1-beta.28",
-    "leaflet.sync": "https://github.com/okstate-maps/Leaflet.Sync.git",
+    "leaflet.sync": "okstate-maps/leaflet.sync",
     "lodash": "^4.17.21",
-    "mapbox-gl": "^2.5.1",
     "prop-types": "^15.6.0",
     "react": "^17.0.2",
     "react-app-polyfill": "^1.0.2",
@@ -45,9 +45,9 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "browserslist": [
@@ -55,5 +55,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@welldone-software/why-did-you-render": "^6.2.1"
+  }
 }
