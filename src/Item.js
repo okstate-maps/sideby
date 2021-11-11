@@ -25,7 +25,7 @@ class Item extends Component {
  
   componentDidMount(state,props){
     this.props.rebuildTooltip();
-    this.resolveThumbnail();
+    this.resolveThumbnail();    
   }
 
   resolveThumbnail() {
@@ -34,7 +34,8 @@ class Item extends Component {
     
     if (this.props.thumbnail_path){
     
-      if (this.props.thumbnail_path.startsWith('http')){
+      if (this.props.thumbnail_path.startsWith('http') ||
+          this.props.thumbnail_path.startsWith('data:image') ){
     
         this.setState({thumbnail_path: this.props.thumbnail_path});
     

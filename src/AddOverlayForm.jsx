@@ -21,7 +21,7 @@ export const AddOverlayForm = (props) => {
     >
 
       <Form>
-      <h3 className='modalHeader'>Add New Overlay</h3>
+        <h3 className='modalHeader'>Add New Overlay</h3>
         <label className='textInputLabel' htmlFor='url'>Url&nbsp;</label>
         <TooltipIcon tooltipName={TooltipText.LayerUrl}/>
 

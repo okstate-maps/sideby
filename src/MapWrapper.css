@@ -1,3 +1,9 @@
+div.sync-icon {
+	outline-color:red;
+	width:20px;
+	height:20px;
+	}
+
 .no-maps {
 	width:60%;
 	max-width: 60%;

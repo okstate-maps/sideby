@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 // import * as L from 'leaflet';
 import { isEqual } from 'lodash';
 import RowContainer from './RowContainer';
+
+import 'leaflet.sync';
 import { findWithAttr, moveWithinArray, compareArrays } from './Util';
 
-class MapsContainer extends Component {
-
+class MapsContainer extends PureComponent {
+  static whyDidYouRender = true;
   constructor(props) {
     super(props);
     this.onDragEnd = this.onDragEnd.bind(this);
@@ -15,14 +17,14 @@ class MapsContainer extends Component {
     this.invalidateMapSizes = this.invalidateMapSizes.bind(this);
     this.handleGeocode = this.handleGeocode.bind(this);
     this.clearGeocode = this.clearGeocode.bind(this);
-    this.state = {'mapRefs': {}, 'mapInstances': {}}
+    this.state = {'mapInstances': {}}
     this.passUpMapInstance = this.passUpMapInstance.bind(this);
 
   }
 
   passUpMapInstance(id, instance, deleteInstance) {
     let mapInstances = {'mapInstances': this.state.mapInstances};
-
+    
     if (deleteInstance) {
       this.unsyncMaps(id);
       delete(mapInstances.mapInstances[id]);
@@ -35,7 +37,7 @@ class MapsContainer extends Component {
     }
 
     this.setState(mapInstances);
-    }
+  }
 
  onDragEnd(draggedLayer) {
 
@@ -93,20 +95,20 @@ class MapsContainer extends Component {
       lyr = layers[findWithAttr(layers, 'id', i)];
       
       if (lyr){
-      zoomControlNeeded = lyr.visibleIndex === 0 ? true : false;
-      
-      if (zoomControlNeeded){
-          
+        zoomControlNeeded = lyr.visibleIndex === 0 ? true : false;
+        
+        if (zoomControlNeeded){
+            
+            map.removeControl(map.zoomControl);
+            map.addControl(map.zoomControl);
+            
+        }
+
+        else {
           map.removeControl(map.zoomControl);
-          map.addControl(map.zoomControl);
-          
-      }
 
-      else {
-        map.removeControl(map.zoomControl);
-
+        }
       }
-    }
     }
 
   }
@@ -143,7 +145,9 @@ class MapsContainer extends Component {
   }
 
   clearGeocode() {
-  	this.setState({'geocodeResult': false});
+    if (this.state.geocodeResult !== false){
+      this.setState({'geocodeResult': false});
+    }
   }
 
   handleGeocode(geocodeResult){
@@ -178,10 +182,19 @@ class MapsContainer extends Component {
     {
       setTimeout(this.invalidateMapSizes, 400);
     }
-    if (prevLyrs.length === lyrs.length && !isEqual(prevLyrs.map(lyr => lyr.display_name+lyr.visibleIndex.toString()),
-          lyrs.map(lyr => lyr.display_name+lyr.visibleIndex.toString()))){
-            this.manageZoomControls();
-          }
+
+    if (prevLyrs.length === lyrs.length && !isEqual(
+            prevLyrs.map(
+              lyr => lyr.id + lyr.visibleIndex.toString()
+              ),
+            lyrs.map(
+              lyr => lyr.id + lyr.visibleIndex.toString()
+              )
+          )
+       )
+       {
+         this.manageZoomControls();
+       }
 
     if (prevProps.geocodeResult !== this.props.geocodeResult) {
       this.handleGeocode(this.props.geocodeResult);
@@ -219,7 +232,6 @@ class MapsContainer extends Component {
             <RowContainer className={'Row ' + val + (numberRows.length === 2 ? ' two-rows' : numberRows.length=== 3 ? ' three-rows': '')} 
                   provided={provided}
                   snapshot={snapshot}
-                  passUpRef={this.passUpRef}
                   passUpMapInstance={this.passUpMapInstance}
 				          geocodeResult={this.state.geocodeResult}
 				          clearGeocode={this.clearGeocode}

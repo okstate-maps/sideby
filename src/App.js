@@ -11,7 +11,6 @@ import Tooltip from './Tooltip';
 import MapsContainer from './MapsContainer';
 import { LayersInfoNYC, LayersInfoStillwater} from './LayersInfoDemo';
 import './App.css';
-import './leaflet.css';
 
 class App extends Component {
 
@@ -53,7 +52,7 @@ class App extends Component {
     
     /*
     All of the window.location.hash stuff is just a hacky way
-    to create shortcuts 
+    to create shortcuts. Should move this out or come up with a better way.
     */
     if (window.location.hash === '#builder') {
       window.sideby.LayersInfo = [];

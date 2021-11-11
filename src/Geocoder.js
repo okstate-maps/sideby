@@ -21,7 +21,6 @@ class Geocoder extends Component {
   }
  
   componentDidMount(){
-    //console.log('Geocoder mounted');
     let that = this;
     this.map = L.map('hidden-geocoder-map');
     this.geocoderObj = new L.Control.Geocoder(

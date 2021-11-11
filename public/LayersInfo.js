@@ -30,6 +30,13 @@ window.sideby.LayersInfo =  //leave this line and
     "thumbnail_path": "mapbox_satellite.jpg"
   },
   {
+    "layer_type": "EsriVectorBasemapLayer",
+    "name":"ArcGIS:DarkGray",
+    "display_name": "Vector Basemap",
+    "apikey": "AAPK7f7338ef408f47029a5a7bb1560ef7f7kBpJhlfXEbyJPtP6RI1dn4jk3p2fitP5kVOC0733r85Cbf_FNjJebmr8XvtubbfZ",
+    "thumbnail_path": "https://www.arcgis.com/sharing/rest/content/items/c11ce4f7801740b2905eb03ddc963ac8/info/thumbnail/thumbnail1561649860011.jpeg?w=400"  
+  },
+  {
     "layer_type": "WMSTileLayer",
     "layers": "gpw-v3:gpw-v3-population-density_2000",
     "url": "https://sedac.ciesin.columbia.edu/geoserver/wms",

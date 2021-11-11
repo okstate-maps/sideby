@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import { cloneDeep } from 'lodash';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,13 +14,9 @@ import { BasemapLayer, FeatureLayer, TiledMapLayer, ImageMapLayer,
 import VectorBasemapLayer from "react-esri-leaflet/plugins/VectorBasemapLayer";
 import VectorTileLayer from "react-esri-leaflet/plugins/VectorTileLayer";
 import { deleteArrayofKeys } from './Util';
-// import {mapboxToken, 
-//         labelLayerUrl, 
-//         mapMinZoom, 
-//         mapDefaultZoom, 
-//         mapDefaultCenter} from './Config';
 import './MapWrapper.css'
 import './Handle.css';
+
 
 library.add(faGripVertical);
 
@@ -39,8 +35,8 @@ class Handle extends React.Component {
 }
 
 
-class MapWrapper extends Component {
-  
+class MapWrapper extends React.PureComponent {
+  static whyDidYouRender = true;
   constructor(props, context) {
     super(props)
     this.Config = window.sideby.Config;
@@ -52,7 +48,6 @@ class MapWrapper extends Component {
       zoom: this.Config.mapDefaultZoom
     }
     this.viewport = DEFAULT_VIEWPORT;
-    //this.props.mapCenter(this.viewport.center);
     this.invalidateMapSizes = this.invalidateMapSizes.bind(this);
     this.syncMaps = this.syncMaps.bind(this);
     this.unsyncMaps = this.unsyncMaps.bind(this);
@@ -63,7 +58,7 @@ class MapWrapper extends Component {
     this.onGeocodeClick = this.onGeocodeClick.bind(this);
     this.bboxStringToLatLngBoundsArray = this.bboxStringToLatLngBoundsArray.bind(this);
     this.checkLayerBounds = this.checkLayerBounds.bind(this);
-
+    
     // The following parameters are not passed on to the map layer. This
     // was originally implemented to avoid confusing WMS servers, and
     // there may be unintended consequences.
@@ -84,7 +79,7 @@ class MapWrapper extends Component {
       'WMSTileLayer': WMSTileLayer,
       'WMTSTileLayer': WMTSTileLayer
     };
-  
+
     this.Overlays = () => {return (
     <>
       {this.props.overlays.map(layer => {
@@ -103,14 +98,14 @@ class MapWrapper extends Component {
       })}
     </>)
   };
-    }
+  }
 
   componentWillUnmount(){
     this.passUpMapInstance(this.props.layer.id, this.mapRef, true);
   }
 
   componentDidMount(prevProps, prevState){}
-  
+
   componentDidUpdate(prevProps, prevState) {}
 
   onResize(e) {}
@@ -148,7 +143,6 @@ class MapWrapper extends Component {
     return null;
   }
 
-
   clearGeocode() {
     this.props.clearGeocode();
   }
@@ -175,7 +169,6 @@ class MapWrapper extends Component {
     var layerId = layer.id;
     const { provided } = this.props;
 
-    // Use ids from layers array to create list of urls
     return (<div
               {...provided.draggableProps}
               ref={provided.innerRef}>
