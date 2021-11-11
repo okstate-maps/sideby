@@ -22,7 +22,7 @@ window.sideby.Config = {
   "geocoderSearchPlaceholderText": "Search for a place...",
   
   "mapboxToken": "pk.eyJ1Ijoia3JkeWtlIiwiYSI6Ik15RGcwZGMifQ.IR_NpAqXL1ro8mFeTIdifg",//replace with your own
-  
+  "esriAPIKey": "AAPK7f7338ef408f47029a5a7bb1560ef7f7kBpJhlfXEbyJPtP6RI1dn4jk3p2fitP5kVOC0733r85Cbf_FNjJebmr8XvtubbfZ",
   "labelLayerUrl": "https://api.mapbox.com/styles/v1/krdyke/cjf9wgvwg0zlh2rmo4jx9jcec/tiles/256/{z}/{x}/{y}?access_token=",//replace with your own label layer if you'd like
   
   "mapDefaultZoom": 3, //lower = more zoomed out
