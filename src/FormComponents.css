@@ -16,6 +16,10 @@
   margin: 5px;
 }
 
+#modalContent .inputGroup.verticalInputGroup {
+  flex-direction: column;
+  align-items: flex-start;
+}
 
 #modalContent .modalHeader {
   font-size: 1.6em;
@@ -90,4 +94,17 @@
 
 h4.conditionalLayerFieldsHeader {
   font-weight: bold;
+}
+
+#modalContent .radioGroup .inputGroup  input[type="radio"].hiddenRadio {
+  display: none;
+} 
+  
+#modalContent label img {
+  padding-right:5px;
+}
+
+#modalContent label.basemapLabel {
+  display: flex;
+  align-items: center;
 }

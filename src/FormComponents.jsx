@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, useFormikContext } from 'formik';
 import * as Yup from 'yup';
 import { guessLayerTypeByUrl } from './Helpers';
-import {RegexURL} from './Util';
+import {RegexURL, findWithAttr} from './Util';
 import TooltipText from './TooltipText';
 import TooltipIcon from './TooltipIcon';
 
@@ -159,9 +159,84 @@ export const LayerTypeRadioGroup = props => {
             </label>
             <TooltipIcon tooltipName={TooltipText.EsriImageLayer}/>
           </div>
+
+          <div className='inputGroup'>
+            <Field id='typeEsriVectorTileLayer'
+                   name='layer_type'
+                   type='radio'
+                   value='EsriVectorTileLayer'/>
+            <label className='radioGroupLabel'
+                   htmlFor='typeEsriVectorTileLayer'>
+                Esri Vector Tile Layer
+            </label>
+            <TooltipIcon tooltipName={TooltipText.EsriVectorTileLayer}/>
+          </div>
         </div>
   )
 }
+
+
+
+
+function BasemapList(props) {
+  const opts = props.basemapOptions;
+  const basemapList = opts.map((item) => 
+    <div key={item.name} className='inputGroup verticalInputGroup'>
+        <label className='radioGroupLabel basemapLabel' 
+          htmlFor={item.name}
+          key={item.name}>
+          <img src={item.thumbnail_path}></img>
+          {item.display_name}       
+        </label>
+
+        <Field id={item.name}
+            name='name'
+            className='hiddenRadio'
+            type='radio'
+            value={item.name}/>
+  
+        
+    </div>
+  );
+  return basemapList;
+}
+
+export const BasemapRadioGroup = props => {
+  const {
+     values: {style},
+     touched,
+     setFieldValue,
+   } = useFormikContext();
+ 
+   console.log(props);
+   //const [field, meta] = useField(props);
+ 
+   
+   React.useEffect(() => {
+     //let newType = guessLayerTypeByUrl(url);
+     //setFieldValue(props.name, newType);
+     
+   }, [style, touched.style, setFieldValue, props.name]);
+ 
+   return (
+     <div className='radioGroup'>
+           <label className='radioGroupLabel'>Type</label>
+ 
+           <div className='inputGroup verticalInputGroup'>
+              <BasemapList basemapOptions={props.options}/>
+           </div>
+      </div>
+   )
+ }
+
+export const AddBasemapInitialValues = {
+  style:'',
+  display_name: '',
+  thumbnail_path: '',
+  layer_type: 'EsriVectorBasemapLayer',
+  apikey: window.sideby.Config.esriAPIKey
+
+};
 
 export const AddLayerInitialValues = {
     url: '',
@@ -177,7 +252,7 @@ export const AddLayerInitialValues = {
     arcgis: '',
     layer: '',
     tilematrixSet: ''        
-}
+};
 
 export const AddLayerValidationSchema = Yup.object({
     url: Yup.string()

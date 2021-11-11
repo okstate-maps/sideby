@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import TooltipText from './TooltipText';
 import TooltipIcon from './TooltipIcon';
 import {ConditionalLayerFields, LayerTypeRadioGroup,
         AddLayerInitialValues, AddLayerValidationSchema} from './FormComponents';
-
 import './FormComponents.css';
 
 
@@ -13,9 +12,7 @@ export const AddLayerItemForm = (props) => {
   return (
     <Formik
       initialValues={AddLayerInitialValues}
-      
       validationSchema={AddLayerValidationSchema}   
-
       onSubmit={(values, { setSubmitting  }) => {
         props.addLayer(values);
         props.closeModal();
@@ -27,6 +24,8 @@ export const AddLayerItemForm = (props) => {
           Add New Layer&nbsp;
           <TooltipIcon tooltipName={TooltipText.AddNewLayer}/>
         </h3>
+
+       
         <label className='textInputLabel' 
                htmlFor='url'>
             Url&nbsp;
