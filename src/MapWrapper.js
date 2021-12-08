@@ -7,6 +7,7 @@ import 'leaflet.sync';
 import 'leaflet-loading';
 import { MapContainer, TileLayer, WMSTileLayer, Marker, CircleMarker} from 'react-leaflet';
 import WMTSTileLayer from './Leaflet.WMTS/index';
+import { guessLayerTypeByUrl } from './Helpers';
 import WFSLayer from './WFSLayer';
 import LeafletLoadingControl from './LeafletLoadingControl';
 import { BasemapLayer, FeatureLayer, TiledMapLayer, ImageMapLayer, 
@@ -36,12 +37,11 @@ class Handle extends React.Component {
 
 
 class MapWrapper extends React.PureComponent {
-  static whyDidYouRender = true;
   constructor(props, context) {
     super(props)
     this.Config = window.sideby.Config;
     this.mapboxToken = this.Config.mapboxToken;
-    this.labelLayerUrl = this.Config.labelLayerUrl + this.mapboxToken;
+    this.labelLayerUrl = this.Config.labelLayerUrl;
 
     const DEFAULT_VIEWPORT = {
       center: this.Config.mapDefaultCenter,
@@ -81,23 +81,40 @@ class MapWrapper extends React.PureComponent {
     };
 
     this.Overlays = () => {return (
-    <>
-      {this.props.overlays.map(layer => {
-        let Overlay = this.layer_components[layer.layer_type];
-        return  (
-          <Overlay  
-              format='image/png8' 
-              transparent='true'
-              url={layer.url}
-              key={layer.id}
-              zIndex={layer.is_basemap ? 1 : 100000}
-              pane={layer.is_basemap ? 'tilePane' : 'overlayPane'}
-              {...deleteArrayofKeys(cloneDeep(layer), this.layerOptionBlacklist)}
-              />
-        )
-      })}
-    </>)
-  };
+      <>
+        {this.props.overlays.map(layer => {
+          let Overlay = this.layer_components[layer.layer_type];
+          return  (
+            <Overlay  
+                format='image/png8' 
+                transparent='true'
+                url={layer.url}
+                key={layer.id}
+                zIndex={layer.is_basemap ? 1 : 100000}
+                pane={layer.is_basemap ? 'tilePane' : 'overlayPane'}
+                {...deleteArrayofKeys(cloneDeep(layer), this.layerOptionBlacklist)}
+                />
+          )
+        })}
+      </>)
+    };
+    
+    this.LabelLayer = () => {
+      let labelLayerType = guessLayerTypeByUrl(this.labelLayerUrl);
+      let LabelLayer = this.layer_components[labelLayerType];
+      return (
+       <LabelLayer 
+          format='image/png8' 
+          transparent='true'
+          url={this.labelLayerUrl}
+          apikey={this.Config.esriAPIKey}
+            style={(style) => {
+              return "https://osu-geog.maps.arcgis.com/sharing/rest/content/items/dd78750101af4491a92d4ae442632181/resources/styles/root.json?f=pjson";
+            }}
+       />
+      )
+    };
+
   }
 
   componentWillUnmount(){
@@ -141,7 +158,7 @@ class MapWrapper extends React.PureComponent {
     }
 
     return null;
-  }
+  };
 
   clearGeocode() {
     this.props.clearGeocode();
@@ -163,6 +180,7 @@ class MapWrapper extends React.PureComponent {
    
 
     const Overlays = this.Overlays;    
+    const LabelLayer = this.LabelLayer;
     var layer = cloneDeep(this.props.layer);
     let that = this;
     let Layer = this.layer_components[layer.layer_type];
@@ -214,11 +232,7 @@ class MapWrapper extends React.PureComponent {
                 }
 
                 {this.props.labelLayerOn &&
-                  <TileLayer 
-                    key={'labels-' + layer.id}
-                    url={this.labelLayerUrl}
-                    pane='shadowPane'
-                    zIndex={1000000} />
+                  <LabelLayer/>
                 }
                   
                 {this.props.overlays.length > 0 && <Overlays />}
@@ -236,5 +250,4 @@ class MapWrapper extends React.PureComponent {
   }
 }  
 
-//export default React.forwardRef((props, ref) => <MapWrapper mapRef={ref} {...props} />);
 export default MapWrapper;
