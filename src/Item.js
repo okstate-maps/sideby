@@ -31,7 +31,7 @@ class Item extends Component {
   resolveThumbnail() {
 
     var local_path = process.env.PUBLIC_URL + '/assets/layer_thumbnails/';
-    
+    var static_path = process.env.PUBLIC_URL;    
     if (this.props.thumbnail_path){
     
       if (this.props.thumbnail_path.startsWith('http') ||
@@ -41,6 +41,12 @@ class Item extends Component {
     
       }
     
+      else if (this.props.thumbnail_path.startsWith('/static')) {
+
+        this.setState({thumbnail_path: static_path + this.props.thumbnail_path});
+
+      }
+      
       else {
         this.setState({thumbnail_path: local_path + 
                                        this.props.thumbnail_path});

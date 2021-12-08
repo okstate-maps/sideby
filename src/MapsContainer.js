@@ -122,7 +122,6 @@ class MapsContainer extends PureComponent {
 
   unsyncMaps(id) {
     let mapInstances = this.state.mapInstances;
-    console.log(mapInstances);
     for (var i in mapInstances){
       if (i !== id && mapInstances[id]){
           mapInstances[id].unsync(mapInstances[i]);
@@ -229,7 +228,8 @@ class MapsContainer extends PureComponent {
       return (
         <Droppable droppableId={val} key={val} direction='horizontal'>
           {(provided, snapshot) => (
-            <RowContainer className={'Row ' + val + (numberRows.length === 2 ? ' two-rows' : numberRows.length=== 3 ? ' three-rows': '')} 
+            <RowContainer className={'Row ' + val + (numberRows.length === 2 ? ' two-rows' : 
+                                                      numberRows.length=== 3 ? ' three-rows': '')} 
                   provided={provided}
                   snapshot={snapshot}
                   passUpMapInstance={this.passUpMapInstance}
@@ -259,4 +259,4 @@ class MapsContainer extends PureComponent {
   }
 }
 
-export default React.forwardRef((props, ref) => <MapsContainer mapRef={ref} {...props} />);;
+export default MapsContainer;

@@ -3,31 +3,31 @@
   
   window.sideby.OverlaysInfo = [ 
 
-    {
-      "layer_type": "EsriVectorTileLayer",
-      "id": "sadflkhdafghsadkfgldhafgjdkjsfhgsdfgsdfg",
-      "url": "https://vectortileservices1.arcgis.com/jWQlP64OuwDh6GGX/arcgis/rest/services/WPA_Maps_Land_Parcels_Vector_tiles/VectorTileServer",  
-      "display_name": "Vector Tile",
-      "apikey": "AAPK7f7338ef408f47029a5a7bb1560ef7f7kBpJhlfXEbyJPtP6RI1dn4jk3p2fitP5kVOC0733r85Cbf_FNjJebmr8XvtubbfZ",
-      "thumbnail_path": "wpa_vector.jpg"
-    },
+    // {
+    //   "layer_type": "EsriVectorTileLayer",
+    //   "id": "sadflkhdafghsadkfgldhafgjdkjsfhgsdfgsdfg",
+    //   "url": "https://vectortileservices1.arcgis.com/jWQlP64OuwDh6GGX/arcgis/rest/services/WPA_Maps_Land_Parcels_Vector_tiles/VectorTileServer",  
+    //   "display_name": "Vector Tile",
+    //   "apikey": "AAPK7f7338ef408f47029a5a7bb1560ef7f7kBpJhlfXEbyJPtP6RI1dn4jk3p2fitP5kVOC0733r85Cbf_FNjJebmr8XvtubbfZ",
+    //   "thumbnail_path": "wpa_vector.jpg"
+    // },
   // /*
   //   EsriFeatureLayer example
   // */
-    {
-      "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0",
-      "layer_type": "EsriFeatureLayer",
-      "style": function(){ // you can use style options from https://leafletjs.com/reference-1.5.0.html#path-option 
-        return {
-          "fill": false, 
-          "color": "#fafafa", 
-          "weight": 1
-        }
-      },
-      "id": "stateoutlinesoverlay",
-      "display_name": "EsriFeatureLayer (USA State Outlines)", // this appears in the manage overlays pop up
-      "interactive": false // prevent the layer from seeming "clickable"
-    },
+    // {
+    //   "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0",
+    //   "layer_type": "EsriFeatureLayer",
+    //   "style": function(){ // you can use style options from https://leafletjs.com/reference-1.5.0.html#path-option 
+    //     return {
+    //       "fill": false, 
+    //       "color": "#fafafa", 
+    //       "weight": 1
+    //     }
+    //   },
+    //   "id": "stateoutlinesoverlay",
+    //   "display_name": "EsriFeatureLayer (USA State Outlines)", // this appears in the manage overlays pop up
+    //   "interactive": false // prevent the layer from seeming "clickable"
+    // },
 
   //   /*
   //     WMS example layer from Geoserver
@@ -47,21 +47,21 @@
   //     Example of WFS layer via Geoserver 
   //   */
 
-    {
-      "url": "https://sedac.ciesin.columbia.edu/geoserver/ows",
-      "layer_type": "WFSLayer",
-      "typeNS": "superfund",
-      "typeName": "superfund-atsdr-hazardous-waste-site-v2",
-      "id": "superfund-atsdr-hazardous-waste-site-v2",
-      "geometryField": "the_geom",
-      "fillOpacity": 0.8,
-      "display_name": "WFSLayer (superfund sites)",
-      "style": {
-            color: 'orange',
-            weight: 1
-       },
-      "maxFeatures": 300
-    }
+    // {
+    //   "url": "https://sedac.ciesin.columbia.edu/geoserver/ows",
+    //   "layer_type": "WFSLayer",
+    //   "typeNS": "superfund",
+    //   "typeName": "superfund-atsdr-hazardous-waste-site-v2",
+    //   "id": "superfund-atsdr-hazardous-waste-site-v2",
+    //   "geometryField": "the_geom",
+    //   "fillOpacity": 0.8,
+    //   "display_name": "WFSLayer (superfund sites)",
+    //   "style": {
+    //         color: 'orange',
+    //         weight: 1
+    //    },
+    //   "maxFeatures": 300
+    // }
 
 
   //   /*

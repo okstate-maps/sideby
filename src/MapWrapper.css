@@ -38,6 +38,11 @@ div.sync-icon {
 	background-color: var(--background-color);
 }
 
+/* .leaflet-tile-container img {
+    width: 256.5px !important;
+    height: 256.5px !important;
+} */
+
 .map0 {  
   /*width: 100vw;*/
 }
@@ -85,7 +90,7 @@ div[data-react-beautiful-dnd-placeholder='0'] {
 
 	@media (min-height: 901px) and (max-height: 1000px) {
 		.map-title .no-maps p {
-			font-size:2.5em;
+			font-size:2em;
 		}
 
 		.no-maps p {
@@ -98,10 +103,10 @@ div[data-react-beautiful-dnd-placeholder='0'] {
 
 	@media (min-height: 1001px) {
 		.map-title,.no-maps p {
-			font-size:3em;
+			font-size:2em;
 		}
 		.no-maps p {
-			line-height: 2.5em;
+			line-height: 2em;
 		}
 		.map-title.long-title {
 			font-size:2em;

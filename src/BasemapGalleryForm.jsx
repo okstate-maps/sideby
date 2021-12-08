@@ -59,7 +59,7 @@ const basemapOptions = [
  { name:'ArcGIS:Community',
   display_name:'Community Map', 
   thumbnail_path: Community_Map},
- { name:'ArcGIS:NavigationNight',
+ { name:'ArcGIS:NavigationNight:Base',
   display_name:'Navigation Dark Mode', 
   thumbnail_path: Navigation_Dark_Mode},
  { name:'ArcGIS:Newspaper',
@@ -87,7 +87,6 @@ export const BasemapGalleryForm = (props) => {
       onSubmit={(values, { setSubmitting  }) => {
         values.display_name = basemapOptions[findWithAttr(basemapOptions, 'name', values.name)]['display_name'];
         values.thumbnail_path = basemapOptions[findWithAttr(basemapOptions, 'name', values.name)]['thumbnail_path'];
-        console.log(values);
         props.addLayer(values);
         props.closeModal();
       }}
@@ -100,10 +99,8 @@ export const BasemapGalleryForm = (props) => {
         </h3>
         
        <BasemapRadioGroup name='basemap' options={basemapOptions} />
-       
-       <ConditionalLayerFields name='brrr' />
+         
         <br/>
-        <button type='submit'>OK</button>
         <button type='button' onClick={props.closeModal}>Cancel</button>
       </Form>
 

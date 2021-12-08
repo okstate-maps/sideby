@@ -1150,14 +1150,6 @@
     "@babel/helper-plugin-utils" "^7.10.4"
     "@babel/plugin-transform-typescript" "^7.12.1"
 
-"@babel/runtime-corejs2@^7.6.3":
-  version "7.16.0"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.16.0.tgz#1352db0e48b6e7715dfdd41f541c903e2cff3b28"
-  integrity sha512-PICpXRloQQ7AtgN+8xYbOxaopQ1vMB9RV0tsVe5ikx5/6y7iO8tYQiyAf3hIYxwz8AohnSXBuXorBacFOs21xg==
-  dependencies:
-    core-js "^2.6.5"
-    regenerator-runtime "^0.13.4"
-
 "@babel/runtime-corejs3@^7.10.2":
   version "7.16.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.16.0.tgz#58a7fb00e6948508f12f53a303993e8b6e2f6c70"
@@ -3787,7 +3779,7 @@ core-js-pure@^3.19.0:
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.19.1.tgz#edffc1fc7634000a55ba05e95b3f0fe9587a5aa4"
   integrity sha512-Q0Knr8Es84vtv62ei6/6jXH/7izKmOrtrxH9WJTHLCMAVeU+8TF8z8Nr08CsH4Ot0oJKzBzJJL9SJBYIv7WlfQ==
 
-core-js@^2.4.0, core-js@^2.6.5:
+core-js@^2.4.0:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
   integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
@@ -4980,10 +4972,10 @@ esri-leaflet-vector@^3.1.1:
   dependencies:
     mapbox-gl "1.13.1"
 
-esri-leaflet@^3.0.1:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/esri-leaflet/-/esri-leaflet-3.0.3.tgz#5fa42c47df1e266653ed9cb7d9919eb012b48829"
-  integrity sha512-TTfUQ00r9dMVhb8ipTEIN/cF3SDvCQj2kQcmnwNyuFO5wcOM3y59ou3xwTMp5mMjpyYfelPl9s5LjosaqgxGaQ==
+esri-leaflet@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/esri-leaflet/-/esri-leaflet-3.0.4.tgz#399d8422da453f59b658394f0ea2a69ea42a9c76"
+  integrity sha512-K/nnrlu9DUptYWQtBxGRVCFxJA8GSSyw6KNH/onxQ7jmuKMoS3rzV6kAntFv5bF/Iued3hqRXxbPnQD7oDcrAg==
   dependencies:
     "@terraformer/arcgis" "^2.0.7"
     tiny-binary-search "^1.0.3"
@@ -9571,16 +9563,16 @@ react-app-polyfill@^2.0.0:
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
 
-react-beautiful-dnd@^12.2.0:
-  version "12.2.0"
-  resolved "https://registry.yarnpkg.com/react-beautiful-dnd/-/react-beautiful-dnd-12.2.0.tgz#e5f6222f9e7934c6ed4ee09024547f9e353ae423"
-  integrity sha512-s5UrOXNDgeEC+sx65IgbeFlqKKgK3c0UfbrJLWufP34WBheyu5kJ741DtJbsSgPKyNLkqfswpMYr0P8lRj42cA==
+react-beautiful-dnd@^13.1.0:
+  version "13.1.0"
+  resolved "https://registry.yarnpkg.com/react-beautiful-dnd/-/react-beautiful-dnd-13.1.0.tgz#ec97c81093593526454b0de69852ae433783844d"
+  integrity sha512-aGvblPZTJowOWUNiwd6tNfEpgkX5OxmpqxHKNW/4VmvZTNTbeiq7bA3bn5T+QSF2uibXB0D1DmJsb1aC/+3cUA==
   dependencies:
-    "@babel/runtime-corejs2" "^7.6.3"
+    "@babel/runtime" "^7.9.2"
     css-box-model "^1.2.0"
     memoize-one "^5.1.1"
     raf-schd "^4.0.2"
-    react-redux "^7.1.1"
+    react-redux "^7.2.0"
     redux "^4.0.4"
     use-memo-one "^1.1.1"
 
@@ -9678,7 +9670,7 @@ react-leaflet-wmts@okstate-maps/react-leaflet-wmts#0.1.0:
   dependencies:
     lodash "^4.17.11"
 
-react-leaflet@^3.1.0:
+react-leaflet@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/react-leaflet/-/react-leaflet-3.2.2.tgz#3d779662c32a1d8729e73d24e8ad96ee5b38beef"
   integrity sha512-5W7iWjI9+CdTGVAICe8RUyK0n+uLshr+eLQa8eBCbmstPNpCHZJTUSbju4Ws5dkS/PUCr9t5VmoIE9CXuSBEhw==
@@ -9700,7 +9692,7 @@ react-modal@^3.9.1:
     react-lifecycles-compat "^3.0.0"
     warning "^4.0.3"
 
-react-redux@^7.1.1:
+react-redux@^7.2.0:
   version "7.2.6"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.2.6.tgz#49633a24fe552b5f9caf58feb8a138936ddfe9aa"
   integrity sha512-10RPdsz0UUrRL1NZE0ejTkucnclYSgXp5q+tB5SWx2qeG2ZJQJyymgAhwKy73yiL/13btfB6fPr+rgbMAaZIAQ==

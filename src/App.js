@@ -104,10 +104,8 @@ class App extends Component {
     let new_layer = data,
       id = shortid.generate(), 
       maxZoom = 20;
-
     new_layer.id = id;
     new_layer.maxZoom = maxZoom;
-    
     let state = {'viewbarLayers': this.state.viewbarLayers};
     state.viewbarLayers.push(new_layer);
     this.setState(state);

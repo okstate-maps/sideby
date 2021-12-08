@@ -60,12 +60,13 @@ export function getThumbnailByLayerType(layerProps){
 export function guessLayerTypeByUrl(url){
   let typeREs = {
         TileLayer: /.*\{z\}.*\{x\}.*\{y\}.*/,
+        EsriVectorTileLayer: /.*VectorTileServer.*/,
         WFSLayer: /.*wfs.*/i,
         WMSTileLayer: /.*wms.*/i,
         WMTSTileLayer: /.*wmts.*/i,
         EsriImageLayer: /.*ImageServer.*/,
         EsriFeatureLayer: /.*FeatureServer.*/, //though an individ layer from esri dynam map service can also act as a feature layer...
-        EsriTiledMapLayer: /.*MapServer[/ ]*$/, 
+        EsriTiledMapLayer: /.*MapServer[/ ]*$/
   };
   let submittedUrl = url;
   let newType = null;

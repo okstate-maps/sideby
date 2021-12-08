@@ -16,9 +16,10 @@
   margin: 5px;
 }
 
-#modalContent .inputGroup.verticalInputGroup {
+#modalContent div.inputGroup.basemapInputGroup{
   flex-direction: column;
   align-items: flex-start;
+  flex: 1 0 21%;
 }
 
 #modalContent .modalHeader {
@@ -79,6 +80,20 @@
   margin-left: 15px;
 }
 
+#modalContent div.inputGroup.basemapInputGroup label {
+  box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
+  transition: background-color 0.1s linear;
+  transition: box-shadow 0.1s linear;
+  padding:5px; 
+}
+
+#modalContent div.inputGroup.basemapInputGroup label:active {
+	transform:translatey(6px);
+  box-shadow: none;
+  transition: transform 0.1s linear;
+	transition: box-shadow 0.1s linear; 
+}
+
 #modalContent .error {
   color: red;
 }
@@ -104,7 +119,19 @@ h4.conditionalLayerFieldsHeader {
   padding-right:5px;
 }
 
+#modalContent div.inputGroup.basemapGroup {
+  flex-wrap: wrap;
+}
+
 #modalContent label.basemapLabel {
   display: flex;
+
+  flex-direction: column;
   align-items: center;
+  width:150px;
+  
+}
+
+#modalContent label.basemapLabel img {
+  width: 75%;
 }

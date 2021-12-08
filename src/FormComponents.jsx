@@ -180,8 +180,9 @@ export const LayerTypeRadioGroup = props => {
 
 function BasemapList(props) {
   const opts = props.basemapOptions;
+  const { submitForm } = useFormikContext();
   const basemapList = opts.map((item) => 
-    <div key={item.name} className='inputGroup verticalInputGroup'>
+    <div key={item.name} className='inputGroup basemapInputGroup'>
         <label className='radioGroupLabel basemapLabel' 
           htmlFor={item.name}
           key={item.name}>
@@ -193,6 +194,7 @@ function BasemapList(props) {
             name='name'
             className='hiddenRadio'
             type='radio'
+            onClick={(e)=> {submitForm()}}
             value={item.name}/>
   
         
@@ -208,7 +210,7 @@ export const BasemapRadioGroup = props => {
      setFieldValue,
    } = useFormikContext();
  
-   console.log(props);
+   //console.log(props);
    //const [field, meta] = useField(props);
  
    
@@ -222,7 +224,7 @@ export const BasemapRadioGroup = props => {
      <div className='radioGroup'>
            <label className='radioGroupLabel'>Type</label>
  
-           <div className='inputGroup verticalInputGroup'>
+           <div className='inputGroup basemapGroup'>
               <BasemapList basemapOptions={props.options}/>
            </div>
       </div>
